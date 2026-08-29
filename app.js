@@ -66,7 +66,7 @@ function toggleTheme() {
 const VIEWS = [
   'command-center', 'circle-pipeline', 'mesh-crm', 'goals', 'timeline',
   'soul-engine', 'agent-storefront', 'ecosystem', 'hermes-control', 'aurora-brain',
-  'tasks', 'cron-monitor', 'ventures', 'treasury'
+  'tasks', 'cron-monitor', 'ventures', 'treasury', 'war-room'
 ];
 
 function navigateTo(viewName) {
@@ -466,5 +466,27 @@ if (document.readyState === 'loading') {
   init();
 }
 
-// ─── Export for views ───
-window.ZEG = { api, state, setTheme, navigateTo, refreshData };
+// ─── Modal System ───
+window.openZegModal = function(title, bodyHTML) {
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = `
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">${title}</div>
+        <button class="modal-close" onclick="closeZegModal()">×</button>
+      </div>
+      <div class="modal-body">${bodyHTML}</div>
+    </div>
+  `;
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeZegModal();
+  });
+  document.body.appendChild(overlay);
+  return overlay;
+};
+
+window.closeZegModal = function() {
+  const overlay = document.querySelector('.modal-overlay');
+  if (overlay) overlay.remove();
+};
