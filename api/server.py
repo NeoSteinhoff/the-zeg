@@ -152,6 +152,67 @@ def get_hermes_control():
     from hermes_control_aggregator import get_control_data
     return safe_run(get_control_data, {"stats": {}, "sessions": []})
 
+def get_agent_detail(session_id=None):
+    """Get details for a specific session (HCI: Agent Detail Page)."""
+    if not session_id:
+        return {"error": "session_id required"}
+    rows = safe_run(lambda: sqlite_query(STATE_DB,
+        "SELECT * FROM sessions WHERE session_key = ? OR id = ? LIMIT 1",
+        (session_id, session_id)), [])
+    if rows:
+        s = rows[0]
+        return {
+            "id": s.get("id", ""),
+            "session_key": s.get("session_key", ""),
+            "model": s.get("model", ""),
+            "input_tokens": s.get("input_tokens", 0),
+            "output_tokens": s.get("output_tokens", 0),
+            "cache_read_tokens": s.get("cache_read_tokens", 0),
+            "cache_write_tokens": s.get("cache_write_tokens", 0),
+            "reasoning_tokens": s.get("reasoning_tokens", 0),
+            "actual_cost_usd": s.get("actual_cost_usd", 0),
+            "message_count": s.get("message_count", 0),
+            "started_at": s.get("started_at", ""),
+            "ended_at": s.get("ended_at", ""),
+            "end_reason": s.get("end_reason", ""),
+            "display_name": s.get("display_name", ""),
+        }
+    return {"error": "Session not found", "session_id": session_id}
+
+def get_gateway_logs():
+    """Gateway process logs + system metrics (HCI Monitor page)."""
+    import subprocess
+    logs = []
+    # Check running processes
+    try:
+        ps = subprocess.run(["ps", "aux"], capture_output=True, text=True, timeout=3)
+        for line in ps.stdout.strip().split("\n")[1:20]:  # top 20 processes
+            parts = line.split(None, 10)
+            if len(parts) >= 11:
+                logs.append({
+                    "pid": parts[1],
+                    "cpu": parts[2],
+                    "mem": parts[3],
+                    "command": parts[10][:80],
+                })
+    except Exception:
+        pass
+    
+    # Get system metrics
+    import resource
+    usage = resource.getrusage(resource.RUSAGE_SELF)
+    
+    return {
+        "processes": logs,
+        "metrics": {
+            "cpu_user": usage.ru_utime,
+            "cpu_sys": usage.ru_stime,
+            "max_rss": usage.ru_maxrss,
+            "page_faults": usage.ru_majflt + usage.ru_minflt,
+        },
+        "gateway_running": any(p.get("command","").lower().find("gateway") >= 0 for p in logs),
+    }
+
 def get_aurora_brain():
     from aurora_aggregator import get_aurora_data
     return safe_run(get_aurora_data, {"stats": {}, "recent_actions": []})
@@ -379,6 +440,7 @@ def handle_webhook(body):
 
 GET_ROUTES["/api/quick-actions"] = get_quick_actions
 GET_ROUTES["/api/events"] = get_live_events
+GET_ROUTES["/api/gateway-logs"] = get_gateway_logs
 
 class ZegHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -415,6 +477,15 @@ class ZegHandler(BaseHTTPRequestHandler):
 
         if path == "/api/health":
             self._send_json({"status": "ok", "port": PORT})
+            return
+
+        if path == "/api/gateway-logs":
+            self._send_json(get_gateway_logs())
+            return
+
+        if path.startswith("/api/agent-detail"):
+            sid = params.get("id", [""])[0]
+            self._send_json(get_agent_detail(sid))
             return
 
         self._send_json({"error": "Not found", "routes": list(GET_ROUTES.keys())}, 404)

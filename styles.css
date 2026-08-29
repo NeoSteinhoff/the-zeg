@@ -1415,3 +1415,29 @@ html { height: 100dvh; height: 100lvh; }
   padding: 6px 12px;
   font-size: 12px;
 }
+
+/* ═══ Auth Gate Overlay ═══ */
+#zeg-auth {
+  position: fixed !important;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+/* ═══ Agent Detail Modal ═══ */
+.agent-detail {
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.agent-detail .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+}
+.agent-detail .label { color: var(--muted); }
+.agent-detail .value { color: var(--foreground); }

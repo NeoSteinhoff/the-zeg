@@ -728,3 +728,86 @@ window.installPWA = function() {
     msgs.scrollTop = msgs.scrollHeight;
   });
 })();
+
+// ═══ Agent Detail Modal (HCI fork: expandable run history) ═══
+window.showAgentDetail = function(sessionId) {
+  if (!sessionId) { window.showZegToast('No session ID', 'error'); return; }
+  fetch(`http://localhost:8700/api/agent-detail?id=${encodeURIComponent(sessionId)}`, {
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(r => r.ok ? r.json() : null)
+  .then(detail => {
+    if (!detail || detail.error) {
+      window.showZegToast('Agent detail unavailable', 'error');
+      return;
+    }
+    const html = `
+      <div style="font-family:var(--mono);font-size:12px">
+        <div style="margin-bottom:8px"><b>ID:</b> ${detail.id || '—'} | <b>Session:</b> ${detail.session_key || '—'}</div>
+        <div style="margin-bottom:8px"><b>Model:</b> ${detail.model || '—'} | <b>Display:</b> ${detail.display_name || '—'}</div>
+        <div style="margin-bottom:8px"><b>Input:</b> ${detail.input_tokens || 0} | <b>Output:</b> ${detail.output_tokens || 0} | <b>Cache Read:</b> ${detail.cache_read_tokens || 0}</div>
+        <div style="margin-bottom:8px"><b>Cache Write:</b> ${detail.cache_write_tokens || 0} | <b>Reasoning:</b> ${detail.reasoning_tokens || 0}</div>
+        <div style="margin-bottom:8px"><b>Messages:</b> ${detail.message_count || 0} | <b>Cost:</b> $${detail.actual_cost_usd || 0}</div>
+        <div style="margin-bottom:8px"><b>Started:</b> ${detail.started_at || '—'} | <b>Ended:</b> ${detail.ended_at || 'active'}</div>
+        <div style="margin-bottom:8px"><b>End reason:</b> ${detail.end_reason || '—'}</div>
+        <div style="color:var(--muted);font-size:11px">From hermes state.db sessions table</div>
+      </div>
+    `;
+    window.showZegModal('Agent Detail — ' + (detail.model || 'Unknown'), html);
+  })
+  .catch(() => { window.showZegToast('Failed to load agent detail', 'error'); });
+};
+
+// ═══ Password Gate (HCI fork: auth behind password) ═══
+(function() {
+  const gate = document.getElementById('pwa-install-prompt');
+  if (!gate && !localStorage.getItem('zeg-authed')) {
+    // Simple password gate overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'zeg-auth';
+    overlay.style.cssText = `
+      position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.9);
+      display:flex;align-items:center;justify-content:center;z-index:10000;
+    `;
+    overlay.innerHTML = `
+      <div style="text-align:center;color:#fff;max-width:320px">
+        <div style="font-family:var(--mono);font-size:14px;margin-bottom:20px">
+          ⚡ THE ZEG — Authentication Required ⚡<br><br>
+          Enter access code:
+        </div>
+        <input id="auth-input" type="password" style="
+          background:#111;border:1px solid #00b4f4;color:#00b4f4;font-family:var(--mono);
+          padding:8px 12px;font-size:14px;width:200px;margin-bottom:12px
+        " placeholder="••••••••" autocomplete="off">
+        <br>
+        <button id="auth-submit" style="
+          background:#00b4f4;color:#000;border:none;padding:8px 16px;
+          font-family:var(--mono);font-size:12px;cursor:pointer;border-radius:4px
+        ">ACCESS</button>
+        <div style="margin-top:12px;font-size:10px;color:#666">
+          (No password needed — for demo purposes, any input works)<br>
+          Press Enter or click ACCESS
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    
+    const input = overlay.querySelector('#auth-input');
+    const submit = overlay.querySelector('#auth-submit');
+    
+    const grant = () => {
+      localStorage.setItem('zeg-authed', '1');
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay.remove(), 300);
+      if (typeof window.showZegToast === 'function') window.showZegToast('Access granted', 'success');
+    };
+    
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') grant();
+    });
+    submit.addEventListener('click', grant);
+    
+    // Auto-focus input
+    setTimeout(() => input.focus(), 100);
+  }
+})();

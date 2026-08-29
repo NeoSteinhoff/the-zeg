@@ -48,6 +48,10 @@ async function render(container, api) {
         <div id="health-grid" class="stat-grid" style="margin-bottom:0"></div>
       </div>
       <div class="card">
+        <div class="card-header">Gateway Process Monitor</div>
+        <div id="gateway-logs" style="font-family:var(--mono);font-size:11px;max-height:200px;overflow-y:auto"></div>
+      </div>
+      <div class="card">
         <div class="card-header">Incident Feed</div>
         <div id="war-list" style="margin-bottom:8px"></div>
         <button class="btn btn-ghost" onclick="addWarIssue()" style="font-size:11px;margin-top:8px">Report Issue</button>
@@ -108,7 +112,27 @@ async function loadData(api) {
           <div class="meta mono" style="font-size:10px;color:var(--muted);margin-top:4px">${iss.ts || ''}</div>
         </div>
       `;
-    }).join('');
+    }).join('') || '<div class="meta" style="font-size:10px;color:var(--muted)">No incidents</div>';
+  }
+
+  // Gateway logs (HCI Monitor)
+  const gwEl = document.getElementById('gateway-logs');
+  if (gwEl) {
+    const gwData = await api.fetch('/api/gateway-logs');
+    if (gwData && gwData.processes) {
+      gwEl.innerHTML = gwData.processes.map(p =>
+        `<div style="padding:2px 0;border-bottom:1px solid var(--border)">
+          <span style="color:#00b4f4">${p.pid}</span> | ${p.cpu}% CPU | ${p.mem}% MEM | ${p.command}
+        </div>`
+      ).join('') || '<div style="color:var(--muted)">No processes</div>';
+      gwEl.innerHTML += `<hr style="border-color:var(--border)">
+        <div style="color:var(--muted);font-size:10px">
+          CPU Sys: ${gwData.metrics?.cpu_sys?.toFixed(2)}s | Max RSS: ${gwData.metrics?.max_rss || 0} |
+          Gateway: ${gwData.gateway_running ? '✅ Running' : '⚠️ Not detected'}
+        </div>`;
+    } else {
+      gwEl.innerHTML = '<div style="color:var(--muted)">Gateway logs unavailable (local server only)</div>';
+    }
   }
 }
 

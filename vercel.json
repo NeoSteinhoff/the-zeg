@@ -25,6 +25,7 @@
     { "source": "/api/souls", "destination": "/data/static/souls.json" },
     { "source": "/api/health", "destination": "/data/static/_health.json" },
     { "source": "/api/quick-actions", "destination": "/data/static/quick-actions.json" },
-    { "source": "/api/events", "destination": "/data/static/events.json" }
+    { "source": "/api/events", "destination": "/data/static/events.json" },
+    { "source": "/api/gateway-logs", "destination": "/data/static/gateway-logs.json" }
   ]
 }

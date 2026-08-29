@@ -1,0 +1,28 @@
+{
+  "error": "Not found",
+  "routes": [
+    "/api/command-center",
+    "/api/tasks",
+    "/api/delegations",
+    "/api/crons",
+    "/api/circle-pipeline",
+    "/api/mesh-crm",
+    "/api/goals",
+    "/api/timeline",
+    "/api/soul-engine",
+    "/api/storefront",
+    "/api/ecosystem",
+    "/api/hermes-control",
+    "/api/aurora-brain",
+    "/api/ventures",
+    "/api/system",
+    "/api/ports",
+    "/api/gbrain",
+    "/api/crontab",
+    "/api/email",
+    "/api/pipeline-status",
+    "/api/souls",
+    "/api/quick-actions",
+    "/api/events"
+  ]
+}

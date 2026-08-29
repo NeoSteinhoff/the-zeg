@@ -68,10 +68,10 @@ async function loadData(api) {
   const tbody = document.querySelector('#hc-sessions tbody');
   if (tbody) {
     tbody.innerHTML = sessions.map(s => `
-      <tr>
-        <td><span style="font-family:var(--mono);font-size:11px">#${s.id || '—'}</span></td>
-        <td>${s.name || '—'}</td>
-        <td>${s.model || '—'}</td>
+      <tr onclick="showAgentDetail('${s.id || ''}')" style="cursor:pointer">
+        <td><span style="font-family:var(--mono);font-size:11px">#${(s.session_key || s.id || '').slice(0,8)}</span></td>
+        <td>${s.display_name || '—'}</td>
+        <td><span style="font-family:var(--mono);font-size:11px">${(s.model || '—').slice(0, 20)}</span></td>
         <td><span class="badge ${s.type === 'agent' ? 'badge-agent' : 'badge-running'}">${s.type || '—'}</span></td>
         <td><span class="badge ${s.status === 'active' ? 'badge-ok' : 'badge-pending'}">${s.status || '—'}</span></td>
         <td>${s.tokens ? `${(s.tokens / 1000).toFixed(1)}K` : '—'}</td>
