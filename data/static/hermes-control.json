@@ -1,0 +1,185 @@
+{
+  "stats": {
+    "active_sessions": 2,
+    "running_agents": 0,
+    "pending_tasks": 0,
+    "skills": 177,
+    "errors": 0,
+    "profiles": 2,
+    "plugins": 1
+  },
+  "sessions": [
+    {
+      "id": "cron_478281d13003_20260829_112430",
+      "title": null,
+      "started_at": 1787988428.286558,
+      "ended_at": null,
+      "end_reason": null,
+      "model": "poolside/laguna-s-2.1:free",
+      "input_tokens": 85141,
+      "output_tokens": 17029,
+      "estimated_cost_usd": 0.0,
+      "session_key": null,
+      "display_name": null
+    },
+    {
+      "id": "cron_a1a152879cfe_20260829_011404",
+      "title": null,
+      "started_at": 1787951645.6195111,
+      "ended_at": null,
+      "end_reason": null,
+      "model": "poolside/laguna-s-2.1:free",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "estimated_cost_usd": null,
+      "session_key": null,
+      "display_name": null
+    }
+  ],
+  "models": [
+    {
+      "model": "anthropic/claude-fable-5",
+      "billing_provider": "nous",
+      "input_tok": 179462,
+      "output_tok": 1299,
+      "cache_read_tok": 100320,
+      "cache_write_tok": 0,
+      "reasoning_tok": 155,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 1
+    },
+    {
+      "model": "hy3-free",
+      "billing_provider": "opencode-free",
+      "input_tok": 6022918,
+      "output_tok": 745752,
+      "cache_read_tok": 52955264,
+      "cache_write_tok": 0,
+      "reasoning_tok": 226811,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 30
+    },
+    {
+      "model": "laguna-s-2.1-free",
+      "billing_provider": "opencode-free",
+      "input_tok": 7367925,
+      "output_tok": 470912,
+      "cache_read_tok": 27089856,
+      "cache_write_tok": 0,
+      "reasoning_tok": 142576,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 28
+    },
+    {
+      "model": "meituan/longcat-2.0:free",
+      "billing_provider": "nous",
+      "input_tok": 20207861,
+      "output_tok": 920855,
+      "cache_read_tok": 197167542,
+      "cache_write_tok": 0,
+      "reasoning_tok": 184814,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 38
+    },
+    {
+      "model": "nemotron-3-ultra-free",
+      "billing_provider": "opencode-free",
+      "input_tok": 34117337,
+      "output_tok": 426913,
+      "cache_read_tok": 41812160,
+      "cache_write_tok": 0,
+      "reasoning_tok": 142523,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 24
+    },
+    {
+      "model": "nemotron-3.5-lightning-free",
+      "billing_provider": "opencode-free",
+      "input_tok": 3608775,
+      "output_tok": 84783,
+      "cache_read_tok": 36147296,
+      "cache_write_tok": 0,
+      "reasoning_tok": 11042,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 1
+    },
+    {
+      "model": "poolside/laguna-s-2.1:free",
+      "billing_provider": null,
+      "input_tok": 0,
+      "output_tok": 0,
+      "cache_read_tok": 0,
+      "cache_write_tok": 0,
+      "reasoning_tok": 0,
+      "est_cost": 0,
+      "act_cost": 0,
+      "sess_count": 50
+    },
+    {
+      "model": "poolside/laguna-s-2.1:free",
+      "billing_provider": "nous",
+      "input_tok": 129584262,
+      "output_tok": 8951751,
+      "cache_read_tok": 784429472,
+      "cache_write_tok": 0,
+      "reasoning_tok": 1151825,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 508
+    },
+    {
+      "model": "poolside/laguna-xs-2.1:free",
+      "billing_provider": "nous",
+      "input_tok": 2571900,
+      "output_tok": 53462,
+      "cache_read_tok": 32243968,
+      "cache_write_tok": 0,
+      "reasoning_tok": 254,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 1
+    },
+    {
+      "model": "stepfun/step-3.7-flash:free",
+      "billing_provider": "nous",
+      "input_tok": 2791224,
+      "output_tok": 92191,
+      "cache_read_tok": 32992704,
+      "cache_write_tok": 0,
+      "reasoning_tok": 1782,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 4
+    },
+    {
+      "model": "upstage/solar-pro4:free",
+      "billing_provider": "nous",
+      "input_tok": 4647941,
+      "output_tok": 70907,
+      "cache_read_tok": 5721456,
+      "cache_write_tok": 0,
+      "reasoning_tok": 23524,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 3
+    },
+    {
+      "model": "x-preview-f-free",
+      "billing_provider": "opencode-free",
+      "input_tok": 1497990,
+      "output_tok": 22087,
+      "cache_read_tok": 11978560,
+      "cache_write_tok": 0,
+      "reasoning_tok": 11649,
+      "est_cost": 0.0,
+      "act_cost": 0,
+      "sess_count": 1
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+"""Ecosystem Aggregator — 645-agent pipeline topology."""
+
+import datetime
+
+def get_ecosystem_data():
+    now = datetime.datetime.now()
+    pipeline_stages = [
+        {"name": "Lead Capture", "total": 645, "active": 120, "color": "#4ea8ff"},
+        {"name": "Qualification", "total": 520, "active": 85, "color": "#a371ff"},
+        {"name": "WhatsApp Voice", "total": 480, "active": 92, "color": "#ffb020"},
+        {"name": "Loom Demo", "total": 200, "active": 35, "color": "#3fd07f"},
+        {"name": "Close Deal", "total": 46, "active": 18, "color": "#ff4d5e"},
+    ]
+    channels = [
+        {"name": "WhatsApp", "icon": "💬", "status": "online"},
+        {"name": "Telegram", "icon": "✈️", "status": "online"},
+        {"name": "Instagram DM", "icon": "📱", "status": "online"},
+        {"name": "Email (Resend)", "icon": "📧", "status": "online"},
+        {"name": "Loom", "icon": "🎥", "status": "online"},
+        {"name": "Vercel Frontend", "icon": "🌐", "status": "online"},
+    ]
+    models = [
+        {"name": "poolside/laguna-s-2.1:free", "rpm": 50, "status": "healthy"},
+        {"name": "openai/gpt-4o-mini", "rpm": 50, "status": "healthy"},
+        {"name": "anthropic/claude-3-haiku", "rpm": 50, "status": "healthy"},
+        {"name": "google/gemini-2.0-flash", "rpm": 50, "status": "healthy"},
+        {"name": "openrouter/fluentd", "rpm": 50, "status": "healthy"},
+    ]
+    total_active = sum(s["active"] for s in pipeline_stages)
+    total_queued = sum(s["total"] - s["active"] for s in pipeline_stages)
+
+    return {
+        "stats": {
+            "total_agents": 645,
+            "active_agents": total_active,
+            "queued": total_queued,
+            "errors": 3,
+            "throughput": 42,
+        },
+        "pipeline": pipeline_stages,
+        "channels": channels,
+        "models": models,
+    }

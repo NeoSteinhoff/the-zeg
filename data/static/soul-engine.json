@@ -1,0 +1,179 @@
+{
+  "stats": {
+    "total_souls": 21,
+    "dating_souls": 7,
+    "business_souls": 12,
+    "discipline_souls": 1,
+    "creative_souls": 1
+  },
+  "souls": [
+    {
+      "name": "Alex Hormozi",
+      "category": "business",
+      "description": "Creator known for people, business, authored, most, work.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "alex-hormozi"
+    },
+    {
+      "name": "Brian Dean",
+      "category": "business",
+      "description": "Creator known for people, content, videos, page, youtube.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "brian-dean"
+    },
+    {
+      "name": "Cashcamden",
+      "category": "business",
+      "description": "Creator known for money, call, people, cold, business.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "cashcamden"
+    },
+    {
+      "name": "Chris Voss",
+      "category": "business",
+      "description": "Creator known for people, feel, question, talk, negotiation.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "chris-voss"
+    },
+    {
+      "name": "Coffeezilla",
+      "category": "business",
+      "description": "Creator known for people, money, he's, here, kind.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "coffeezilla"
+    },
+    {
+      "name": "David Goggins",
+      "category": "discipline",
+      "description": "Creator known for com, words, transcript, pain, ytscribe.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "david-goggins"
+    },
+    {
+      "name": "Gary Vee",
+      "category": "business",
+      "description": "Creator known for people, here, years, business, social.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "gary-vee"
+    },
+    {
+      "name": "Grant Cardone",
+      "category": "business",
+      "description": "Creator known for people, money, million, real, years.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "grant-cardone"
+    },
+    {
+      "name": "Hamza Ali",
+      "category": "dating",
+      "description": "Creator known for she's, years, feel, self, work.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "hamza-ali"
+    },
+    {
+      "name": "Iman Gadzhi",
+      "category": "business",
+      "description": "Creator known for people, business, need, first, money.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "iman-gadzhi"
+    },
+    {
+      "name": "Jake Abdo",
+      "category": "dating",
+      "description": "Creator known for women, fucking, woman, man, number.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "jake-abdo"
+    },
+    {
+      "name": "Marcus Hullaster",
+      "category": "dating",
+      "description": "Creator known for never, man, she's, value, women.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "marcus-hullaster"
+    },
+    {
+      "name": "Mystery Method",
+      "category": "dating",
+      "description": "Creator known for mystery, set, comfort, game, method.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "mystery-method"
+    },
+    {
+      "name": "Neil Patel",
+      "category": "business",
+      "description": "Creator known for people, content, google, traffic, marketing.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "neil-patel"
+    },
+    {
+      "name": "Orion Taraban",
+      "category": "dating",
+      "description": "Creator known for women, people, men, love, relationships.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "orion-taraban"
+    },
+    {
+      "name": "Polo Jacked Genius",
+      "category": "creativity",
+      "description": "Creator known for people, yourself, need, here, better.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "polo-jacked-genius"
+    },
+    {
+      "name": "Richardtaylor",
+      "category": "business",
+      "description": "Creator known for here, pro, new, iphone, cut.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "richardtaylor"
+    },
+    {
+      "name": "Robert Geronimo",
+      "category": "dating",
+      "description": "Creator known for women, man, woman, men, need.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "robert-geronimo"
+    },
+    {
+      "name": "Russell Brunson",
+      "category": "business",
+      "description": "Creator known for people, here, first, book, funnel.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "russell-brunson"
+    },
+    {
+      "name": "Scott Leese",
+      "category": "business",
+      "description": "Creator known for tiktok, people, documented, most, sales.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "scott-leese"
+    },
+    {
+      "name": "Gavin Woken",
+      "category": "dating",
+      "description": "TikTok creator on loyalty, realness, single life, college",
+      "reach_tier": "",
+      "file": "",
+      "slug": "gavin-woken"
+    }
+  ]
+}

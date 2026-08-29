@@ -1,0 +1,82 @@
+{
+  "stats": {
+    "total_sales": 0,
+    "revenue": 0,
+    "packs_sold": 0,
+    "active_campaigns": 3
+  },
+  "products": [
+    {
+      "id": "starter",
+      "name": "Starter Pack",
+      "price": 950,
+      "description": "3,200 verified Dubai real estate leads",
+      "lead_count": 3200,
+      "commission": 0.12,
+      "sold": 0
+    },
+    {
+      "id": "pro",
+      "name": "Pro Pack",
+      "price": 3200,
+      "description": "12,800 verified leads + priority placement",
+      "lead_count": 12800,
+      "commission": 0.15,
+      "sold": 0
+    }
+  ],
+  "leaders": [
+    {
+      "id": 1,
+      "name": "Sarah K.",
+      "source": "Instagram DM",
+      "score": 92,
+      "status": "sold"
+    },
+    {
+      "id": 2,
+      "name": "Ahmed T.",
+      "source": "Facebook Group",
+      "score": 87,
+      "status": "contacted"
+    },
+    {
+      "id": 3,
+      "name": "Fatima A.",
+      "source": "WhatsApp Blast",
+      "score": 78,
+      "status": "new"
+    },
+    {
+      "id": 4,
+      "name": "Omar M.",
+      "source": "Real Estate Forum",
+      "score": 95,
+      "status": "sold"
+    },
+    {
+      "id": 5,
+      "name": "Laila H.",
+      "source": "Instagram DM",
+      "score": 65,
+      "status": "new"
+    }
+  ],
+  "revenue_breakdown": [
+    {
+      "label": "Starter Sales",
+      "value": 0,
+      "category": "revenue"
+    },
+    {
+      "label": "Pro Pack Sales",
+      "value": 0,
+      "category": "revenue"
+    },
+    {
+      "label": "Commissions Earned",
+      "value": 0,
+      "category": "commission"
+    }
+  ]
+}

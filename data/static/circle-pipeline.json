@@ -1,0 +1,281 @@
+{
+  "stats": {
+    "obsession": 4,
+    "active": 9,
+    "bench": 0,
+    "due_today": 0,
+    "cap_used": 9,
+    "cap_max": 10,
+    "cap_exceeded": false,
+    "total": 13,
+    "stages": {
+      "Obsession": 1,
+      "Talking": 8,
+      "Warming": 4
+    }
+  },
+  "girls": [
+    {
+      "id": 1,
+      "name": "Karoline Berg",
+      "stage": "Talking",
+      "heat": 95,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Voice note + hook question",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 2,
+      "name": "Jade Svenson",
+      "stage": "Talking",
+      "heat": 92,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Plan low-pressure meet",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 3,
+      "name": "Darina",
+      "stage": "Talking",
+      "heat": 90,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Re-open, inside joke",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 4,
+      "name": "Silver Rottweiler",
+      "stage": "Obsession",
+      "heat": 88,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Maintain",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 5,
+      "name": "Evalie Jordan",
+      "stage": "Talking",
+      "heat": 70,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Hook + Q voice note",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 6,
+      "name": "Mina Ozcan",
+      "stage": "Talking",
+      "heat": 68,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Voice note + date ask",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 7,
+      "name": "Rosie Poseralle",
+      "stage": "Talking",
+      "heat": 66,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Re-engage, short",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 8,
+      "name": "Kyla Bloom",
+      "stage": "Talking",
+      "heat": 62,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "action": "Meme / hook",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 9,
+      "name": "Freya",
+      "stage": "Talking",
+      "heat": 60,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "action": "Hook, ask her week",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 10,
+      "name": "Cici Elsokari",
+      "stage": "Warming",
+      "heat": 55,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "action": "2-3 texts/wk cadence",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 11,
+      "name": "Valentina Siles",
+      "stage": "Warming",
+      "heat": 54,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "action": "Comment + ask depth",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 12,
+      "name": "Sofia Arevalo",
+      "stage": "Warming",
+      "heat": 52,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "action": "Story swap hook",
+      "created_at": "2026-08-29"
+    },
+    {
+      "id": 13,
+      "name": "Saba",
+      "stage": "Warming",
+      "heat": 50,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "action": "Debate opener",
+      "created_at": "2026-08-29"
+    }
+  ],
+  "levers": [
+    {
+      "name": "Karoline Berg",
+      "stage": "Talking",
+      "rotation": "obsession",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "heat": 95
+    },
+    {
+      "name": "Jade Svenson",
+      "stage": "Talking",
+      "rotation": "obsession",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "heat": 92
+    },
+    {
+      "name": "Darina",
+      "stage": "Talking",
+      "rotation": "obsession",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "heat": 90
+    },
+    {
+      "name": "Silver Rottweiler",
+      "stage": "Obsession",
+      "rotation": "obsession",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "heat": 88
+    },
+    {
+      "name": "Evalie Jordan",
+      "stage": "Talking",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "heat": 70
+    },
+    {
+      "name": "Mina Ozcan",
+      "stage": "Talking",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "heat": 68
+    },
+    {
+      "name": "Rosie Poseralle",
+      "stage": "Talking",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "heat": 66
+    },
+    {
+      "name": "Kyla Bloom",
+      "stage": "Talking",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "heat": 62
+    },
+    {
+      "name": "Freya",
+      "stage": "Talking",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "heat": 60
+    },
+    {
+      "name": "Cici Elsokari",
+      "stage": "Warming",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "heat": 55
+    },
+    {
+      "name": "Valentina Siles",
+      "stage": "Warming",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "heat": 54
+    },
+    {
+      "name": "Sofia Arevalo",
+      "stage": "Warming",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "heat": 52
+    },
+    {
+      "name": "Saba",
+      "stage": "Warming",
+      "rotation": "active",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "heat": 50
+    }
+  ]
+}

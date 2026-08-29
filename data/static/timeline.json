@@ -1,0 +1,104 @@
+{
+  "events": [
+    {
+      "timestamp": "2026-08-28T113:00:00Z",
+      "title": "WhatsApp voice note #13",
+      "description": "Sent to prospect #13",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-28T111:00:00Z",
+      "title": "WhatsApp voice note #11",
+      "description": "Sent to prospect #11",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-28T109:00:00Z",
+      "title": "WhatsApp voice note #9",
+      "description": "Sent to prospect #9",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-28T107:00:00Z",
+      "title": "WhatsApp voice note #7",
+      "description": "Sent to prospect #7",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-28T105:00:00Z",
+      "title": "WhatsApp voice note #5",
+      "description": "Sent to prospect #5",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-28T103:00:00Z",
+      "title": "WhatsApp voice note #3",
+      "description": "Sent to prospect #3",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-28T101:00:00Z",
+      "title": "WhatsApp voice note #1",
+      "description": "Sent to prospect #1",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-27T112:00:00Z",
+      "title": "WhatsApp voice note #12",
+      "description": "Sent to prospect #12",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-27T110:00:00Z",
+      "title": "WhatsApp voice note #10",
+      "description": "Sent to prospect #10",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-27T108:00:00Z",
+      "title": "WhatsApp voice note #8",
+      "description": "Sent to prospect #8",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-27T106:00:00Z",
+      "title": "WhatsApp voice note #6",
+      "description": "Sent to prospect #6",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-27T104:00:00Z",
+      "title": "WhatsApp voice note #4",
+      "description": "Sent to prospect #4",
+      "type": "success",
+      "amount": null
+    },
+    {
+      "timestamp": "2026-08-27T102:00:00Z",
+      "title": "WhatsApp voice note #2",
+      "description": "Sent to prospect #2",
+      "type": "success",
+      "amount": null
+    }
+  ],
+  "goals": [
+    {
+      "id": 1,
+      "title": "Target AED 50000",
+      "done": false
+    }
+  ],
+  "total_aed": 0,
+  "goal_aed": 50000
+}
