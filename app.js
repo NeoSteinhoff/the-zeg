@@ -311,7 +311,7 @@ function activateLarpData() {
                     output: 200_000_000_000,
                     cache_read: 150_000_000_000,
                     cache_creation: 73_000_000_000,
-                    total: 543_000_000_00, // 543 billion
+                    total: 543_000_000_000, // 543 billion
                 },
                 models: [
                     { model: "poolside/laguna-s-2.1:free", input_tok: 50000000000, output_tok: 80000000000, cache_tok: 30000000000, cache_creation_tok: 10000000000, est_cost: 50000, act_cost: 45000, sess_count: 2048, billing_provider: "nous" },
@@ -371,12 +371,12 @@ async function refreshData() {
 }
 
 async function refreshCurrentView() {
-  refreshData();
+  await refreshData();
 }
 
 // ─── Event Listeners ───
 elements.themeToggle.addEventListener('click', toggleTheme);
-elements.fullscreenBtn.addEventListener('click', toggleTheme);
+elements.fullscreenBtn.addEventListener('click', toggleFullscreen);
 elements.refreshBtn.addEventListener('click', refreshData);
 elements.larpBtn = document.getElementById('larp-btn');
 if (elements.larpBtn) elements.larpBtn.addEventListener('click', toggleLarpMode);

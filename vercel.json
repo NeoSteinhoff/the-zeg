@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 2,
   "builds": [
     {
       "src": "index.html",
@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/api/(.+)",
-      "dest": "/api/server.py"
+      "dest": "/data/static/$1.json"
     },
     {
       "src": "/(.*)",
@@ -18,5 +18,17 @@
   ],
   "github": {
     "enabled": true
-  }
+  },
+  "rewrites": [
+    { "source": "/api/command-center", "destination": "/data/static/command-center.json" },
+    { "source": "/api/circle-pipeline", "destination": "/data/static/circle-pipeline.json" },
+    { "source": "/api/mesh-crm", "destination": "/data/static/mesh-crm.json" },
+    { "source": "/api/goals", "destination": "/data/static/goals.json" },
+    { "source": "/api/timeline", "destination": "/data/static/timeline.json" },
+    { "source": "/api/soul-engine", "destination": "/data/static/soul-engine.json" },
+    { "source": "/api/storefront", "destination": "/data/static/storefront.json" },
+    { "source": "/api/ecosystem", "destination": "/data/static/ecosystem.json" },
+    { "source": "/api/hermes-control", "destination": "/data/static/hermes-control.json" },
+    { "source": "/api/aurora-brain", "destination": "/data/static/aurora-brain.json" }
+  ]
 }

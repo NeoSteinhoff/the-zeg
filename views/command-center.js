@@ -58,10 +58,10 @@ async function loadData(api) {
   // Main stats cards
   document.getElementById('cc-stats').innerHTML = `
     <div class="stat blue"><div class="num">${stats.active_sessions || 0}</div><div class="lbl">Active Sessions</div></div>
-    <div class="stat green"><div class="num">${stats.pending_tasks || 0}</div><div class="lbl">Pending Tasks</div></div>
-    <div class="stat orange"><div class="num">$${stats.cost_7d_usd || stats.cost || '0.00'}</div><div class="lbl">Cost (7d)</div></div>
-    <div class="stat blue"><div class="num">${stats.tokens_7d ? stats.tokens_7d.toLocaleString() : 0}</div><div class="lbl">Total Tokens (7d)</div></div>
-    <div class="stat purple"><div class="num">${stats.active_delegations || 0}</div><div class="lbl">Delegations</div></div>
+    <div class="stat green"><div class="num">${stats.tasks || 0}</div><div class="lbl">Pending Tasks</div></div>
+    <div class="stat green"><div class="num">$${stats.cost || '0.00'}</div><div class="lbl">Cost (7d)</div></div>
+    <div class="stat blue"><div class="num">${stats.tokens ? stats.tokens.toLocaleString() : 0}</div><div class="lbl">Total Tokens (7d)</div></div>
+    <div class="stat purple"><div class="num">${stats.delegations || 0}</div><div class="lbl">Delegations</div></div>
   `;
 
   // Token breakdown
@@ -70,7 +70,7 @@ async function loadData(api) {
     output: stats.output_tokens_7d || 0,
     cache_read: stats.cache_read_tokens_7d || 0,
     cache_creation: stats.cache_write_tokens_7d || 0,
-    total: stats.tokens_7d || 0,
+    total: stats.tokens || 0,
   };
   document.getElementById('cc-tokens').innerHTML = `
     <div class="stat green"><div class="num">${tb.input ? tb.input.toLocaleString() : 0}</div><div class="lbl">Input</div></div>
