@@ -317,8 +317,21 @@ async function touchFriend(id) {
 window.touchFriend = touchFriend;
 
 function showFallback() {
-  document.getElementById('mc-stats').innerHTML =
-    '<div class="stat orange"><div class="num">○○○</div><div class="lbl">API Disconnected</div></div>';
+  const statsEl = document.getElementById('mc-stats');
+  if (statsEl) {
+    statsEl.innerHTML =
+      '<div class="stat orange"><div class="num">○○○</div><div class="lbl">API Disconnected</div></div>';
+  }
+  const canvas = document.getElementById('mc-mesh');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#0b0d10';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--muted').trim() || '#8b93a3';
+    ctx.font = '14px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('No network data available', canvas.width / 2, canvas.height / 2);
+  }
 }
 
 window.MESH_LABELS = true;

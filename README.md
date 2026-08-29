@@ -125,6 +125,7 @@ when the API is unavailable.
 | `/api/task?id=ID` | Single task detail with comments + events |
 | `/api/costs` | Cost breakdown by model (7d, est + actual) |
 | `/api/models` | Model usage aggregation (all-time totals) |
+| `POST /api/tasks/create` | Create a new kanban task (title, body, priority) |
 
 ## Live Deployment
 

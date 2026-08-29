@@ -2,24 +2,24 @@
   "command_center": {
     "stats": {
       "sessions": 50,
-      "active_sessions": 11,
-      "tokens": 1640993866,
-      "input_tokens_7d": 223548569,
-      "output_tokens_7d": 12610046,
-      "cache_read_tokens_7d": 1402701414,
+      "active_sessions": 20,
+      "tokens": 1768932484,
+      "input_tokens_7d": 231253113,
+      "output_tokens_7d": 13208973,
+      "cache_read_tokens_7d": 1522142918,
       "cache_write_tokens_7d": 0,
-      "reasoning_tokens_7d": 2133837,
+      "reasoning_tokens_7d": 2327480,
       "cost": 0,
-      "tasks": 0,
-      "delegations": 1
+      "tasks": 2,
+      "delegations": 3
     },
     "token_breakdown": {
-      "input": 223548569,
-      "output": 12610046,
-      "cache_read": 1402701414,
+      "input": 231253113,
+      "output": 13208973,
+      "cache_read": 1522142918,
       "cache_creation": 0,
-      "reasoning": 2133837,
-      "total": 1640993866
+      "reasoning": 2327480,
+      "total": 1768932484
     },
     "models": [
       {
@@ -37,14 +37,14 @@
       {
         "model": "hy3-free",
         "billing_provider": "opencode-free",
-        "input_tok": 6157104,
-        "output_tok": 801120,
-        "cache_read_tok": 65433216,
+        "input_tok": 6872743,
+        "output_tok": 950975,
+        "cache_read_tok": 76935360,
         "cache_write_tok": 0,
-        "reasoning_tok": 247280,
+        "reasoning_tok": 333557,
         "est_cost": 0.0,
         "act_cost": 0,
-        "sess_count": 31
+        "sess_count": 38
       },
       {
         "model": "laguna-s-2.1-free",
@@ -109,14 +109,14 @@
       {
         "model": "poolside/laguna-s-2.1:free",
         "billing_provider": "nous",
-        "input_tok": 140401050,
-        "output_tok": 9665517,
-        "cache_read_tok": 952014336,
+        "input_tok": 147389955,
+        "output_tok": 10114589,
+        "cache_read_tok": 1059953696,
         "cache_write_tok": 0,
-        "reasoning_tok": 1368238,
+        "reasoning_tok": 1475604,
         "est_cost": 0.0,
         "act_cost": 0,
-        "sess_count": 531
+        "sess_count": 539
       },
       {
         "model": "poolside/laguna-xs-2.1:free",
@@ -170,17 +170,197 @@
     "hermes": {
       "sessions": [
         {
-          "id": "20260829_145807_585703",
+          "id": "20260829_213220_89de02",
           "title": null,
-          "started_at": 1788001087.824204,
+          "started_at": 1788024743.730251,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 67915,
+          "output_tokens": 10214,
+          "cache_read_tokens": 573568,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 7367,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213220_1cbce8",
+          "title": null,
+          "started_at": 1788024743.164653,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 79006,
+          "output_tokens": 18484,
+          "cache_read_tokens": 560320,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 12641,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213221_ca4899",
+          "title": null,
+          "started_at": 1788024741.827472,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 67040,
+          "output_tokens": 7153,
+          "cache_read_tokens": 519232,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 4179,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213207_55f622",
+          "title": null,
+          "started_at": 1788024728.941401,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 79411,
+          "output_tokens": 14256,
+          "cache_read_tokens": 467520,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 10198,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213207_d5d7b0",
+          "title": null,
+          "started_at": 1788024728.849134,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 75483,
+          "output_tokens": 15312,
+          "cache_read_tokens": 580672,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 10680,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213206_d92263",
+          "title": null,
+          "started_at": 1788024728.608431,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 85561,
+          "output_tokens": 19232,
+          "cache_read_tokens": 1082944,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 13820,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213207_8df07f",
+          "title": null,
+          "started_at": 1788024728.557725,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "hy3-free",
+          "input_tokens": 137895,
+          "output_tokens": 23296,
+          "cache_read_tokens": 855104,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 19422,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "opencode-free"
+        },
+        {
+          "id": "20260829_213120_498e11",
+          "title": null,
+          "started_at": 1788024683.612767,
           "ended_at": null,
           "end_reason": null,
           "model": "poolside/laguna-s-2.1:free",
-          "input_tokens": 88691,
-          "output_tokens": 2151,
-          "cache_read_tokens": 22528,
+          "input_tokens": 361198,
+          "output_tokens": 13644,
+          "cache_read_tokens": 476928,
           "cache_write_tokens": 0,
-          "reasoning_tokens": 801,
+          "reasoning_tokens": 9734,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_213120_3ec8e1",
+          "title": null,
+          "started_at": 1788024683.507941,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 462855,
+          "output_tokens": 13187,
+          "cache_read_tokens": 1219360,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 8619,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_213121_5686ce",
+          "title": null,
+          "started_at": 1788024683.36463,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 282711,
+          "output_tokens": 16752,
+          "cache_read_tokens": 776640,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 10397,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_213121_35957e",
+          "title": null,
+          "started_at": 1788024683.350833,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 188552,
+          "output_tokens": 14569,
+          "cache_read_tokens": 417536,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 11673,
           "estimated_cost_usd": 0.0,
           "actual_cost_usd": null,
           "session_key": null,
@@ -194,9 +374,9 @@
           "ended_at": null,
           "end_reason": null,
           "model": "poolside/laguna-s-2.1:free",
-          "input_tokens": 265265,
-          "output_tokens": 7541,
-          "cache_read_tokens": 609120,
+          "input_tokens": 591413,
+          "output_tokens": 31321,
+          "cache_read_tokens": 9874848,
           "cache_write_tokens": 0,
           "reasoning_tokens": 3707,
           "estimated_cost_usd": 0.0,
@@ -248,9 +428,9 @@
           "ended_at": null,
           "end_reason": null,
           "model": "poolside/laguna-s-2.1:free",
-          "input_tokens": 318341,
-          "output_tokens": 11292,
-          "cache_read_tokens": 4143136,
+          "input_tokens": 758102,
+          "output_tokens": 23130,
+          "cache_read_tokens": 13634656,
           "cache_write_tokens": 0,
           "reasoning_tokens": 758,
           "estimated_cost_usd": 0.0,
@@ -284,9 +464,9 @@
           "ended_at": null,
           "end_reason": null,
           "model": "poolside/laguna-s-2.1:free",
-          "input_tokens": 586504,
-          "output_tokens": 39804,
-          "cache_read_tokens": 11079264,
+          "input_tokens": 1030468,
+          "output_tokens": 61643,
+          "cache_read_tokens": 15135424,
           "cache_write_tokens": 0,
           "reasoning_tokens": 6633,
           "estimated_cost_usd": 0.0,
@@ -348,27 +528,9 @@
           "session_key": null,
           "display_name": null,
           "billing_provider": "nous"
-        },
-        {
-          "id": "cron_a1a152879cfe_20260829_011404",
-          "title": null,
-          "started_at": 1787951645.6195111,
-          "ended_at": null,
-          "end_reason": null,
-          "model": "poolside/laguna-s-2.1:free",
-          "input_tokens": 0,
-          "output_tokens": 0,
-          "cache_read_tokens": 0,
-          "cache_write_tokens": 0,
-          "reasoning_tokens": 0,
-          "estimated_cost_usd": null,
-          "actual_cost_usd": null,
-          "session_key": null,
-          "display_name": null,
-          "billing_provider": null
         }
       ],
-      "skills": 181,
+      "skills": 185,
       "profiles": [
         {
           "name": "brad-bergbot",
@@ -380,16 +542,16 @@
         }
       ],
       "memory_facts": 4,
-      "gbrain_notes": 0
+      "gbrain_notes": 588
     }
   },
   "pipeline": {
     "pipeline": {
-      "total": 0,
+      "total": 13,
       "active": 0,
-      "obsession": 0,
-      "talking": 0,
-      "warming": 0,
+      "obsession": 1,
+      "talking": 8,
+      "warming": 4,
       "due_today": 0
     }
   },
@@ -400,9 +562,125 @@
     "total_sent": 0
   },
   "souls": {
-    "souls": [],
-    "total": 0,
-    "with_data": 0
+    "souls": [
+      {
+        "name": "alex-hormozi",
+        "exists": true,
+        "size": 81223
+      },
+      {
+        "name": "brian-dean",
+        "exists": true,
+        "size": 122381
+      },
+      {
+        "name": "cashcamden",
+        "exists": true,
+        "size": 109663
+      },
+      {
+        "name": "chris-voss",
+        "exists": true,
+        "size": 170799
+      },
+      {
+        "name": "coffeezilla",
+        "exists": true,
+        "size": 176193
+      },
+      {
+        "name": "david-goggins",
+        "exists": false,
+        "size": 0
+      },
+      {
+        "name": "fabrizio-rausa",
+        "exists": true,
+        "size": 83419
+      },
+      {
+        "name": "gary-vee",
+        "exists": true,
+        "size": 161095
+      },
+      {
+        "name": "gavin-woken",
+        "exists": true,
+        "size": 50847
+      },
+      {
+        "name": "grant-cardone",
+        "exists": true,
+        "size": 144031
+      },
+      {
+        "name": "hamza-ahmed",
+        "exists": true,
+        "size": 143543
+      },
+      {
+        "name": "hamza-ali-biz",
+        "exists": true,
+        "size": 102695
+      },
+      {
+        "name": "iman-gadzhi",
+        "exists": true,
+        "size": 162750
+      },
+      {
+        "name": "jake-abdo",
+        "exists": true,
+        "size": 111500
+      },
+      {
+        "name": "marcus-hullaster",
+        "exists": true,
+        "size": 120643
+      },
+      {
+        "name": "mystery-method",
+        "exists": true,
+        "size": 21168
+      },
+      {
+        "name": "neil-patel",
+        "exists": true,
+        "size": 150149
+      },
+      {
+        "name": "orion-taraban",
+        "exists": true,
+        "size": 97021
+      },
+      {
+        "name": "polo-jacked-genius",
+        "exists": true,
+        "size": 10846
+      },
+      {
+        "name": "richardtaylor",
+        "exists": true,
+        "size": 201132
+      },
+      {
+        "name": "robert-geronimo",
+        "exists": true,
+        "size": 111982
+      },
+      {
+        "name": "russell-brunson",
+        "exists": true,
+        "size": 159596
+      },
+      {
+        "name": "scott-leese",
+        "exists": true,
+        "size": 70552
+      }
+    ],
+    "total": 23,
+    "with_data": 22
   },
   "gbrain": {
     "running": true,
@@ -447,15 +725,16 @@
   "crontab": {
     "crontabs": [
       "0 2 * * * /Users/neosteinhoff/.openclaw/workspace/scripts/smart_backup.sh >> /Users/neosteinhoff/.openclaw/workspace/log",
-      "0 2 * * * /usr/bin/python3 /Users/neosteinhoff/.hermes/scripts/digest_sessions.py >> /Users/neosteinhoff/.hermes/logs/di",
-      "0 3 * * * /usr/bin/python3 /Users/neosteinhoff/.hermes/scripts/promote_memory.py >> /Users/neosteinhoff/.hermes/logs/pro",
-      "*/5 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/live-wa",
-      "0 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/vault-hea"
+      "0 2 * * * /Users/neosteinhoff/.hermes/scripts/digest_sessions.py >> /Users/neosteinhoff/.hermes/logs/digest.log 2>&1",
+      "0 3 * * * /Users/neosteinhoff/.hermes/scripts/promote_memory.py >> /Users/neosteinhoff/.hermes/logs/promote_memory.log 2",
+      "*/3 * * * * /Users/neosteinhoff/.hermes/scripts/war-room-cron.sh >> /Users/neosteinhoff/.hermes/logs/war-room.log 2>&1",
+      "0 * * * * /Users/neosteinhoff/.hermes/scripts/vault-health-cron.sh >> /Users/neosteinhoff/.hermes/logs/vault-health.log ",
+      "0 9 * * * /opt/homebrew/bin/python3 '/Users/neosteinhoff/Documents/Steinhoff Systems/friend-circles/daily_friend_mainten"
     ]
   },
   "status": {
     "color": "orange",
-    "summary": "11 active sessions, 181 skills loaded"
+    "summary": "20 active sessions, 185 skills loaded"
   },
   "next_actions": [
     {

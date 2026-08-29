@@ -67,7 +67,8 @@ const VIEWS = [
   'command-center', 'circle-pipeline', 'mesh-crm', 'goals', 'timeline',
   'soul-engine', 'agent-storefront', 'ecosystem', 'hermes-control', 'aurora-brain',
   'system-health', 'agent-grid', 'mission-control', 'live-feed',
-  'tasks', 'cron-monitor', 'ventures', 'treasury', 'war-room'
+  'tasks', 'cron-monitor', 'ventures', 'treasury', 'war-room',
+  'cost-models',
 ];
 
 function navigateTo(viewName) {
@@ -193,6 +194,27 @@ const api = {
 
   async getAuroraBrainData() {
     return await this.fetch('/api/aurora-brain');
+  },
+
+  // ─── Skill dashboard endpoints (from hermes-dashboard skill) ───
+  async getSessionDetail(sessionId) {
+    return await this.fetch('/api/session?id=' + encodeURIComponent(sessionId));
+  },
+
+  async getTaskDetail(taskId) {
+    return await this.fetch('/api/task?id=' + encodeURIComponent(taskId));
+  },
+
+  async getCosts() {
+    return await this.fetch('/api/costs');
+  },
+
+  async getModels() {
+    return await this.fetch('/api/models');
+  },
+
+  async createTask(data) {
+    return await this.post('/api/tasks/create', data);
   },
 };
 

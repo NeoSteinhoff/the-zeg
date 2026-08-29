@@ -1,12 +1,307 @@
 {
   "stats": {
-    "obsession": 0,
-    "active": 0,
+    "obsession": 4,
+    "active": 9,
     "bench": 0,
-    "total": 0,
     "due_today": 0,
-    "cap_max": 10
+    "cap_used": 9,
+    "cap_max": 10,
+    "cap_exceeded": false,
+    "total": 13,
+    "stages": {
+      "Talking": 8,
+      "Obsession": 1,
+      "Warming": 4
+    }
   },
-  "girls": [],
-  "levers": []
+  "girls": [
+    {
+      "id": 1,
+      "name": "Karoline Berg",
+      "stage": "Talking",
+      "heat": 95,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Karo \u2014 was just thinking about that cafe you mentioned near JBR. Still think I'd survive the matcha there, or am I doomed to order a double espresso and look overly serious? (Also: still owe me that book rec.)",
+      "action": "Voice note + hook question",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "touches": []
+    },
+    {
+      "id": 2,
+      "name": "Jade Svenson",
+      "stage": "Talking",
+      "heat": 92,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Hey Jade \u2014 two spots opened up Sat lunch (yacht club terrace, shade + decent views, not a zoo). You free for 1h? I'd rather grab coffee with you than stare at spreadsheets all weekend.",
+      "action": "Plan low-pressure meet",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "touches": []
+    },
+    {
+      "id": 3,
+      "name": "Darina",
+      "stage": "Talking",
+      "heat": 90,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Darina \u2014 so I tried to order the thing you said was overrated and immediately felt judged by the barista. Verdict: you were right. How's your week treating you? (Still dodging that guy who thinks 'hey' is a personality?)",
+      "action": "Re-open, inside joke",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "touches": []
+    },
+    {
+      "id": 4,
+      "name": "Silver Rottweiler",
+      "stage": "Obsession",
+      "heat": 88,
+      "rotation": "obsession",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "So... real name reveal. (Kidding. Unless?) Was just telling someone about that story you told me \u2014 still the funniest thing I've heard all month. Coffee Sunday before the madness?",
+      "action": "Maintain",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak.",
+      "touches": []
+    },
+    {
+      "id": 5,
+      "name": "Evalie Jordan",
+      "stage": "Talking",
+      "heat": 70,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Evalie \u2014 quick one. Your take: is it better to be overdressed or perfectly average at a Dubai rooftop? Asking because I have one event sat and zero chill fashion sense. Also \u2014 what's the worst dating advice you've ever gotten?",
+      "action": "Hook + Q voice note",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "touches": []
+    },
+    {
+      "id": 6,
+      "name": "Mina Ozcan",
+      "stage": "Talking",
+      "heat": 68,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Mina \u2014 okay, verdict: I survived the cooking experiment. The smoke alarm gave it 3/10 so take that with salt. Drinks this week? I owe you a win after that kitchen disaster.",
+      "action": "Voice note + date ask",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "touches": []
+    },
+    {
+      "id": 7,
+      "name": "Rosie Poseralle",
+      "stage": "Talking",
+      "heat": 66,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Rosie \u2014 saw your favourite band is doing an acoustic set at that little bar behind Al Fahidi. You free for one set + one terrible joke from me? My treat.",
+      "action": "Re-engage, short",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "touches": []
+    },
+    {
+      "id": 8,
+      "name": "Kyla Bloom",
+      "stage": "Talking",
+      "heat": 62,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-30",
+      "next_due": "2026-08-30",
+      "last_msg": "Kyla \u2014 screenshot this: 'me pretending I have my life together' vs 'me at 3am Googling if llamas are illegal in Dubai'. Which one's the lie?",
+      "action": "Meme / hook",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "touches": []
+    },
+    {
+      "id": 9,
+      "name": "Freya",
+      "stage": "Talking",
+      "heat": 60,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "last_msg": "Freya \u2014 quick check-in. How's the week hitting so far? Tell me one thing that surprised you this week.",
+      "action": "Hook, ask her week",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window.",
+      "touches": []
+    },
+    {
+      "id": 10,
+      "name": "Cici Elsokari",
+      "stage": "Warming",
+      "heat": 55,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "last_msg": "Cici \u2014 saw your post about the new art walk in Dubai Design District. Went last weekend \u2014 found the good gallery tucked behind the main strip. Thoughts if I said grab coffee near there Saturday?",
+      "action": "2-3 texts/wk cadence",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "touches": []
+    },
+    {
+      "id": 11,
+      "name": "Valentina Siles",
+      "stage": "Warming",
+      "heat": 54,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "last_msg": "Valentina \u2014 saw your latest. The lighting is unreal. What's the story behind the shot?",
+      "action": "Comment + ask depth",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "touches": []
+    },
+    {
+      "id": 12,
+      "name": "Sofia Arevalo",
+      "stage": "Warming",
+      "heat": 52,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "last_msg": "Sofia \u2014 re: your Italy story. What's the one thing everyone gets wrong about getting lost?",
+      "action": "Story swap hook",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "touches": []
+    },
+    {
+      "id": 13,
+      "name": "Saba",
+      "stage": "Warming",
+      "heat": 50,
+      "rotation": "active",
+      "last_contact": "2026-08-28",
+      "due": "2026-08-31",
+      "next_due": "2026-08-31",
+      "last_msg": "Saba \u2014 quick question: what's a hill you're dying on this week? Something you'd defend with actual passion?",
+      "action": "Debate opener",
+      "last_date_booked": null,
+      "weeks_in_stage": 0,
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about.",
+      "touches": []
+    }
+  ],
+  "levers": [
+    {
+      "name": "Karoline Berg",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak."
+    },
+    {
+      "name": "Jade Svenson",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak."
+    },
+    {
+      "name": "Darina",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak."
+    },
+    {
+      "name": "Silver Rottweiler",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 vary reply latency; end exchanges on the peak."
+    },
+    {
+      "name": "Evalie Jordan",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window."
+    },
+    {
+      "name": "Mina Ozcan",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window."
+    },
+    {
+      "name": "Rosie Poseralle",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window."
+    },
+    {
+      "name": "Kyla Bloom",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window."
+    },
+    {
+      "name": "Freya",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 warm in, unpredictable cadence within the window."
+    },
+    {
+      "name": "Cici Elsokari",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about."
+    },
+    {
+      "name": "Valentina Siles",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about."
+    },
+    {
+      "name": "Sofia Arevalo",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about."
+    },
+    {
+      "name": "Saba",
+      "lever": "L1",
+      "lever_desc": "Variable-Ratio Pullback \u2014 build the baseline she'll later wonder about."
+    }
+  ]
 }

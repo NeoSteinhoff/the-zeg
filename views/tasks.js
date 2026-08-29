@@ -17,7 +17,10 @@ function render(container, api) {
     <div id="tasks-view">
       <div class="stat-grid" id="tasks-stats"></div>
       <div class="card">
-        <div class="card-header">Active Tasks</div>
+        <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Active Tasks</span>
+          <button class="btn btn-primary" style="font-size:11px;padding:4px 10px" onclick="openCreateTaskModal()">＋ New Task</button>
+        </div>
         <table id="tasks-table">
           <thead>
             <tr><th>ID</th><th>Title</th><th>Status</th><th>Priority</th><th>Assignee</th><th>Created</th><th>Actions</th></tr>
@@ -169,3 +172,45 @@ function showTaskModal(task, comments, events) {
 
   openZegModal('Task #' + (task.id || '').slice(0, 8), body);
 }
+
+// ─── Create Task Modal ───
+window.openCreateTaskModal = function() {
+  const body = '<div style="display:flex;flex-direction:column;gap:8px">' +
+    '<input id="new-task-title" type="text" placeholder="Task title" style="background:var(--panel-2);border:1px solid var(--border);padding:8px;border-radius:4px;font-size:13px">' +
+    '<textarea id="new-task-body" placeholder="Description (optional)" style="background:var(--panel-2);border:1px solid var(--border);padding:8px;border-radius:4px;font-size:13px;height:80px;resize:vertical"></textarea>' +
+    '<select id="new-task-priority" style="background:var(--panel-2);border:1px solid var(--border);padding:6px;border-radius:4px;font-size:13px">' +
+      '<option value="normal">Normal Priority</option>' +
+      '<option value="high">High Priority</option>' +
+      '<option value="low">Low Priority</option>' +
+    '</select>' +
+  '</div><div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">' +
+    '<button class="btn btn-ghost" onclick="closeZegModal()">Cancel</button>' +
+    '<button class="btn btn-primary" onclick="submitCreateTask()">Create Task</button>' +
+  '</div>';
+
+  openZegModal('Create New Task', body);
+
+  // Handle form submission via modal buttons
+  setTimeout(() => {
+    const titleInput = document.getElementById('new-task-title');
+    if (titleInput) titleInput.focus();
+  }, 100);
+};
+
+window.submitCreateTask = async function() {
+  const title = document.getElementById('new-task-title')?.value.trim();
+  const bodyText = document.getElementById('new-task-body')?.value.trim();
+  const priority = document.getElementById('new-task-priority')?.value || 'normal';
+  if (!title) {
+    showZegToast('Title is required', 'error');
+    return;
+  }
+  const result = await ZEG.api.createTask({title, body: bodyText, priority});
+  if (result && result.status === 'created') {
+    showZegToast('Task created: ' + title, 'success');
+    closeZegModal();
+    refreshData();
+  } else {
+    showZegToast('Failed to create task', 'error');
+  }
+};
