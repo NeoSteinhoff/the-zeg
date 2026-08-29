@@ -408,8 +408,57 @@ document.querySelectorAll('.theme-option').forEach(opt => {
 
 // Navigation clicks
 document.querySelectorAll('.nav-item').forEach(item => {
-  item.addEventListener('click', () => navigateTo(item.dataset.view));
+  item.addEventListener('click', () => {
+    navigateTo(item.dataset.view);
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth <= 768) {
+      document.getElementById('sidebar').classList.remove('open');
+      document.querySelector('.sidebar-overlay').classList.remove('open');
+    }
+  });
 });
+
+// Mobile sidebar toggle
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const sidebar = document.getElementById('sidebar');
+let overlay = document.querySelector('.sidebar-overlay');
+if (!overlay) {
+  // Create overlay if it doesn't exist (SSR-safe)
+  overlay = document.createElement('div');
+  overlay.className = 'sidebar-overlay';
+  document.body.appendChild(overlay);
+}
+
+if (mobileMenuBtn) {
+  mobileMenuBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('open');
+  });
+}
+
+if (overlay) {
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  });
+}
+
+// Close sidebar on ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  }
+});
+
+// Handle responsive sidebar — show hamburger on mobile
+function handleResize() {
+  if (window.innerWidth > 768) {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  }
+}
+window.addEventListener('resize', handleResize);
 
 // ─── Auto Refresh ───
 function startRefreshTimer() {
