@@ -1,10 +1,10 @@
 {
   "pipeline": {
-    "total": 13,
+    "total": 0,
     "active": 0,
-    "obsession": 1,
-    "talking": 8,
-    "warming": 4,
+    "obsession": 0,
+    "talking": 0,
+    "warming": 0,
     "due_today": 0
   }
 }

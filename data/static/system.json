@@ -2,24 +2,24 @@
   "command_center": {
     "stats": {
       "sessions": 50,
-      "active_sessions": 10,
-      "tokens": 1634813155,
-      "input_tokens_7d": 222851800,
-      "output_tokens_7d": 12578965,
-      "cache_read_tokens_7d": 1397253894,
+      "active_sessions": 11,
+      "tokens": 1640993866,
+      "input_tokens_7d": 223548569,
+      "output_tokens_7d": 12610046,
+      "cache_read_tokens_7d": 1402701414,
       "cache_write_tokens_7d": 0,
-      "reasoning_tokens_7d": 2128496,
+      "reasoning_tokens_7d": 2133837,
       "cost": 0,
       "tasks": 0,
-      "delegations": 0
+      "delegations": 1
     },
     "token_breakdown": {
-      "input": 222851800,
-      "output": 12578965,
-      "cache_read": 1397253894,
+      "input": 223548569,
+      "output": 12610046,
+      "cache_read": 1402701414,
       "cache_creation": 0,
-      "reasoning": 2128496,
-      "total": 1634813155
+      "reasoning": 2133837,
+      "total": 1640993866
     },
     "models": [
       {
@@ -109,14 +109,14 @@
       {
         "model": "poolside/laguna-s-2.1:free",
         "billing_provider": "nous",
-        "input_tok": 139704281,
-        "output_tok": 9634436,
-        "cache_read_tok": 946566816,
+        "input_tok": 140401050,
+        "output_tok": 9665517,
+        "cache_read_tok": 952014336,
         "cache_write_tok": 0,
-        "reasoning_tok": 1362897,
+        "reasoning_tok": 1368238,
         "est_cost": 0.0,
         "act_cost": 0,
-        "sess_count": 529
+        "sess_count": 531
       },
       {
         "model": "poolside/laguna-xs-2.1:free",
@@ -169,6 +169,24 @@
     ],
     "hermes": {
       "sessions": [
+        {
+          "id": "20260829_145807_585703",
+          "title": null,
+          "started_at": 1788001087.824204,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 88691,
+          "output_tokens": 2151,
+          "cache_read_tokens": 22528,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 801,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
         {
           "id": "20260829_123707_04383f",
           "title": "Hermes Dashboard",
@@ -362,16 +380,16 @@
         }
       ],
       "memory_facts": 4,
-      "gbrain_notes": 588
+      "gbrain_notes": 0
     }
   },
   "pipeline": {
     "pipeline": {
-      "total": 13,
+      "total": 0,
       "active": 0,
-      "obsession": 1,
-      "talking": 8,
-      "warming": 4,
+      "obsession": 0,
+      "talking": 0,
+      "warming": 0,
       "due_today": 0
     }
   },
@@ -382,125 +400,9 @@
     "total_sent": 0
   },
   "souls": {
-    "souls": [
-      {
-        "name": "alex-hormozi",
-        "exists": true,
-        "size": 81223
-      },
-      {
-        "name": "brian-dean",
-        "exists": true,
-        "size": 122381
-      },
-      {
-        "name": "cashcamden",
-        "exists": true,
-        "size": 109663
-      },
-      {
-        "name": "chris-voss",
-        "exists": true,
-        "size": 170799
-      },
-      {
-        "name": "coffeezilla",
-        "exists": true,
-        "size": 176193
-      },
-      {
-        "name": "david-goggins",
-        "exists": false,
-        "size": 0
-      },
-      {
-        "name": "fabrizio-rausa",
-        "exists": true,
-        "size": 83419
-      },
-      {
-        "name": "gary-vee",
-        "exists": true,
-        "size": 161095
-      },
-      {
-        "name": "gavin-woken",
-        "exists": true,
-        "size": 50847
-      },
-      {
-        "name": "grant-cardone",
-        "exists": true,
-        "size": 144031
-      },
-      {
-        "name": "hamza-ahmed",
-        "exists": true,
-        "size": 143543
-      },
-      {
-        "name": "hamza-ali-biz",
-        "exists": true,
-        "size": 102695
-      },
-      {
-        "name": "iman-gadzhi",
-        "exists": true,
-        "size": 162750
-      },
-      {
-        "name": "jake-abdo",
-        "exists": true,
-        "size": 111500
-      },
-      {
-        "name": "marcus-hullaster",
-        "exists": true,
-        "size": 120643
-      },
-      {
-        "name": "mystery-method",
-        "exists": true,
-        "size": 34598
-      },
-      {
-        "name": "neil-patel",
-        "exists": true,
-        "size": 150149
-      },
-      {
-        "name": "orion-taraban",
-        "exists": true,
-        "size": 97021
-      },
-      {
-        "name": "polo-jacked-genius",
-        "exists": true,
-        "size": 10846
-      },
-      {
-        "name": "richardtaylor",
-        "exists": true,
-        "size": 201132
-      },
-      {
-        "name": "robert-geronimo",
-        "exists": true,
-        "size": 111982
-      },
-      {
-        "name": "russell-brunson",
-        "exists": true,
-        "size": 159596
-      },
-      {
-        "name": "scott-leese",
-        "exists": true,
-        "size": 70552
-      }
-    ],
-    "total": 23,
-    "with_data": 22
+    "souls": [],
+    "total": 0,
+    "with_data": 0
   },
   "gbrain": {
     "running": true,
@@ -553,7 +455,7 @@
   },
   "status": {
     "color": "orange",
-    "summary": "10 active sessions, 181 skills loaded"
+    "summary": "11 active sessions, 181 skills loaded"
   },
   "next_actions": [
     {

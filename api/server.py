@@ -269,16 +269,21 @@ def get_souls():
     souls_dir = os.path.join(os.path.expanduser("~"),
         "Documents/The Soul Project/souls/hermes")
     souls = []
-    if os.path.exists(souls_dir):
-        for d in sorted(os.listdir(souls_dir)):
-            sp = os.path.join(souls_dir, d)
-            if os.path.isdir(sp):
-                jp = os.path.join(sp, "soul.json")
-                mp = os.path.join(sp, "SOUL.md")
-                exists = os.path.exists(jp) or os.path.exists(mp)
-                size = os.path.getsize(jp) if os.path.exists(jp) else (
-                    os.path.getsize(mp) if os.path.exists(mp) else 0)
-                souls.append({"name": d, "exists": exists, "size": size})
+    try:
+        if os.path.exists(souls_dir):
+            for d in sorted(os.listdir(souls_dir)):
+                sp = os.path.join(souls_dir, d)
+                if os.path.isdir(sp):
+                    jp = os.path.join(sp, "soul.json")
+                    mp = os.path.join(sp, "SOUL.md")
+                    exists = os.path.exists(jp) or os.path.exists(mp)
+                    size = os.path.getsize(jp) if os.path.exists(jp) else (
+                        os.path.getsize(mp) if os.path.exists(mp) else 0)
+                    souls.append({"name": d, "exists": exists, "size": size})
+    except PermissionError:
+        pass
+    except Exception:
+        pass
     return {"souls": souls, "total": len(souls), "with_data": sum(1 for s in souls if s["exists"])}
 
 def get_system():
@@ -382,7 +387,10 @@ class ZegHandler(BaseHTTPRequestHandler):
         params = parse_qs(parsed.query)
 
         if path in GET_ROUTES:
-            self._send_json(GET_ROUTES[path]())
+            try:
+                self._send_json(GET_ROUTES[path]())
+            except Exception as e:
+                self._send_json({"error": str(e), "endpoint": path}, 500)
             return
 
         if path.startswith("/api/soul/"):

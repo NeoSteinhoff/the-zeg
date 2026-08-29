@@ -10,14 +10,14 @@
   },
   "sessions": [
     {
-      "id": "20260829_124427_1d958d",
+      "id": "20260829_145807_585703",
       "title": null,
-      "started_at": 1787993067.426186,
+      "started_at": 1788001087.824204,
       "ended_at": null,
       "end_reason": null,
       "model": "poolside/laguna-s-2.1:free",
-      "input_tokens": 356154,
-      "output_tokens": 21875,
+      "input_tokens": 88691,
+      "output_tokens": 2151,
       "estimated_cost_usd": 0.0,
       "session_key": null,
       "display_name": null
@@ -169,14 +169,14 @@
     {
       "model": "hy3-free",
       "billing_provider": "opencode-free",
-      "input_tok": 6091152,
-      "output_tok": 791091,
-      "cache_read_tok": 64858048,
+      "input_tok": 6157104,
+      "output_tok": 801120,
+      "cache_read_tok": 65433216,
       "cache_write_tok": 0,
-      "reasoning_tok": 241207,
+      "reasoning_tok": 247280,
       "est_cost": 0.0,
       "act_cost": 0,
-      "sess_count": 30
+      "sess_count": 31
     },
     {
       "model": "laguna-s-2.1-free",
@@ -241,14 +241,14 @@
     {
       "model": "poolside/laguna-s-2.1:free",
       "billing_provider": "nous",
-      "input_tok": 135999314,
-      "output_tok": 9368537,
-      "cache_read_tok": 891334016,
+      "input_tok": 140401050,
+      "output_tok": 9665517,
+      "cache_read_tok": 952014336,
       "cache_write_tok": 0,
-      "reasoning_tok": 1250283,
+      "reasoning_tok": 1368238,
       "est_cost": 0.0,
       "act_cost": 0,
-      "sess_count": 523
+      "sess_count": 531
     },
     {
       "model": "poolside/laguna-xs-2.1:free",

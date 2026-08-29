@@ -1,1 +1,20 @@
-{"events": [], "count": 0}
+[
+  {
+    "id": 1,
+    "type": "session_started",
+    "data": {
+      "id": "test",
+      "session": "20260829",
+      "task": "qa agent run"
+    },
+    "ts": 1788001245.48679
+  },
+  {
+    "id": 2,
+    "type": "broadcast",
+    "data": {
+      "message": "real-time update from broadcast"
+    },
+    "ts": 1788001245.494108
+  }
+]
