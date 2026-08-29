@@ -126,40 +126,46 @@ function showFallback() {
     '<div class="stat orange"><div class="num">○○○</div><div class="lbl">API Disconnected</div></div>';
 }
 
+// ─── Task Detail (delegates to dedicated /api/task?id= endpoint) ───
 window.viewTaskDetail = async function(id) {
-  // Fetch full task details
-  const taskData = await ZEG.api.fetch('/api/tasks');
-  const task = (taskData?.tasks || []).find(t => t.id === id);
-  if (!task) return;
-  
-  const comments = (task.comments || []).map(c => `
-    <div style="border-left:2px solid var(--border);padding-left:8px;margin-bottom:6px">
-      <span style="font-size:11px;color:var(--muted)">${fmtTs(c.created_at)} · ${c.author || '—'}</span><br>
-      ${c.content || ''}
-    </div>
-  `).join('') || '<div class="sub">No comments</div>';
-  
-  const events = (task.events || []).map(e => `
-    <div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:4px">
-      ${fmtTs(e.created_at)} · ${e.event_type || '—'}
-    </div>
-  `).join('') || '<div class="sub">No events</div>';
-  
-  const body = `
-    <div style="margin-bottom:16px">
-      <h3 style="margin-bottom:8px">${task.title || '—'}</h3>
-      <div class="sub">${task.body || 'No description'}</div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-      <div>
-        <div class="card-header">Comments</div>
-        ${comments}
-      </div>
-      <div>
-        <div class="card-header">Events</div>
-        ${events}
-      </div>
-    </div>
-  `;
-  openZegModal(`Task #${id.slice(0, 8)}`, body);
+  // Fetch full task details via the dedicated /api/task?id= endpoint
+  const detail = await ZEG.api.fetch('/api/task?id=' + encodeURIComponent(id));
+  if (!detail || detail.error) {
+    // Fallback: fetch from /api/tasks and find client-side
+    const taskData = await ZEG.api.fetch('/api/tasks');
+    const task = (taskData?.tasks || []).find(t => t.id === id);
+    if (!task) return;
+    showTaskModal(task, [], []);
+  } else {
+    showTaskModal(detail.task, detail.comments || [], detail.events || []);
+  }
 };
+
+function showTaskModal(task, comments, events) {
+  if (!comments) comments = [];
+  if (!events) events = [];
+
+  const commentHtml = comments.map(c => {
+    return '<div style="border-left:2px solid var(--border);padding-left:8px;margin-bottom:6px">' +
+      '<span style="font-size:11px;color:var(--muted)">' + fmtTs(c.created_at) + ' · ' + (c.author || '—') + '</span><br>' +
+      (c.content || '') +
+    '</div>';
+  }).join('') || '<div class="sub">No comments</div>';
+
+  const eventHtml = events.map(e => {
+    return '<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:4px">' +
+      fmtTs(e.created_at) + ' · ' + (e.kind || e.event_type || '—') +
+    '</div>';
+  }).join('') || '<div class="sub">No events</div>';
+
+  const body = '<div style="margin-bottom:16px">' +
+    '<h3 style="margin-bottom:8px">' + (task.title || '—') + '</h3>' +
+    '<div class="sub">' + (task.body || 'No description') + '</div>' +
+  '</div>' +
+  '<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">' +
+    '<div><div class="card-header">Comments (' + comments.length + ')</div>' + commentHtml + '</div>' +
+    '<div><div class="card-header">Events (' + events.length + ')</div>' + eventHtml + '</div>' +
+  '</div>';
+
+  openZegModal('Task #' + (task.id || '').slice(0, 8), body);
+}

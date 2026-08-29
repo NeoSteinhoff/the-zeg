@@ -120,6 +120,11 @@ when the API is unavailable.
 | `/api/soul/{name}` | Query a specific soul (GET) |
 | `/api/soul/{name}/talk` | Talk to a soul (GET) |
 | `/api/health` | Server health check |
+| `/api/sessions?limit=N` | List recent sessions (epoch→ISO timestamps) |
+| `/api/session?id=KEY` | Single session detail with messages |
+| `/api/task?id=ID` | Single task detail with comments + events |
+| `/api/costs` | Cost breakdown by model (7d, est + actual) |
+| `/api/models` | Model usage aggregation (all-time totals) |
 
 ## Live Deployment
 

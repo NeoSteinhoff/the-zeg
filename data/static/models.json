@@ -1,0 +1,98 @@
+[
+  {
+    "model": "x-preview-f-free",
+    "billing_provider": "opencode-free",
+    "total_in": 1497990,
+    "total_out": 22087,
+    "total_cost": null,
+    "sess_count": 1
+  },
+  {
+    "model": "upstage/solar-pro4:free",
+    "billing_provider": "nous",
+    "total_in": 4647941,
+    "total_out": 70907,
+    "total_cost": null,
+    "sess_count": 3
+  },
+  {
+    "model": "tencent/hy3:free",
+    "billing_provider": "nous",
+    "total_in": 1166744,
+    "total_out": 245527,
+    "total_cost": null,
+    "sess_count": 18
+  },
+  {
+    "model": "stepfun/step-3.7-flash:free",
+    "billing_provider": "nous",
+    "total_in": 3711193,
+    "total_out": 110925,
+    "total_cost": null,
+    "sess_count": 9
+  },
+  {
+    "model": "poolside/laguna-xs-2.1:free",
+    "billing_provider": "nous",
+    "total_in": 2571900,
+    "total_out": 53462,
+    "total_cost": null,
+    "sess_count": 1
+  },
+  {
+    "model": "poolside/laguna-s-2.1:free",
+    "billing_provider": "nous",
+    "total_in": 146007429,
+    "total_out": 10084155,
+    "total_cost": null,
+    "sess_count": 597
+  },
+  {
+    "model": "nemotron-3.5-lightning-free",
+    "billing_provider": "opencode-free",
+    "total_in": 3608775,
+    "total_out": 84783,
+    "total_cost": null,
+    "sess_count": 1
+  },
+  {
+    "model": "nemotron-3-ultra-free",
+    "billing_provider": "opencode-free",
+    "total_in": 34117337,
+    "total_out": 426913,
+    "total_cost": null,
+    "sess_count": 24
+  },
+  {
+    "model": "meituan/longcat-2.0:free",
+    "billing_provider": "nous",
+    "total_in": 20207861,
+    "total_out": 920855,
+    "total_cost": null,
+    "sess_count": 38
+  },
+  {
+    "model": "laguna-s-2.1-free",
+    "billing_provider": "opencode-free",
+    "total_in": 7367925,
+    "total_out": 470912,
+    "total_cost": null,
+    "sess_count": 28
+  },
+  {
+    "model": "hy3-free",
+    "billing_provider": "opencode-free",
+    "total_in": 6291592,
+    "total_out": 841252,
+    "total_cost": null,
+    "sess_count": 32
+  },
+  {
+    "model": "anthropic/claude-fable-5",
+    "billing_provider": "nous",
+    "total_in": 179462,
+    "total_out": 1299,
+    "total_cost": null,
+    "sess_count": 1
+  }
+]
