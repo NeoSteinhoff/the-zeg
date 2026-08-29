@@ -83,21 +83,23 @@ async function loadData(api) {
 }
 
 const BUSINESS_NAMES = {
-  etsy_pod: 'Etsy POD',
-  fiverr_thumbnails: 'Fiverr Thumbnails',
+  etsy: 'Etsy POD',
+  fiverr: 'Fiverr Thumbnails',
+  services: 'Done-for-You Services',
+  saas: 'SaaS',
   micro_saas: 'Micro SaaS',
   content: 'Content',
-  saas: 'SaaS',
   trading: 'Trading',
   productized: 'Productized',
 };
 
 const BUSINESS_DESCRIPTIONS = {
-  etsy_pod: 'Print-on-demand store with POD designs',
-  fiverr_thumbnails: 'Fiverr gig selling custom thumbnails',
+  etsy: 'Print-on-demand store with POD designs',
+  fiverr: 'Fiverr gig selling custom thumbnails',
+  services: 'Real estate lead automation services for Dubai agents',
+  saas: 'Full SaaS product development',
   micro_saas: 'Micro SaaS tool for specific niche',
   content: 'Content creation and monetization',
-  saas: 'Full SaaS product development',
   trading: 'Algorithmic trading systems',
   productized: 'Productized service offerings',
 };

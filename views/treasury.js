@@ -43,7 +43,7 @@ function render(container, api) {
   loadData(api);
 }
 
-const GOALS = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000];
+const GOALS = [1000, 5000, 10000, 25000, 50000, 100000, 250000, 500000];
 
 async function loadData(api) {
   const data = await api.fetch('/api/goals');
@@ -60,24 +60,24 @@ async function loadData(api) {
   const progressUSD = (progress || 0) * 0.27;
 
   document.getElementById('treasury-stats').innerHTML = `
-    <div class="stat green"><div class="num">$${progressUSD.toFixed(2)}</div><div class="lbl">Total Revenue (USD)</div></div>
-    <div class="stat blue"><div class="num">AED ${(progress || 0).toLocaleString()}</div><div class="lbl">Total Revenue (AED)</div></div>
+    <div class="stat green"><div class="num">AED ${(progress || 0).toLocaleString()}</div><div class="lbl">Total Revenue (AED)</div></div>
+    <div class="stat blue"><div class="num">$${progressUSD.toFixed(2)}</div><div class="lbl">Total Revenue (USD)</div></div>
     <div class="stat orange"><div class="num">${((progress / target) * 100 || 0).toFixed(0)}%</div><div class="lbl">to AED ${target.toLocaleString()}</div></div>
-    <div class="stat purple"><div class="num">${GOALS.filter(g => g <= progressUSD).length}</div><div class="lbl">Goals Hit</div></div>
-    <div class="stat red"><div class="num">${(target - progress).toLocaleString()}</div><div class="lbl">AED to Target</div></div>
+    <div class="stat purple"><div class="num">${GOALS.filter(g => g <= progress).length}</div><div class="lbl">Goals Hit (AED)</div></div>
+    <div class="stat red"><div class="num">AED ${(target - progress).toLocaleString()}</div><div class="lbl">to Target</div></div>
   `;
 
-  // Goal ladder
+  // Goal ladder (AED-denominated to match progress)
   const ladder = document.getElementById('goal-ladder');
   if (ladder) {
     ladder.innerHTML = GOALS.map(g => {
-      const reached = progressUSD >= g;
+      const reached = progress >= g;
       return `
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
           <span class="badge ${reached ? 'badge-ok' : 'badge-pending'}">${reached ? '✓' : '○'}</span>
-          <span style="${reached ? 'color:var(--good);text-decoration:line-through' : 'color:var(--muted)'}">$${g}</span>
+          <span style="${reached ? 'color:var(--good);text-decoration:line-through' : 'color:var(--muted)'}">AED ${g.toLocaleString()}</span>
           <div style="flex:1;height:4px;background:var(--panel-2);border-radius:99px;overflow:hidden">
-            <div style="height:100%;background:${reached ? 'var(--good)' : 'var(--border)'};width:${reached ? '100%' : (progressUSD / g * 100 || 0) + '%'}"></div>
+            <div style="height:100%;background:${reached ? 'var(--good)' : 'var(--border)'};width:${reached ? '100%' : (progress / g * 100 || 0) + '%'}"></div>
           </div>
         </div>
       `;

@@ -106,6 +106,8 @@ async function loadData(api) {
 function drawMesh(girls) {
   const canvas = document.getElementById('cp-mesh');
   if (!canvas) return;
+  // Cancel any existing animation loop before starting a new one
+  window.__cpAnimating = false;
   const ctx = canvas.getContext('2d');
   // Set canvas resolution to match display size for crisp rendering
   const rect = canvas.getBoundingClientRect();
@@ -122,6 +124,7 @@ function drawMesh(girls) {
 
   let frame = 0;
   function render() {
+    if (!window.__cpAnimating) return;
     frame++;
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, w, h);
@@ -194,6 +197,8 @@ function drawMesh(girls) {
 
     requestAnimationFrame(render);
   }
+  // Mark animation active before starting the loop
+  window.__cpAnimating = true;
   render();
 }
 

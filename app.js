@@ -72,6 +72,8 @@ const VIEWS = [
 
 function navigateTo(viewName) {
   if (!VIEWS.includes(viewName)) return;
+  // Cancel any running circle-pipeline animation before switching
+  window.__cpAnimating = false;
   state.currentView = viewName;
   renderView(viewName);
   updateNav();
@@ -199,6 +201,9 @@ window.ZEG = { api, state, elements };
 
 // ─── Status Updates ───
 function updateApiStatus(connected) {
+  // Only update on actual state change to avoid flicker with checkApiHealth
+  if (state.apiConnected === connected) return;
+  state.apiConnected = connected;
   if (connected) {
     elements.statusApi.innerHTML = '<span class="status-dot green"></span> API: Connected';
     elements.statusApi.className = 'connected';
@@ -285,9 +290,9 @@ function setupKeyboardNav() {
       e.preventDefault();
       toggleLarpMode();
     }
-    // Number keys for view shortcuts
-    if (e.metaKey && !isNaN(e.key) && e.key >= '1' && e.key <= '9') {
-      const idx = parseInt(e.key) - 1;
+    // Number keys for view shortcuts (Cmd+1-9 for first 9, Cmd+0 for 10th)
+    if (e.metaKey && !isNaN(e.key) && ((e.key >= '1' && e.key <= '9') || e.key === '0')) {
+      const idx = e.key === '0' ? 9 : parseInt(e.key) - 1;
       if (idx < VIEWS.length) {
         navigateTo(VIEWS[idx]);
       }
