@@ -1,28 +1,125 @@
 {
-  "error": "Not found",
-  "routes": [
-    "/api/command-center",
-    "/api/tasks",
-    "/api/delegations",
-    "/api/crons",
-    "/api/circle-pipeline",
-    "/api/mesh-crm",
-    "/api/goals",
-    "/api/timeline",
-    "/api/soul-engine",
-    "/api/storefront",
-    "/api/ecosystem",
-    "/api/hermes-control",
-    "/api/aurora-brain",
-    "/api/ventures",
-    "/api/system",
-    "/api/ports",
-    "/api/gbrain",
-    "/api/crontab",
-    "/api/email",
-    "/api/pipeline-status",
-    "/api/souls",
-    "/api/quick-actions",
-    "/api/events"
-  ]
+  "processes": [
+    {
+      "pid": "1401",
+      "cpu": "12.6",
+      "mem": "2.6",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serv"
+    },
+    {
+      "pid": "817",
+      "cpu": "11.1",
+      "mem": "0.5",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
+    },
+    {
+      "pid": "844",
+      "cpu": "9.5",
+      "mem": "2.9",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
+    },
+    {
+      "pid": "411",
+      "cpu": "2.8",
+      "mem": "0.2",
+      "command": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer -dae"
+    },
+    {
+      "pid": "9730",
+      "cpu": "2.1",
+      "mem": "0.5",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
+    },
+    {
+      "pid": "562",
+      "cpu": "1.9",
+      "mem": "0.2",
+      "command": "/System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple"
+    },
+    {
+      "pid": "657",
+      "cpu": "1.8",
+      "mem": "0.2",
+      "command": "/System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Moni"
+    },
+    {
+      "pid": "14516",
+      "cpu": "1.5",
+      "mem": "0.2",
+      "command": "/Users/neosteinhoff/Library/Application Support/Claude/Claude Extensions/ant.dir"
+    },
+    {
+      "pid": "14890",
+      "cpu": "1.5",
+      "mem": "0.2",
+      "command": "/Users/neosteinhoff/Library/Application Support/Claude/Claude Extensions/ant.dir"
+    },
+    {
+      "pid": "673",
+      "cpu": "1.5",
+      "mem": "2.6",
+      "command": "/Applications/Dia.app/Contents/MacOS/Dia"
+    },
+    {
+      "pid": "332",
+      "cpu": "1.4",
+      "mem": "0.1",
+      "command": "/usr/libexec/UserEventAgent (System)"
+    },
+    {
+      "pid": "680",
+      "cpu": "1.1",
+      "mem": "0.5",
+      "command": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder"
+    },
+    {
+      "pid": "677",
+      "cpu": "1.1",
+      "mem": "0.3",
+      "command": "/System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter"
+    },
+    {
+      "pid": "416",
+      "cpu": "0.9",
+      "mem": "0.1",
+      "command": "/System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd"
+    },
+    {
+      "pid": "344",
+      "cpu": "0.9",
+      "mem": "0.1",
+      "command": "/System/Library/CoreServices/powerd.bundle/powerd"
+    },
+    {
+      "pid": "1663",
+      "cpu": "0.8",
+      "mem": "0.2",
+      "command": "/opt/homebrew/bin/node /Users/neosteinhoff/Documents/Steinhoff Systems/steinvaul"
+    },
+    {
+      "pid": "654",
+      "cpu": "0.8",
+      "mem": "0.9",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
+    },
+    {
+      "pid": "14366",
+      "cpu": "0.5",
+      "mem": "2.4",
+      "command": "/Applications/Claude.app/Contents/MacOS/Claude"
+    },
+    {
+      "pid": "369",
+      "cpu": "0.4",
+      "mem": "0.1",
+      "command": "/System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/contextsto"
+    }
+  ],
+  "metrics": {
+    "cpu_user": 0.111122,
+    "cpu_sys": 0.097275,
+    "max_rss": 45219840,
+    "page_faults": 9262
+  },
+  "gateway_running": false
 }

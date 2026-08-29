@@ -479,10 +479,6 @@ class ZegHandler(BaseHTTPRequestHandler):
             self._send_json({"status": "ok", "port": PORT})
             return
 
-        if path == "/api/gateway-logs":
-            self._send_json(get_gateway_logs())
-            return
-
         if path.startswith("/api/agent-detail"):
             sid = params.get("id", [""])[0]
             self._send_json(get_agent_detail(sid))
@@ -510,6 +506,10 @@ class ZegHandler(BaseHTTPRequestHandler):
         elif path == "/api/webhook/broadcast":
             event_id = add_event("broadcast", body)
             self._send_json({"ok": True, "event_id": event_id})
+        elif path == "/api/friend-touch":
+            person_id = body.get("person_id", "")
+            event_id = add_event("friend_touch", {"person_id": person_id})
+            self._send_json({"ok": True, "touched": person_id, "event_id": event_id})
         else:
             self._send_json({"error": "Not found"}, 404)
 
