@@ -71,6 +71,16 @@ def sqlite_query(db_path, query, params=()):
     except Exception:
         return []
 
+def ts_to_iso(ts):
+    """Convert unix epoch timestamp (float/int) to ISO string."""
+    if ts is None:
+        return None
+    try:
+        from datetime import datetime
+        return datetime.fromtimestamp(float(ts)).isoformat()
+    except (ValueError, TypeError, OverflowError):
+        return str(ts)
+
 # ═══ API Route Handlers ═══
 
 def get_command_center():
@@ -381,6 +391,122 @@ def get_souls():
         pass
     return {"souls": souls, "total": len(souls), "with_data": sum(1 for s in souls if s["exists"])}
 
+def get_sessions_simple(params=None):
+    """List recent sessions — lightweight version with timestamp conversion."""
+    limit = (params or {}).get("limit", [50])
+    if isinstance(limit, list):
+        limit = int(limit[0]) if limit else 50
+    elif isinstance(limit, str):
+        limit = int(limit)
+    rows = safe_run(lambda: sqlite_query(STATE_DB,
+        """SELECT id, title, started_at, ended_at, end_reason, model,
+           input_tokens, output_tokens, actual_cost_usd, message_count,
+           session_key, display_name
+        FROM sessions ORDER BY started_at DESC LIMIT ?""", (limit,)), [])
+    out = []
+    for r in rows:
+        for f in ("started_at", "ended_at"):
+            if f in r and r[f] is not None:
+                r[f] = ts_to_iso(r[f])
+        out.append(r)
+    return out
+
+def get_session_detail(params):
+    """Detail for a single session — includes messages list."""
+    sid = (params or {}).get("id", [""])[0] if isinstance((params or {}).get("id"), list) else (params or {}).get("id", "")
+    if not sid:
+        return {"error": "missing ?id="}
+    sess = safe_run(lambda: sqlite_query(STATE_DB,
+        "SELECT * FROM sessions WHERE id=? OR session_key=?", (sid, sid)), [])
+    if not sess:
+        return {"error": "session not found"}
+    s = sess[0]
+    for f in ("started_at", "ended_at"):
+        if f in s and s[f] is not None:
+            s[f] = ts_to_iso(s[f])
+    msgs = safe_run(lambda: sqlite_query(STATE_DB,
+        "SELECT id, role, content, tool_name, timestamp, finish_reason FROM messages WHERE session_id=? ORDER BY timestamp", (s["id"],)), [])
+    for m in msgs:
+        if m.get("timestamp") is not None:
+            m["timestamp"] = ts_to_iso(m["timestamp"])
+    return {"session": s, "messages": msgs[:200]}
+
+def get_task_detail(params):
+    """Detail for a single kanban task — includes comments and events."""
+    tid = (params or {}).get("id", [""])[0] if isinstance((params or {}).get("id"), list) else (params or {}).get("id", "")
+    if not tid:
+        return {"error": "missing ?id="}
+    task = safe_run(lambda: sqlite_query(KANBAN_DB,
+        "SELECT * FROM tasks WHERE id=?", (tid,)), [])
+    if not task:
+        return {"error": "task not found"}
+    t = task[0]
+    if t.get("created_at"):
+        t["created_at"] = ts_to_iso(t["created_at"])
+    comments = safe_run(lambda: sqlite_query(KANBAN_DB,
+        "SELECT * FROM task_comments WHERE task_id=? ORDER BY created_at", (tid,)), [])
+    events = safe_run(lambda: sqlite_query(KANBAN_DB,
+        "SELECT * FROM task_events WHERE task_id=? ORDER BY created_at", (tid,)), [])
+    return {"task": t, "comments": comments, "events": events}
+
+def create_task(body):
+    """Create a new kanban task. Note: requires write access to kanban.db
+    (not available under delegation context)."""
+    from datetime import datetime
+    try:
+        conn = sqlite3.connect(KANBAN_DB)
+        conn.row_factory = sqlite3.Row
+        cur = conn.execute("""
+            INSERT INTO tasks (title, body, status, priority, created_by, created_at)
+            VALUES (?, ?, 'pending', ?, ?, ?)
+        """, (
+            body.get("title", "Untitled"),
+            body.get("body", ""),
+            body.get("priority", "normal"),
+            body.get("created_by", "zeg"),
+            datetime.now().isoformat(),
+        ))
+        conn.commit()
+        task_id = cur.lastrowid
+        conn.close()
+        return {"id": task_id, "status": "created"}
+    except Exception as e:
+        return {"error": str(e), "status": "failed"}
+
+def get_costs():
+    """Cost breakdown by model — estimated and actual costs (7d)."""
+    since = time.time() - (7 * 24 * 60 * 60)
+    rows = safe_run(lambda: sqlite_query(STATE_DB,
+        """SELECT model, billing_provider,
+           SUM(input_tokens) as input_tok,
+           SUM(output_tokens) as output_tok,
+           SUM(cache_read_tokens) as cache_read_tok,
+           SUM(cache_write_tokens) as cache_write_tok,
+           SUM(reasoning_tokens) as reasoning_tok,
+           SUM(estimated_cost_usd) as est_cost,
+           SUM(actual_cost_usd) as act_cost,
+           COUNT(*) as sess_count
+        FROM sessions WHERE started_at > ?
+        GROUP BY model, billing_provider ORDER BY est_cost DESC""", (since,)), [])
+    return [{"model": r.get("model",""), "billing_provider": r.get("billing_provider",""),
+             "input_tok": r.get("input_tok",0), "output_tok": r.get("output_tok",0),
+             "cache_read_tok": r.get("cache_read_tok",0), "cache_write_tok": r.get("cache_write_tok",0),
+             "reasoning_tok": r.get("reasoning_tok",0), "est_cost": r.get("est_cost",0),
+             "act_cost": r.get("act_cost",0), "sess_count": r.get("sess_count",0)} for r in rows]
+
+def get_models():
+    """Model usage aggregation — totals across all sessions."""
+    rows = safe_run(lambda: sqlite_query(STATE_DB,
+        """SELECT model, billing_provider,
+           SUM(input_tokens) as total_in,
+           SUM(output_tokens) as total_out,
+           SUM(actual_cost_usd) as total_cost,
+           COUNT(*) as sess_count
+        FROM sessions GROUP BY model ORDER BY total_cost DESC"""), [])
+    return [{"model": r.get("model",""), "billing_provider": r.get("billing_provider",""),
+             "total_in": r.get("total_in",0), "total_out": r.get("total_out",0),
+             "total_cost": r.get("total_cost",0), "sess_count": r.get("sess_count",0)} for r in rows]
+
 def get_system():
     """Full system snapshot with traffic light status (Neil Patel style)."""
     ports = get_ports()
@@ -409,6 +535,9 @@ def get_system():
 GET_ROUTES = {
     "/api/command-center": get_command_center,
     "/api/tasks": get_tasks,
+    "/api/task": get_task_detail,
+    "/api/sessions": get_sessions_simple,
+    "/api/session": get_session_detail,
     "/api/delegations": get_delegations,
     "/api/crons": get_crons,
     "/api/executions": get_executions,
@@ -429,6 +558,11 @@ GET_ROUTES = {
     "/api/email": get_email,
     "/api/pipeline-status": get_pipeline_status,
     "/api/souls": get_souls,
+    "/api/costs": get_costs,
+    "/api/models": get_models,
+    "/api/sessions": get_sessions_simple,
+    "/api/session": get_session_detail,
+    "/api/task": get_task_detail,
 }
 
 # Quick Actions endpoint (Brian Dean: "clear next actions, not just data")
@@ -485,7 +619,11 @@ class ZegHandler(BaseHTTPRequestHandler):
 
         if path in GET_ROUTES:
             try:
-                self._send_json(GET_ROUTES[path]())
+                handler = GET_ROUTES[path]
+                # Routes that accept query params get them; others get no args
+                param_aware = {"/api/sessions", "/api/session", "/api/task"}
+                data = handler(params) if path in param_aware else handler()
+                self._send_json(data)
             except Exception as e:
                 self._send_json({"error": str(e), "endpoint": path}, 500)
             return
@@ -545,6 +683,8 @@ class ZegHandler(BaseHTTPRequestHandler):
             person_id = body.get("person_id", "")
             event_id = add_event("friend_touch", {"person_id": person_id})
             self._send_json({"ok": True, "touched": person_id, "event_id": event_id})
+        elif path == "/api/tasks/create":
+            self._send_json(create_task(body))
         else:
             self._send_json({"error": "Not found"}, 404)
 
