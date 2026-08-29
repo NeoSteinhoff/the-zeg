@@ -312,7 +312,7 @@ body {
 /* ═══ Theme Ribbon ═══ */
 .theme-ribbon {
   position: fixed;
-  top: 8px;
+  bottom: 8px;
   right: 8px;
   background: var(--panel);
   border: 1px solid var(--border);
@@ -321,7 +321,7 @@ body {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--accent);
-  z-index: 1000;
+  z-index: 999;
   opacity: 0.7;
 }
 
@@ -901,3 +901,10 @@ body.larp-mode #larp-btn {
 
 /* Ensure body uses theme var even on slow load */
 body[data-theme] { background: var(--bg); }
+
+/* ═══ Bootstrap-style Badges (from Hermes Command Center) ═══ */
+.badge-done { background: rgba(63, 208, 127, 0.15); color: var(--good); border: 1px solid var(--good); }
+.badge-ready { background: rgba(163, 113, 255, 0.15); color: var(--purple); border: 1px solid var(--purple); }
+.badge-blocked { background: rgba(255, 77, 94, 0.15); color: var(--hot); border: 1px solid var(--hot); }
+.badge-script { background: rgba(129, 149, 255, 0.15); color: var(--blue); border: 1px solid var(--blue); }
+.badge-agent { background: rgba(163, 113, 255, 0.15); color: var(--purple); border: 1px solid var(--purple); }

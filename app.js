@@ -105,7 +105,7 @@ function renderView(viewName) {
 const api = {
   connected: false,
 
-async fetch(endpoint, options = {}) {
+  async fetch(endpoint, options = {}) {
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, {
         headers: { 'Content-Type': 'application/json', ...options.headers },
@@ -193,6 +193,9 @@ async fetch(endpoint, options = {}) {
     return await this.fetch('/api/aurora-brain');
   },
 };
+
+// ─── Global ZEG object (for views that need API access outside init) ───
+window.ZEG = { api, state, elements };
 
 // ─── Status Updates ───
 function updateApiStatus(connected) {
@@ -382,7 +385,7 @@ async function refreshData() {
   elements.refreshBtn.textContent = '○';
   const viewModule = await import(`./views/${state.currentView}.js`);
   if (viewModule.refresh) {
-    await viewModule.refresh();
+    await viewModule.refresh(api);
   }
   setTimeout(() => { elements.refreshBtn.textContent = '↻'; }, 500);
 }
