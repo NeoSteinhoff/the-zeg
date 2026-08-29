@@ -15,6 +15,7 @@
     { "source": "/api/delegations", "destination": "/data/static/delegations.json" },
     { "source": "/api/crons", "destination": "/data/static/crons.json" },
     { "source": "/api/ventures", "destination": "/data/static/ventures.json" },
+    { "source": "/api/war-room", "destination": "/data/static/war-room.json" },
     { "source": "/api/health", "destination": "/data/static/_health.json" }
   ]
 }
