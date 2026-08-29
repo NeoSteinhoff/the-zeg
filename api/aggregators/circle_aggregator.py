@@ -46,6 +46,10 @@ def get_pipeline_data():
             "cap_max": 10,
         }
 
+        # Add due_now flag to each girl for the frontend
+        for g in girls:
+            g["due_now"] = bool(g.get("due") and _is_today(g.get("due")))
+
         levers = []
         for g in girls:
             if g.get("rotation") == "obsession":
