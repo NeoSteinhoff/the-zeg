@@ -1,5 +1,121 @@
 {
-  "souls": [],
-  "total": 0,
-  "with_data": 0
+  "souls": [
+    {
+      "name": "alex-hormozi",
+      "exists": true,
+      "size": 81223
+    },
+    {
+      "name": "brian-dean",
+      "exists": true,
+      "size": 122381
+    },
+    {
+      "name": "cashcamden",
+      "exists": true,
+      "size": 109663
+    },
+    {
+      "name": "chris-voss",
+      "exists": true,
+      "size": 170799
+    },
+    {
+      "name": "coffeezilla",
+      "exists": true,
+      "size": 176193
+    },
+    {
+      "name": "david-goggins",
+      "exists": false,
+      "size": 0
+    },
+    {
+      "name": "fabrizio-rausa",
+      "exists": true,
+      "size": 83419
+    },
+    {
+      "name": "gary-vee",
+      "exists": true,
+      "size": 161095
+    },
+    {
+      "name": "gavin-woken",
+      "exists": true,
+      "size": 50847
+    },
+    {
+      "name": "grant-cardone",
+      "exists": true,
+      "size": 144031
+    },
+    {
+      "name": "hamza-ahmed",
+      "exists": true,
+      "size": 143543
+    },
+    {
+      "name": "hamza-ali-biz",
+      "exists": true,
+      "size": 102695
+    },
+    {
+      "name": "iman-gadzhi",
+      "exists": true,
+      "size": 162750
+    },
+    {
+      "name": "jake-abdo",
+      "exists": true,
+      "size": 111500
+    },
+    {
+      "name": "marcus-hullaster",
+      "exists": true,
+      "size": 120643
+    },
+    {
+      "name": "mystery-method",
+      "exists": true,
+      "size": 34598
+    },
+    {
+      "name": "neil-patel",
+      "exists": true,
+      "size": 150149
+    },
+    {
+      "name": "orion-taraban",
+      "exists": true,
+      "size": 97021
+    },
+    {
+      "name": "polo-jacked-genius",
+      "exists": true,
+      "size": 10846
+    },
+    {
+      "name": "richardtaylor",
+      "exists": true,
+      "size": 201132
+    },
+    {
+      "name": "robert-geronimo",
+      "exists": true,
+      "size": 111982
+    },
+    {
+      "name": "russell-brunson",
+      "exists": true,
+      "size": 159596
+    },
+    {
+      "name": "scott-leese",
+      "exists": true,
+      "size": 70552
+    }
+  ],
+  "total": 23,
+  "with_data": 22
 }

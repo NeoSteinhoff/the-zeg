@@ -94,6 +94,18 @@
 
   <!-- Theme toggle indicator -->
   <div class="theme-ribbon" id="theme-ribbon">○</div>
+
+  <!-- ULTRON Chat Dock (from Aurora BusinessBrain) -->
+  <div class="chat-dock" id="chat-dock">
+    <button class="chat-head" id="chat-head">⬡ Talk to ULTRON <span id="chat-arrow">▴</span></button>
+    <div class="chat-body" id="chat-body" hidden>
+      <div class="chat-msgs" id="chat-msgs"></div>
+      <form id="chat-form" class="chat-form">
+        <input id="chat-input" type="text" maxlength="2000" placeholder="Give ULTRON orders…" autocomplete="off" />
+        <button class="btn btn-primary" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 <script src="app.js"></script>

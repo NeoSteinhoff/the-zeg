@@ -101,3 +101,96 @@ def _fallback():
             {"name": "gary-vaynerchuk", "category": "business", "description": "Social media marketing and hustle culture."},
         ]
     }
+
+def talk_to_soul(soul_name, query):
+    """Simple soul response — reads soul.json metadata and returns a structured reply."""
+    if not soul_name or soul_name == "query":
+        # If soul_name is the query itself (from /api/soul/<query> route)
+        query = soul_name or ""
+        soul_name = "aurora-brain"
+    
+    souls_dir = os.path.join(os.path.expanduser("~"), "Documents/The Soul Project/souls/hermes")
+    soul_path = os.path.join(souls_dir, soul_name, "soul.json")
+    
+    # Try to find a matching soul by name — check directory first, then registry slugs
+    if not os.path.exists(soul_path):
+        # Load registry to match by slug
+        reg_path = os.path.join(souls_dir, "REGISTRY.json")
+        if os.path.exists(reg_path):
+            try:
+                with open(reg_path) as f:
+                    registry = json.load(f)
+                for s in registry.get("souls", []):
+                    sname = s.get("name", "").lower().replace(" ", "-")
+                    sslug = s.get("slug", "").lower()
+                    # Match if any of: exact slug, exact name, name without spaces
+                    if (sname == soul_name.lower() or sslug == soul_name.lower() 
+                            or s.get("name","").lower() == soul_name.lower().replace("-", " ")
+                            or soul_name.lower() in sslug.lower() or soul_name.lower() in sname.lower()):
+                        # Resolve actual directory name
+                        fpath = s.get("file", "")
+                        dirs = [d for d in os.listdir(souls_dir) if os.path.isdir(os.path.join(souls_dir, d))]
+                        if fpath and fpath in dirs:
+                            soul_name = fpath
+                        elif sname in dirs:
+                            soul_name = sname
+                        soul_path = os.path.join(souls_dir, soul_name, "soul.json")
+                        break
+            except Exception:
+                pass
+        # Fallback: check any directory that starts with the name (handles hamza-ali → hamza-ali-biz)
+        if not os.path.exists(soul_path):
+            try:
+                for d in sorted(os.listdir(souls_dir)):
+                    sp = os.path.join(souls_dir, d)
+                    if os.path.isdir(sp) and d.startswith(soul_name):
+                        soul_name = d
+                        soul_path = os.path.join(sp, "soul.json")
+                        break
+            except Exception:
+                pass
+        # Final fallback: soul not found after all lookups
+        if not os.path.exists(soul_path):
+            available = ", ".join(d for d in os.listdir(souls_dir) 
+                                  if os.path.isdir(os.path.join(souls_dir, d)) and not d.startswith('.') and d != 'REGISTRY.json' and d != 'REGISTRY.md')
+            return {
+                "soul": soul_name,
+                "response": f"I don't recognize that soul. Available: {available[:200]}",
+                "source": "registry"
+            }
+    
+    # Read the soul's data for a contextual response
+    try:
+        with open(soul_path) as f:
+            soul = json.load(f)
+        persona = soul.get("persona", soul.get("character", ""))
+        if isinstance(persona, dict):
+            persona = persona.get("voice", persona.get("style", str(persona)[:200]))
+        
+        # Build response based on query topic
+        categories = soul.get("category", "")
+        desc = soul.get("description", soul.get("one_line", ""))
+        
+        if "dashboard" in query.lower() or "ui" in query.lower() or "ux" in query.lower():
+            response = f"As a {categories} coach, I'd say: The dashboard needs better visual hierarchy. Put the most important metric first (Hormozi: 'duration first'). Add traffic light status — green for go, red for stop. Users should know in 3 seconds what's working and what's not."
+        elif "mobile" in query.lower():
+            response = f"Mobile-first: touch targets ≥44px, safe-area insets for notch, viewport units for iOS 100vh bug. The hamburger→drawer pattern is correct ({categories} soul approves)."
+        elif "real-time" in query.lower() or "webhook" in query.lower():
+            response = f"Real-time is king. Use SSE for live updates, webhooks for push from Hermes CC. Don't poll — get pushed. ({categories} perspective)"
+        else:
+            response = f"As {soul.get('name', soul_name)} ({categories}): {desc[:200]}"
+        
+        return {
+            "soul": soul_name,
+            "category": categories,
+            "query": query[:200],
+            "response": response[:500],
+            "source": "soul.json",
+            "persona_voice": str(persona)[:100] if persona else "",
+        }
+    except Exception as e:
+        return {
+            "soul": soul_name,
+            "response": f"[{soul_name}] I'm processing... error: {str(e)[:100]}",
+            "source": "error"
+        }

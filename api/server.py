@@ -394,12 +394,23 @@ class ZegHandler(BaseHTTPRequestHandler):
             return
 
         if path.startswith("/api/soul/"):
-            soul_name = path.split("/")[-1]
-            q = params.get("q", [""])[0]
-            if "/talk" in path:
-                self._send_json({"transcript": "[Offline] Talking with " + soul_name})
+            parts = path.split("/")
+            # /api/soul/<name>/talk? or /api/soul/<name>?q=...
+            soul_name = parts[3] if len(parts) > 3 else ""
+            is_talk = "/talk" in path
+            if soul_name == "":
+                self._send_json({"error": "Soul name required: /api/soul/<name>"}, 400)
             else:
-                self._send_json({"soul": soul_name, "response": "[Offline] " + q})
+                from souls_aggregator import talk_to_soul
+                query = params.get("q", [""])[0]
+                if not query and is_talk:
+                    query = "What advice do you have for improving a dashboard?"
+                elif not query:
+                    query = "What advice do you have for improving a dashboard?"
+                result = safe_run(lambda: talk_to_soul(soul_name, query), {"soul": soul_name, "response": "[Offline] Talk unavaiable"})
+                if is_talk:
+                    result["transcript"] = f"Talking with {soul_name}: {query}"
+                self._send_json(result)
             return
 
         if path == "/api/health":

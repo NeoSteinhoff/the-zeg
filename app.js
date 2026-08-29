@@ -666,3 +666,65 @@ window.installPWA = function() {
     });
   }
 };
+
+// ═══ ULTRON Chat Dock (from Aurora BusinessBrain) ═══
+(function() {
+  const dock = document.getElementById('chat-dock');
+  const head = document.getElementById('chat-head');
+  const body = document.getElementById('chat-body');
+  const msgs = document.getElementById('chat-msgs');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const arrow = document.getElementById('chat-arrow');
+
+  if (!dock || !head || !body || !form || !input) return;
+
+  let isOpen = false;
+
+  head.addEventListener('click', () => {
+    isOpen = !isOpen;
+    body.hidden = !isOpen;
+    arrow.textContent = isOpen ? '▴' : '▸';
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+
+    // Add user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-msg user';
+    userMsg.textContent = text;
+    msgs.appendChild(userMsg);
+    input.value = '';
+    msgs.scrollTop = msgs.scrollHeight;
+
+    // Send to API (use soul engine endpoint for AI response)
+    try {
+      const resp = await api.fetch('/api/soul/' + encodeURIComponent(text));
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chat-msg bot';
+      botMsg.textContent = (resp && resp.response) || '[ULTRON] Processing...';
+      msgs.appendChild(botMsg);
+      msgs.scrollTop = msgs.scrollHeight;
+    } catch {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chat-msg bot';
+      botMsg.textContent = '[ULTRON] API unavailable';
+      msgs.appendChild(botMsg);
+    }
+  });
+
+  // Show welcome message on first open
+  let shown = false;
+  head.addEventListener('click', () => {
+    if (!isOpen || shown) return;
+    shown = true;
+    const botMsg = document.createElement('div');
+    botMsg.className = 'chat-msg bot';
+    botMsg.textContent = 'Hello — I am ULTRON. I see all Hermes activity across 20 souls, 645 agents, and 13 pipeline leads. How can I help?';
+    msgs.appendChild(botMsg);
+    msgs.scrollTop = msgs.scrollHeight;
+  });
+})();
