@@ -6,19 +6,6 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    {
-      "src": "/api/(.+)",
-      "dest": "/data/static/$1.json"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "github": {
-    "enabled": true
-  },
   "rewrites": [
     { "source": "/api/command-center", "destination": "/data/static/command-center.json" },
     { "source": "/api/circle-pipeline", "destination": "/data/static/circle-pipeline.json" },
@@ -29,6 +16,7 @@
     { "source": "/api/storefront", "destination": "/data/static/storefront.json" },
     { "source": "/api/ecosystem", "destination": "/data/static/ecosystem.json" },
     { "source": "/api/hermes-control", "destination": "/data/static/hermes-control.json" },
-    { "source": "/api/aurora-brain", "destination": "/data/static/aurora-brain.json" }
+    { "source": "/api/aurora-brain", "destination": "/data/static/aurora-brain.json" },
+    { "source": "/api/health", "destination": "/data/static/_health.json" }
   ]
 }
