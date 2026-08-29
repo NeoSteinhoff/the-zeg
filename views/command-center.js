@@ -98,7 +98,7 @@ async function loadData(api) {
         <td>${m.billing_provider || '—'}</td>
         <td>${m.input_tok ? (m.input_tok/1e6).toFixed(1) + 'M' : '0'}</td>
         <td>${m.output_tok ? (m.output_tok/1e6).toFixed(1) + 'M' : '0'}</td>
-        <td>${m.cache_tok ? (m.cache_tok/1e6).toFixed(1) + 'M' : '0'}</td>
+        <td>${m.cache_read_tok ? (m.cache_read_tok/1e6).toFixed(1) + 'M' : '0'}</td>
         <td>${m.cache_write_tok ? (m.cache_write_tok/1e6).toFixed(1) + 'M' : '0'}</td>
         <td>${m.reasoning_tok ? (m.reasoning_tok/1e3).toFixed(1) + 'K' : '0'}</td>
         <td>${m.sess_count || 0}</td>

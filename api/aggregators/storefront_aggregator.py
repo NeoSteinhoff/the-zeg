@@ -47,6 +47,7 @@ def get_storefront_data():
         "revenue": sum(r["value"] for r in revenue_breakdown),
         "packs_sold": sum(p.get("sold", 0) for p in products),
         "active_campaigns": 3,
+        "commission": sum(r["value"] for r in revenue_breakdown if r.get("category") == "commission"),
     }
 
     leads = [

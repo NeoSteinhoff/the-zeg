@@ -93,10 +93,10 @@ async function loadData(api) {
   if (tbody) {
     tbody.innerHTML = timeline.map(t => `
       <tr>
-        <td>${t.date || '—'}</td>
-        <td>${t.activity || '—'}</td>
-        <td><span class="badge ${t.channel === 'whatsapp' ? 'badge-agent' : 'badge-running'}">${t.channel || '—'}</span></td>
-        <td><span class="badge ${t.status === 'done' ? 'badge-ok' : t.status === 'pending' ? 'badge-pending' : 'badge-failed'}">${t.status || '—'}</span></td>
+        <td>${t.timestamp || '—'}</td>
+        <td>${t.title || '—'}</td>
+        <td><span class="badge ${t.type === 'revenue' ? 'badge-ok' : t.type === 'success' ? 'badge-agent' : 'badge-running'}">${t.type || '—'}</span></td>
+        <td><span class="badge ${t.amount ? 'badge-ok' : 'badge-pending'}">${t.amount ? 'AED ' + t.amount.toLocaleString() : '—'}</span></td>
       </tr>
     `).join('') || '<tr><td colspan="4" class="empty">No activity yet</td></tr>';
   }

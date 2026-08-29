@@ -3,7 +3,8 @@
     "total_sales": 0,
     "revenue": 0,
     "packs_sold": 0,
-    "active_campaigns": 3
+    "active_campaigns": 3,
+    "commission": 0
   },
   "products": [
     {
