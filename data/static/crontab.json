@@ -1,0 +1,9 @@
+{
+  "crontabs": [
+    "0 2 * * * /Users/neosteinhoff/.openclaw/workspace/scripts/smart_backup.sh >> /Users/neosteinhoff/.openclaw/workspace/log",
+    "0 2 * * * /usr/bin/python3 /Users/neosteinhoff/.hermes/scripts/digest_sessions.py >> /Users/neosteinhoff/.hermes/logs/di",
+    "0 3 * * * /usr/bin/python3 /Users/neosteinhoff/.hermes/scripts/promote_memory.py >> /Users/neosteinhoff/.hermes/logs/pro",
+    "*/5 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/live-wa",
+    "0 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/vault-hea"
+  ]
+}

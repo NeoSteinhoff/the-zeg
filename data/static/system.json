@@ -1,0 +1,572 @@
+{
+  "command_center": {
+    "stats": {
+      "sessions": 50,
+      "active_sessions": 11,
+      "tokens": 1598485701,
+      "input_tokens_7d": 220350543,
+      "output_tokens_7d": 12396114,
+      "cache_read_tokens_7d": 1363709382,
+      "cache_write_tokens_7d": 0,
+      "reasoning_tokens_7d": 2029662,
+      "cost": 0,
+      "tasks": 0,
+      "delegations": 0
+    },
+    "token_breakdown": {
+      "input": 220350543,
+      "output": 12396114,
+      "cache_read": 1363709382,
+      "cache_creation": 0,
+      "reasoning": 2029662,
+      "total": 1598485701
+    },
+    "models": [
+      {
+        "model": "anthropic/claude-fable-5",
+        "billing_provider": "nous",
+        "input_tok": 179462,
+        "output_tok": 1299,
+        "cache_read_tok": 100320,
+        "cache_write_tok": 0,
+        "reasoning_tok": 155,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 1
+      },
+      {
+        "model": "hy3-free",
+        "billing_provider": "opencode-free",
+        "input_tok": 6157104,
+        "output_tok": 801120,
+        "cache_read_tok": 65433216,
+        "cache_write_tok": 0,
+        "reasoning_tok": 247280,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 31
+      },
+      {
+        "model": "laguna-s-2.1-free",
+        "billing_provider": "opencode-free",
+        "input_tok": 7367925,
+        "output_tok": 470912,
+        "cache_read_tok": 27089856,
+        "cache_write_tok": 0,
+        "reasoning_tok": 142576,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 28
+      },
+      {
+        "model": "meituan/longcat-2.0:free",
+        "billing_provider": "nous",
+        "input_tok": 20207861,
+        "output_tok": 920855,
+        "cache_read_tok": 197167542,
+        "cache_write_tok": 0,
+        "reasoning_tok": 184814,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 38
+      },
+      {
+        "model": "nemotron-3-ultra-free",
+        "billing_provider": "opencode-free",
+        "input_tok": 34117337,
+        "output_tok": 426913,
+        "cache_read_tok": 41812160,
+        "cache_write_tok": 0,
+        "reasoning_tok": 142523,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 24
+      },
+      {
+        "model": "nemotron-3.5-lightning-free",
+        "billing_provider": "opencode-free",
+        "input_tok": 3608775,
+        "output_tok": 84783,
+        "cache_read_tok": 36147296,
+        "cache_write_tok": 0,
+        "reasoning_tok": 11042,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 1
+      },
+      {
+        "model": "poolside/laguna-s-2.1:free",
+        "billing_provider": null,
+        "input_tok": 0,
+        "output_tok": 0,
+        "cache_read_tok": 0,
+        "cache_write_tok": 0,
+        "reasoning_tok": 0,
+        "est_cost": 0,
+        "act_cost": 0,
+        "sess_count": 50
+      },
+      {
+        "model": "poolside/laguna-s-2.1:free",
+        "billing_provider": "nous",
+        "input_tok": 137203024,
+        "output_tok": 9451585,
+        "cache_read_tok": 913022304,
+        "cache_write_tok": 0,
+        "reasoning_tok": 1264063,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 525
+      },
+      {
+        "model": "poolside/laguna-xs-2.1:free",
+        "billing_provider": "nous",
+        "input_tok": 2571900,
+        "output_tok": 53462,
+        "cache_read_tok": 32243968,
+        "cache_write_tok": 0,
+        "reasoning_tok": 254,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 1
+      },
+      {
+        "model": "stepfun/step-3.7-flash:free",
+        "billing_provider": "nous",
+        "input_tok": 2791224,
+        "output_tok": 92191,
+        "cache_read_tok": 32992704,
+        "cache_write_tok": 0,
+        "reasoning_tok": 1782,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 4
+      },
+      {
+        "model": "upstage/solar-pro4:free",
+        "billing_provider": "nous",
+        "input_tok": 4647941,
+        "output_tok": 70907,
+        "cache_read_tok": 5721456,
+        "cache_write_tok": 0,
+        "reasoning_tok": 23524,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 3
+      },
+      {
+        "model": "x-preview-f-free",
+        "billing_provider": "opencode-free",
+        "input_tok": 1497990,
+        "output_tok": 22087,
+        "cache_read_tok": 11978560,
+        "cache_write_tok": 0,
+        "reasoning_tok": 11649,
+        "est_cost": 0.0,
+        "act_cost": 0,
+        "sess_count": 1
+      }
+    ],
+    "hermes": {
+      "sessions": [
+        {
+          "id": "cron_a1a152879cfe_20260829_134525",
+          "title": null,
+          "started_at": 1787996730.682046,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 35356,
+          "output_tokens": 2070,
+          "cache_read_tokens": 928,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 668,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_123707_04383f",
+          "title": "Hermes Dashboard",
+          "started_at": 1787992639.928185,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 265265,
+          "output_tokens": 7541,
+          "cache_read_tokens": 609120,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 3707,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "cron_a1a152879cfe_20260829_121709",
+          "title": null,
+          "started_at": 1787992080.823549,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 96656,
+          "output_tokens": 9282,
+          "cache_read_tokens": 544192,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 1823,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_122735_32fae6",
+          "title": "Identify person from image",
+          "started_at": 1787992055.552618,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 85958,
+          "output_tokens": 1270,
+          "cache_read_tokens": 48192,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 141,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_121719_b82ff5",
+          "title": "Review today and yesterday activities",
+          "started_at": 1787991439.634449,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 318341,
+          "output_tokens": 11292,
+          "cache_read_tokens": 4143136,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 758,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "cron_a1a152879cfe_20260829_120213",
+          "title": null,
+          "started_at": 1787990533.2626839,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 274964,
+          "output_tokens": 17171,
+          "cache_read_tokens": 1065280,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 4254,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_120131_aecee2",
+          "title": "Extract dating experts and refine pipeline stages",
+          "started_at": 1787990492.049603,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 586504,
+          "output_tokens": 39804,
+          "cache_read_tokens": 11079264,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 6633,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_120117_b3ac97",
+          "title": null,
+          "started_at": 1787990477.9868312,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 174858,
+          "output_tokens": 9740,
+          "cache_read_tokens": 141728,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 8123,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "20260829_120111_7f52b3",
+          "title": null,
+          "started_at": 1787990471.411326,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 116233,
+          "output_tokens": 7735,
+          "cache_read_tokens": 110592,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 6530,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "cron_478281d13003_20260829_112430",
+          "title": null,
+          "started_at": 1787988428.286558,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 85141,
+          "output_tokens": 17029,
+          "cache_read_tokens": 192864,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 9825,
+          "estimated_cost_usd": 0.0,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": "nous"
+        },
+        {
+          "id": "cron_a1a152879cfe_20260829_011404",
+          "title": null,
+          "started_at": 1787951645.6195111,
+          "ended_at": null,
+          "end_reason": null,
+          "model": "poolside/laguna-s-2.1:free",
+          "input_tokens": 0,
+          "output_tokens": 0,
+          "cache_read_tokens": 0,
+          "cache_write_tokens": 0,
+          "reasoning_tokens": 0,
+          "estimated_cost_usd": null,
+          "actual_cost_usd": null,
+          "session_key": null,
+          "display_name": null,
+          "billing_provider": null
+        }
+      ],
+      "skills": 181,
+      "profiles": [
+        {
+          "name": "brad-bergbot",
+          "path": "/Users/neosteinhoff/.hermes/profiles/brad-bergbot"
+        },
+        {
+          "name": "chad-steinbot",
+          "path": "/Users/neosteinhoff/.hermes/profiles/chad-steinbot"
+        }
+      ],
+      "memory_facts": 4,
+      "gbrain_notes": 588
+    }
+  },
+  "pipeline": {
+    "pipeline": {
+      "total": 13,
+      "active": 0,
+      "obsession": 1,
+      "talking": 8,
+      "warming": 4,
+      "due_today": 0
+    }
+  },
+  "email": {
+    "resend_configured": true,
+    "gmail_configured": false,
+    "today_sent": 0,
+    "total_sent": 0
+  },
+  "souls": {
+    "souls": [
+      {
+        "name": "alex-hormozi",
+        "exists": true,
+        "size": 81223
+      },
+      {
+        "name": "brian-dean",
+        "exists": true,
+        "size": 122381
+      },
+      {
+        "name": "cashcamden",
+        "exists": true,
+        "size": 109663
+      },
+      {
+        "name": "chris-voss",
+        "exists": true,
+        "size": 170799
+      },
+      {
+        "name": "coffeezilla",
+        "exists": true,
+        "size": 176193
+      },
+      {
+        "name": "david-goggins",
+        "exists": false,
+        "size": 0
+      },
+      {
+        "name": "fabrizio-rausa",
+        "exists": true,
+        "size": 83419
+      },
+      {
+        "name": "gary-vee",
+        "exists": true,
+        "size": 161095
+      },
+      {
+        "name": "gavin-woken",
+        "exists": true,
+        "size": 50847
+      },
+      {
+        "name": "grant-cardone",
+        "exists": true,
+        "size": 144031
+      },
+      {
+        "name": "hamza-ahmed",
+        "exists": true,
+        "size": 143543
+      },
+      {
+        "name": "hamza-ali-biz",
+        "exists": true,
+        "size": 102695
+      },
+      {
+        "name": "iman-gadzhi",
+        "exists": true,
+        "size": 162750
+      },
+      {
+        "name": "jake-abdo",
+        "exists": true,
+        "size": 111500
+      },
+      {
+        "name": "marcus-hullaster",
+        "exists": true,
+        "size": 120643
+      },
+      {
+        "name": "mystery-method",
+        "exists": true,
+        "size": 34598
+      },
+      {
+        "name": "neil-patel",
+        "exists": true,
+        "size": 150149
+      },
+      {
+        "name": "orion-taraban",
+        "exists": true,
+        "size": 97021
+      },
+      {
+        "name": "polo-jacked-genius",
+        "exists": true,
+        "size": 10846
+      },
+      {
+        "name": "richardtaylor",
+        "exists": true,
+        "size": 201132
+      },
+      {
+        "name": "robert-geronimo",
+        "exists": true,
+        "size": 111982
+      },
+      {
+        "name": "russell-brunson",
+        "exists": true,
+        "size": 159596
+      },
+      {
+        "name": "scott-leese",
+        "exists": true,
+        "size": 70552
+      }
+    ],
+    "total": 23,
+    "with_data": 22
+  },
+  "gbrain": {
+    "running": true,
+    "health": 0
+  },
+  "ports": {
+    "ports": [
+      {
+        "port": 4242,
+        "listening": false
+      },
+      {
+        "port": 8502,
+        "listening": true
+      },
+      {
+        "port": 8765,
+        "listening": false
+      },
+      {
+        "port": 9120,
+        "listening": false
+      },
+      {
+        "port": 31337,
+        "listening": false
+      },
+      {
+        "port": 8700,
+        "listening": true
+      },
+      {
+        "port": 3141,
+        "listening": true
+      },
+      {
+        "port": 9501,
+        "listening": false
+      }
+    ]
+  },
+  "crontab": {
+    "crontabs": [
+      "0 2 * * * /Users/neosteinhoff/.openclaw/workspace/scripts/smart_backup.sh >> /Users/neosteinhoff/.openclaw/workspace/log",
+      "0 2 * * * /usr/bin/python3 /Users/neosteinhoff/.hermes/scripts/digest_sessions.py >> /Users/neosteinhoff/.hermes/logs/di",
+      "0 3 * * * /usr/bin/python3 /Users/neosteinhoff/.hermes/scripts/promote_memory.py >> /Users/neosteinhoff/.hermes/logs/pro",
+      "*/5 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/live-wa",
+      "0 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/vault-hea"
+    ]
+  }
+}

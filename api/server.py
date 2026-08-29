@@ -191,6 +191,99 @@ def get_crons():
     crons = safe_run(lambda: load_json_file(CRONS_JSON, []), [])
     return {"crons": crons}
 
+def get_ports():
+    """Check which ports are listening."""
+    ports_to_check = [4242, 8502, 8765, 9120, 31337, 8700, 3141, 9501]
+    results = []
+    try:
+        out = os.popen("lsof -i -P -n 2>/dev/null").read()
+        for p in ports_to_check:
+            listening = f":{p}" in out and "LISTEN" in out
+            results.append({"port": p, "listening": listening})
+    except Exception:
+        pass
+    return {"ports": results}
+
+def get_gbrain():
+    """Check GBrain MCP health."""
+    result = {"running": False, "health": 0}
+    data = fetch_remote("http://localhost:3141/health", timeout=3)
+    if data:
+        result["running"] = True
+        result["health"] = data.get("health", 0)
+    return result
+
+def get_crontab():
+    """Get raw crontab entries."""
+    result = []
+    try:
+        out = os.popen("crontab -l 2>/dev/null").read()
+        for line in out.strip().split("\n"):
+            if line.strip() and not line.startswith("#"):
+                result.append(line.strip()[:120])
+    except Exception:
+        pass
+    return {"crontabs": result}
+
+def get_email():
+    """Check email pipeline status."""
+    result = {"resend_configured": False, "gmail_configured": False, "today_sent": 0, "total_sent": 0}
+    resend_key = os.environ.get("RESEND_API_KEY", "")
+    result["resend_configured"] = bool(resend_key and len(resend_key) > 10)
+    guser = os.environ.get("GMAIL_USER", os.environ.get("EMAIL_ADDRESS", ""))
+    gpass = os.environ.get("GMAIL_APP_PASSWORD", os.environ.get("EMAIL_SMTP_PASSWORD", ""))
+    gsmtp = os.environ.get("EMAIL_SMTP_HOST", "")
+    result["gmail_configured"] = bool(guser and (gpass or gsmtp))
+    return result
+
+def get_pipeline_status():
+    """Dating pipeline status from pipeline.db."""
+    result = {"total": 0, "active": 0, "obsession": 0, "talking": 0, "warming": 0, "due_today": 0}
+    try:
+        result["active"] = (sqlite_query(PIPELINE_DB,
+            "SELECT COUNT(*) as c FROM roster WHERE stage IN ('Talking','Obsession') AND due <= date('now')") or [{"c": 0}])[0]["c"]
+        result["obsession"] = (sqlite_query(PIPELINE_DB,
+            "SELECT COUNT(*) as c FROM roster WHERE stage='Obsession'") or [{"c": 0}])[0]["c"]
+        result["talking"] = (sqlite_query(PIPELINE_DB,
+            "SELECT COUNT(*) as c FROM roster WHERE stage='Talking'") or [{"c": 0}])[0]["c"]
+        result["warming"] = (sqlite_query(PIPELINE_DB,
+            "SELECT COUNT(*) as c FROM roster WHERE stage='Warming'") or [{"c": 0}])[0]["c"]
+        result["due_today"] = (sqlite_query(PIPELINE_DB,
+            "SELECT COUNT(*) as c FROM roster WHERE due <= date('now')") or [{"c": 0}])[0]["c"]
+        result["total"] = (sqlite_query(PIPELINE_DB, "SELECT COUNT(*) as c FROM roster") or [{"c": 0}])[0]["c"]
+    except Exception:
+        pass
+    return {"pipeline": result}
+
+def get_souls():
+    """Soul extraction pipeline status."""
+    souls_dir = os.path.join(os.path.expanduser("~"),
+        "Documents/The Soul Project/souls/hermes")
+    souls = []
+    if os.path.exists(souls_dir):
+        for d in sorted(os.listdir(souls_dir)):
+            sp = os.path.join(souls_dir, d)
+            if os.path.isdir(sp):
+                jp = os.path.join(sp, "soul.json")
+                mp = os.path.join(sp, "SOUL.md")
+                exists = os.path.exists(jp) or os.path.exists(mp)
+                size = os.path.getsize(jp) if os.path.exists(jp) else (
+                    os.path.getsize(mp) if os.path.exists(mp) else 0)
+                souls.append({"name": d, "exists": exists, "size": size})
+    return {"souls": souls, "total": len(souls), "with_data": sum(1 for s in souls if s["exists"])}
+
+def get_system():
+    """Full system snapshot."""
+    return {
+        "command_center": get_command_center(),
+        "pipeline": get_pipeline_status(),
+        "email": get_email(),
+        "souls": get_souls(),
+        "gbrain": get_gbrain(),
+        "ports": get_ports(),
+        "crontab": get_crontab(),
+    }
+
 GET_ROUTES = {
     "/api/command-center": get_command_center,
     "/api/tasks": get_tasks,
@@ -206,6 +299,13 @@ GET_ROUTES = {
     "/api/hermes-control": get_hermes_control,
     "/api/aurora-brain": get_aurora_brain,
     "/api/ventures": get_ventures,
+    "/api/ports": get_ports,
+    "/api/gbrain": get_gbrain,
+    "/api/crontab": get_crontab,
+    "/api/email": get_email,
+    "/api/pipeline-status": get_pipeline_status,
+    "/api/souls": get_souls,
+    "/api/system": get_system,
 }
 
 class ZegHandler(BaseHTTPRequestHandler):

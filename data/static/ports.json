@@ -1,0 +1,36 @@
+{
+  "ports": [
+    {
+      "port": 4242,
+      "listening": false
+    },
+    {
+      "port": 8502,
+      "listening": true
+    },
+    {
+      "port": 8765,
+      "listening": false
+    },
+    {
+      "port": 9120,
+      "listening": false
+    },
+    {
+      "port": 31337,
+      "listening": false
+    },
+    {
+      "port": 8700,
+      "listening": true
+    },
+    {
+      "port": 3141,
+      "listening": true
+    },
+    {
+      "port": 9501,
+      "listening": false
+    }
+  ]
+}

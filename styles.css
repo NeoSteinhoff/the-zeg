@@ -630,3 +630,274 @@ body.larp-mode #larp-btn {
   font-size: 10px;
   margin-left: 12px;
 }
+
+/* ════════════════════════════════════════════════════════════
+   NEW VIEW STYLES
+   ════════════════════════════════════════════════════════════ */
+
+/* ─── Health Row / Health Bars ─── */
+.health-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+}
+.health-row:last-child { border-bottom: none; }
+.health-label {
+  width: 120px;
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.health-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.health-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+.health-num {
+  width: 60px;
+  text-align: right;
+  color: var(--fg);
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+}
+
+/* ─── Row (label/value) ─── */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.row:last-child { border-bottom: none; }
+
+/* ─── Agent Grid ─── */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.agent-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  text-align: center;
+  transition: var(--transition);
+}
+.agent-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 15px rgba(78, 168, 255, 0.1);
+}
+.agent-card.working { border-left: 3px solid var(--good); }
+.agent-card.idle { border-left: 3px solid var(--muted); }
+.agent-card.error { border-left: 3px solid var(--hot); }
+.agent-name {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.agent-status {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ─── Mission Control Layout ─── */
+.mc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.mc-header h1 { font-size: 18px; color: var(--accent); }
+.uptime {
+  color: var(--muted);
+  font-size: 11px;
+  font-family: var(--mono);
+}
+.hint {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: normal;
+}
+.mc-main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+}
+.mc-col-main { min-width: 0; }
+.mc-col-side { min-width: 0; }
+
+/* Seed box */
+.seed-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.seed-box h2 { font-size: 12px; margin-bottom: 8px; color: var(--muted); }
+.seed-box input {
+  width: 100%;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: var(--mono);
+  margin-bottom: 6px;
+}
+.seed-box input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* Approvals */
+.approvals { max-height: 200px; overflow-y: auto; }
+.approval-item {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.count-pill {
+  background: var(--hot);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 6px;
+  font-size: 9px;
+  font-family: var(--mono);
+}
+
+/* Feed */
+.feed {
+  max-height: 240px;
+  overflow-y: auto;
+  font-size: 11px;
+  font-family: var(--mono);
+}
+.feed-item { padding: 2px 0; border-bottom: 1px solid var(--border); }
+.feed-error { color: var(--hot); }
+.feed-warn { color: var(--warm); }
+
+/* Board (venture pipeline) */
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+/* ─── Timeline Styles (ripped from timeline.html) ─── */
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.timeline-container { position: relative; margin: 24px 0; }
+.timeline-line {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-node { position: relative; margin-bottom: 20px; left: 0; }
+.timeline-node:before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  z-index: 1;
+}
+.node-active:before { background: var(--good); border-color: var(--good); }
+.node-failed:before { background: var(--hot); border-color: var(--hot); }
+.node-pending:before { background: var(--muted); border-color: var(--muted); }
+.node-ok:before { background: var(--blue); border-color: var(--blue); }
+.node-running:before { background: var(--accent); border-color: var(--accent); }
+.node-content {
+  margin-left: 48px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel-2);
+}
+.node-title { font-weight: 600; margin-bottom: 4px; }
+.node-meta { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+.node-error { color: var(--hot); font-size: 11px; word-break: break-word; }
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 24px 0 12px;
+}
+.grid-2 { grid-template-columns: 1fr 1fr; }
+
+/* ─── Dot indicator ─── */
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+.dot.green { background: var(--good); }
+.dot.red { background: var(--hot); }
+.dot.orange { background: var(--warm); }
+.dot.blue { background: var(--blue); }
+.dot.purple { background: var(--purple); }
+.dot.yellow { background: var(--warm); }
+
+/* ─── Status dots (bigger) ─── */
+.status-dot.sm { width: 6px; height: 6px; }
+.status-dot.md { width: 8px; height: 8px; }
+.status-dot.lg { width: 10px; height: 10px; }
+
+/* ─── Card hover glow ─── */
+.card:hover {
+  box-shadow: 0 0 15px rgba(78, 168, 255, 0.08);
+}
+
+/* ─── Tab pills ─── */
+.tab-pill {
+  background: var(--hot);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0 6px;
+  font-size: 9px;
+  margin-left: 6px;
+}
+
+/* ─── Badge live ─── */
+.badge-live {
+  background: rgba(63, 208, 127, 0.15);
+  color: var(--good);
+  border: 1px solid var(--good);
+  animation: pulse 2s infinite;
+}
+
+/* ─── Metric row ─── */
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.metric-row:last-child { border-bottom: none; }
+
+/* Ensure body uses theme var even on slow load */
+body[data-theme] { background: var(--bg); }

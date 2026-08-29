@@ -1,1 +1,4 @@
-{"status": "ok", "port": 8700, "mode": "static"}
+{
+  "status": "ok",
+  "port": 8700
+}

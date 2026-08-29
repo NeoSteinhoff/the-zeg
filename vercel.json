@@ -16,6 +16,13 @@
     { "source": "/api/crons", "destination": "/data/static/crons.json" },
     { "source": "/api/ventures", "destination": "/data/static/ventures.json" },
     { "source": "/api/war-room", "destination": "/data/static/war-room.json" },
+    { "source": "/api/system", "destination": "/data/static/system.json" },
+    { "source": "/api/ports", "destination": "/data/static/ports.json" },
+    { "source": "/api/gbrain", "destination": "/data/static/gbrain.json" },
+    { "source": "/api/crontab", "destination": "/data/static/crontab.json" },
+    { "source": "/api/email", "destination": "/data/static/email.json" },
+    { "source": "/api/pipeline-status", "destination": "/data/static/pipeline-status.json" },
+    { "source": "/api/souls", "destination": "/data/static/souls.json" },
     { "source": "/api/health", "destination": "/data/static/_health.json" }
   ]
 }

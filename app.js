@@ -66,6 +66,7 @@ function toggleTheme() {
 const VIEWS = [
   'command-center', 'circle-pipeline', 'mesh-crm', 'goals', 'timeline',
   'soul-engine', 'agent-storefront', 'ecosystem', 'hermes-control', 'aurora-brain',
+  'system-health', 'agent-grid', 'mission-control', 'live-feed',
   'tasks', 'cron-monitor', 'ventures', 'treasury', 'war-room'
 ];
 
