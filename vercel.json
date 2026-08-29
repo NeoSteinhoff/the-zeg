@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
   "rewrites": [
     { "source": "/api/command-center", "destination": "/data/static/command-center.json" },
     { "source": "/api/circle-pipeline", "destination": "/data/static/circle-pipeline.json" },
