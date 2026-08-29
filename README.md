@@ -121,12 +121,19 @@ when the API is unavailable.
 | `/api/soul/{name}/talk` | Talk to a soul (GET) |
 | `/api/health` | Server health check |
 
-## Deployment Options
+## Live Deployment
 
-### Option A: Vercel (static + serverless functions)
+**🎮 https://the-zeg.vercel.app** — Fully deployed on Vercel with static JSON fallbacks.
+All 10 API endpoints, 5 themes, and LARP mode work in the browser.
+
+### Deployment Options
+
+#### Option A: Vercel (static + serverless functions)
 Deploy frontend + `data/static/` to Vercel. For API, either:
 1. Add `api/server.py` as a Python serverless function
 2. Or keep the API running locally and use CORS proxy
+
+**Already deployed:** Push to GitHub → `vercel --prod` auto-deploys.
 
 ### Option B: Local (full functionality)
 ```bash
