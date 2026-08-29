@@ -52,7 +52,7 @@ async function loadData(api) {
   if (ecoPipeline) {
     ecoPipeline.innerHTML = pipeline.map(stage => `
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-        <div style="background:${stage.color || 'var(--accent')}33;border:1px solid ${stage.color || 'var(--accent')}66;border-radius:var(--radius);padding:8px 12px;font-weight:600;font-size:12px">${stage.name}</div>
+        <div style="background:${stage.color || 'var(--accent)'}33;border:1px solid ${stage.color || 'var(--accent)'}66;border-radius:var(--radius);padding:8px 12px;font-weight:600;font-size:12px">${stage.name}</div>
         <div style="flex:1;height:2px;background:var(--border);"></div>
         <div style="font-family:var(--mono);font-size:11px;color:var(--muted)">${stage.active || 0}/${stage.total || 0}</div>
       </div>

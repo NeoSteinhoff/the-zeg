@@ -1,6 +1,6 @@
 {
   "stats": {
-    "total_souls": 21,
+    "total_souls": 23,
     "dating_souls": 7,
     "business_souls": 12,
     "discipline_souls": 1,
@@ -56,12 +56,28 @@
       "slug": "david-goggins"
     },
     {
+      "name": "Fabrizio Rausa",
+      "category": "",
+      "description": "Creator known for again, people, talk, first, maybe.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "fabrizio-rausa"
+    },
+    {
       "name": "Gary Vee",
       "category": "business",
       "description": "Creator known for people, here, years, business, social.",
       "reach_tier": "",
       "file": "",
       "slug": "gary-vee"
+    },
+    {
+      "name": "Gavin Woken",
+      "category": "",
+      "description": "Creator known for people, absolutely, real, man, single.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "gavin-woken"
     },
     {
       "name": "Grant Cardone",
@@ -72,12 +88,20 @@
       "slug": "grant-cardone"
     },
     {
+      "name": "Hamza Ahmed",
+      "category": "dating",
+      "description": "Creator known for work, kind, feel, most, need.",
+      "reach_tier": "",
+      "file": "",
+      "slug": "hamza-ahmed"
+    },
+    {
       "name": "Hamza Ali",
       "category": "dating",
       "description": "Creator known for she's, years, feel, self, work.",
       "reach_tier": "",
       "file": "",
-      "slug": "hamza-ali"
+      "slug": "hamza-ali-biz"
     },
     {
       "name": "Iman Gadzhi",
@@ -166,14 +190,6 @@
       "reach_tier": "",
       "file": "",
       "slug": "scott-leese"
-    },
-    {
-      "name": "Gavin Woken",
-      "category": "dating",
-      "description": "TikTok creator on loyalty, realness, single life, college",
-      "reach_tier": "",
-      "file": "",
-      "slug": "gavin-woken"
     }
   ]
 }

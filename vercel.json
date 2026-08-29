@@ -11,6 +11,10 @@
     { "source": "/api/ecosystem", "destination": "/data/static/ecosystem.json" },
     { "source": "/api/hermes-control", "destination": "/data/static/hermes-control.json" },
     { "source": "/api/aurora-brain", "destination": "/data/static/aurora-brain.json" },
+    { "source": "/api/tasks", "destination": "/data/static/tasks.json" },
+    { "source": "/api/delegations", "destination": "/data/static/delegations.json" },
+    { "source": "/api/crons", "destination": "/data/static/crons.json" },
+    { "source": "/api/ventures", "destination": "/data/static/ventures.json" },
     { "source": "/api/health", "destination": "/data/static/_health.json" }
   ]
 }

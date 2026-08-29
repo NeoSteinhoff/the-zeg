@@ -29,6 +29,7 @@ const elements = {
   statusText: document.getElementById('status-text'),
   statusApi: document.getElementById('status-api'),
   statusTime: document.getElementById('status-time'),
+  statusRefresh: document.getElementById('status-refresh'),
   themeRibbon: document.getElementById('theme-ribbon'),
   body: document.body,
 };
@@ -39,6 +40,7 @@ const themeIcons = { dark: '🌙', cyberpunk: '⚡', acid: '🧪', matrix: '🟢
 
 function setTheme(themeName) {
   if (!THEMES.includes(themeName)) return;
+  document.documentElement.setAttribute('data-theme', themeName);
   document.body.setAttribute('data-theme', themeName);
   state.theme = themeName;
   localStorage.setItem('zeg-theme', themeName);
@@ -63,7 +65,8 @@ function toggleTheme() {
 // ─── Navigation System ───
 const VIEWS = [
   'command-center', 'circle-pipeline', 'mesh-crm', 'goals', 'timeline',
-  'soul-engine', 'agent-storefront', 'ecosystem', 'hermes-control', 'aurora-brain'
+  'soul-engine', 'agent-storefront', 'ecosystem', 'hermes-control', 'aurora-brain',
+  'tasks', 'cron-monitor', 'ventures', 'treasury'
 ];
 
 function navigateTo(viewName) {
@@ -198,6 +201,19 @@ function updateApiStatus(connected) {
   } else {
     elements.statusApi.innerHTML = '<span class="status-dot red"></span> API: Disconnected';
     elements.statusApi.className = 'disconnected';
+  }
+}
+
+async function checkApiHealth() {
+  const health = await api.fetch('/api/health');
+  if (health) {
+    elements.statusApi.innerHTML = '<span class="status-dot green"></span> API: Healthy';
+    elements.statusApi.className = 'connected';
+    return true;
+  } else {
+    elements.statusApi.innerHTML = '<span class="status-dot orange"></span> API: Offline (static mode)';
+    elements.statusApi.className = 'disconnected';
+    return false;
   }
 }
 
@@ -394,9 +410,23 @@ document.querySelectorAll('.nav-item').forEach(item => {
 // ─── Auto Refresh ───
 function startRefreshTimer() {
   if (state.refreshTimer) clearInterval(state.refreshTimer);
+  let remaining = REFRESH_INTERVAL / 1000;
+  elements.statusRefresh.textContent = `○ Auto-refresh: ${remaining}s`;
   state.refreshTimer = setInterval(() => {
     refreshData();
+    remaining = REFRESH_INTERVAL / 1000;
+    elements.statusRefresh.textContent = `○ Auto-refresh: ${remaining}s`;
   }, REFRESH_INTERVAL);
+
+  // Countdown timer
+  const countdownTimer = setInterval(() => {
+    remaining--;
+    if (remaining <= 0) remaining = REFRESH_INTERVAL / 1000;
+    if (elements.statusRefresh) {
+      elements.statusRefresh.textContent = `○ Auto-refresh: ${remaining}s`;
+    }
+  }, 1000);
+  state.countdownTimer = countdownTimer;
 }
 
 // ─── Init ───
@@ -404,9 +434,11 @@ function init() {
   setTheme(state.theme);
   updateClock();
   setInterval(updateClock, 1000);
-  setInterval(() => updateApiStatus(state.apiConnected), 1000);
   setupKeyboardNav();
   startRefreshTimer();
+  // Initial health check + periodic health pings
+  checkApiHealth();
+  setInterval(checkApiHealth, 15000);
 
   // Show welcome message
   elements.statusText.textContent = 'Welcome to THE ZEG';
@@ -422,6 +454,7 @@ function init() {
     Cmd+,  · Toggle theme
     Cmd+R  · Refresh view
     Cmd+F  · Fullscreen
+    Cmd+L  · LARP mode
     1-9    · Quick view switch
   `);
 }

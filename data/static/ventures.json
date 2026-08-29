@@ -1,0 +1,504 @@
+{
+  "businesses": {
+    "etsy": {
+      "accepted": [
+        {
+          "id": "etsy-20260615-004",
+          "title": "Gender Neutral Nursery Safari Explorer Wall Art Set - 5-Piece Bundle",
+          "niche": "home decor",
+          "suggested_price": 29.99,
+          "target_keyword": "nursery wall art set gender neutral",
+          "differentiator": "Muted safari palette + 5-piece bundle checkout outperforms single woodland prints.",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "2026-06-15T11:16:00Z",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260615-001",
+          "title": "New Homeowner Bundle: Subtle House Rules + Editable Address Line Print Set",
+          "niche": "home decor",
+          "suggested_price": 24.99,
+          "target_keyword": "new home gift printable housewarming",
+          "differentiator": "Mature adult-focused housewarming format differs from nursery-only printable bundles.",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "2026-06-15T11:16:00Z",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260615-010",
+          "title": "Official Rookie Dad Badge + Laminated Survival Card Bundle",
+          "niche": "dad humor",
+          "suggested_price": 21.99,
+          "target_keyword": "funny rookie dad gift badge",
+          "differentiator": "Quality-upgraded laminated card addresses prior review gap about cheap badge material complaints.",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "2026-06-15T18:38:00Z",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260619-001",
+          "title": "Funny 1980s Dad Throw Pillow Cover \u2014 Retro Rad Humor Gift",
+          "niche": "",
+          "suggested_price": 0,
+          "target_keyword": "",
+          "differentiator": "",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "etsy-20260619-001",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260619-003",
+          "title": "Outer Space Nursery Wall Art Bundle \u2014 Astronaut, Rocket, Planets + Growth Chart Filler",
+          "niche": "",
+          "suggested_price": 0,
+          "target_keyword": "",
+          "differentiator": "",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "etsy-20260619-003",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260619-004",
+          "title": "Funny Pitbull Dog Mom Gift Set \u2014 Candle Humor + Paw-print Coaster Bundle",
+          "niche": "",
+          "suggested_price": 0,
+          "target_keyword": "",
+          "differentiator": "",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "etsy-20260619-004",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260622-003",
+          "title": "Rescue Dog Mom Custom Fleece Blanket \u2014 Adopted Not Bought Breed Silhouette Gift",
+          "niche": "",
+          "suggested_price": 0,
+          "target_keyword": "",
+          "differentiator": "",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "etsy-20260622-003",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260623-0634-003",
+          "title": "Dog Dad Empty Nesting Framed Print \u2014 'My Kids Have Four Legs' Breed Silhouette Gallery Set",
+          "niche": "",
+          "suggested_price": 0,
+          "target_keyword": "",
+          "differentiator": "",
+          "status": "approved_publish",
+          "status_note": "",
+          "added_at": "etsy-20260623-0634-003",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        }
+      ],
+      "pending": [
+        {
+          "id": "etsy-20260623-1243-001",
+          "title": "Whimsical Circus Animal Gallery Wall Bundle \u2014 Vintage Carnival Nursery Print Set",
+          "niche": "home decor",
+          "suggested_price": 19.99,
+          "target_keyword": "circus nursery wall art gallery bundle",
+          "differentiator": "Vintage circus animal art (lion, elephant, seal, acrobat) in striped retro palette targets nursery/playroom buyers seeking playful but sophisticated decor. Existing circus listings are mostly single clown prints or clipart; this curated 4-piece gallery set avoids the saturated 'nursery animal alphabet' and 'circus clown' competition by leaning into vintage carnival aesthetics.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (circus aesthetic) not represented in existing queue; 2026 trend with 130% interior search growth",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260623-1243-002",
+          "title": "WPA-Inspired National Park Retro Travel Poster Bundle \u2014 Vintage Adventure Gallery Wall Set",
+          "niche": "home decor",
+          "suggested_price": 24.99,
+          "target_keyword": "national park retro travel poster bundle",
+          "differentiator": "Curated 6-park WPA-style travel poster set (Yellowstone, Yosemite, Grand Canyon, Zion, Glacier, Acadia) in vintage National Park poster typography. Existing listings skew to single-park prints or full 63-park digital collections at low price points; this mid-tier bundle targets gallery-wall buyers who want statement adventure decor without committing to a full set.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (national park retro gallery wall) with strong seasonal/summer tail and 40% YoY search growth",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260623-1243-003",
+          "title": "Custom Pet Photo Memory Puzzle \u2014 Upload Your Pet's Photos Personalized Jigsaw Keepsake",
+          "niche": "pet accessories",
+          "suggested_price": 29.99,
+          "target_keyword": "custom pet photo puzzle personalized gift",
+          "differentiator": "Multi-photo upload pet memory puzzle with breed-specific silhouette border and custom text (name, date, 'Adopted Not Bought'). Unlike generic photo puzzle uploads, this is positioned as a premium pet keepsake for birthdays, adoption anniversaries, and memorials \u2014 occupying the gap between cheap cardboard puzzles and expensive custom pet portrait paintings.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (photo puzzle format) within hyper-personalized pet product wave; strong emotional wedge",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-001",
+          "title": "Pickleball Dad Dink & Drink Gallery Wall + Coaster Bundle",
+          "niche": "dad humor / hobby identity",
+          "suggested_price": 24.99,
+          "target_keyword": "pickleball dad funny gift",
+          "differentiator": "Most pickleball Etsy products are single-use apparel or mugs; this 3-piece gallery wall bundle (Dink & Drink print, Pickleball Definition print, Court Coordinates art) targets displayable gift buyers and creates a high-AOV home decor purchase rather than a one-off novelty item.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (pickleball hobby identity) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-002",
+          "title": "Teacher Burnout \"Grading Season\" Gallery Wall + Desk Organizer Bundle",
+          "niche": "home decor / profession",
+          "suggested_price": 22.99,
+          "target_keyword": "teacher burnout gift funny",
+          "differentiator": "Existing teacher gifts skew to mugs and tote bags; this bundle pairs sarcastic burnout-themed wall art with a desk-friendly organizer insert, targeting the self-care gift market at a higher price point than single-print listings.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (teacher burnout self-care) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-003",
+          "title": "Book Club \"Wine & Words\" Gallery Wall Bundle \u2014 Literary Hostess Print Set",
+          "niche": "home decor / social hobby",
+          "suggested_price": 19.99,
+          "target_keyword": "book club gift wall art",
+          "differentiator": "Existing literary gifts are mostly single-bookish prints or mugs with quotes; this 4-piece gallery bundle (Wine & Words hostess art, Reading Definition, Book Club Rules, Bookshelf Goals) targets hostess gift buyers and creates a giftable room-decor purchase instead of a low-price single-offering.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (book club hostess gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-004",
+          "title": "Coastal Grandma \"Nancy Meyers Aesthetic\" Gallery Wall Art Set",
+          "niche": "home decor / trending aesthetic",
+          "suggested_price": 24.99,
+          "target_keyword": "coastal grandmother wall art",
+          "differentiator": "Coastal grandma / Nancy Meyers aesthetic is surging on TikTok with gallery wall searches, but Etsy listings are fragmented and mostly single prints; this curated 5-piece set (beach reads, coastal kitchen, blue hour, linen curtains, rose all day) captures the full aesthetic narrative for higher AOV.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (coastal grandma gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-0631-001",
+          "title": "Faithful Father Verse Gallery Wall + Dad Journal Cover Bundle",
+          "niche": "dad humor / faith",
+          "suggested_price": 24.99,
+          "target_keyword": "christian dad gift gallery wall",
+          "differentiator": "Faith-first dad gift avoids saturated joke-only dad market and aligns with high-repeat religious gifting occasions (Father's Day, baptism, confirmation). 4-piece gallery set (Proverbs 22:6 Shepherd Print, Man of God Typography, Family Blessing Floral, Prayer Journal Cover design) targets displayable home + devotional purchase.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (faith + dad identity) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-0631-002",
+          "title": "Fishing Dad 'Catch of the Day' Gallery Wall + Yeti Coaster Bundle",
+          "niche": "dad humor / hobby identity",
+          "suggested_price": 26.99,
+          "target_keyword": "fishing dad wall art gift bundle",
+          "differentiator": "Existing fishing dad products skew to apparel/mugs; gallery wall + coaster bundle targets displayable gift buyers and opens high-AOV home decor purchase in fishing hobby space. 3-piece set (Catch of the Day large print, Fishing Dad Definition, Tackle Box Coordinates) pairs with brand-matched cooler coaster.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (fishing dad gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260625-0631-003",
+          "title": "Retro Gamer Dad 'Player 2 Entered' 8-Bit Gallery Wall + Desk Mat Bundle",
+          "niche": "dad humor / hobby identity",
+          "suggested_price": 27.99,
+          "target_keyword": "retro gamer dad gift wall art",
+          "differentiator": "Gaming dad humor on Etsy is dominated by mug/shirt novelties; 8-bit gallery wall + desk mat targets displayable home office/den decor for millennial/gen X dads who grew up with NES/SNES. 3-piece set (Player 2 Typography, 8-Bit Dad Hero Print, Controller Coordinates Art) pairs with pixel-art desk mat.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (retro gamer dad gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260626-0300-001",
+          "title": "Golf Dad \"Fore Someone Special\" Gallery Wall + Divot Tool Coaster Bundle",
+          "niche": "dad humor / hobby identity",
+          "suggested_price": 26.99,
+          "target_keyword": "golf dad gallery wall gift bundle",
+          "differentiator": "Golf dad Etsy listings are overwhelmingly single tees, mugs, and custom-scorecard posters; this 3-piece gallery wall bundle (Fore Someone Special print, Golf Dad Definition, Course Coordinates art) paired with a brand-matched divot-tool coaster set targets displayable home-office/man-cave gift buyers and creates a high-AOV decor purchase instead of a one-off novelty.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (golf dad gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260626-0300-002",
+          "title": "Tradesman Dad \"I Can Fix It\" Gallery Wall + Workshop Coaster Bundle",
+          "niche": "dad humor / hobby identity",
+          "suggested_price": 24.99,
+          "target_keyword": "mechanic dad funny gallery wall gift bundle",
+          "differentiator": "Mechanic/HVAC/construction dad products skew to metal tin signs, embroidered shirts, and generic tool-themed mugs; this gallery wall bundle (I Can Fix It print, Tradesman Definition, Toolbox Coordinates) with rubber-wheel coaster set targets workshop/garage decor buyers seeking sarcastic displayable humor instead of throwaway novelties.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (tradesman dad gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260626-0300-003",
+          "title": "FunHaus \"Playful Maximalism\" Gallery Wall Bundle \u2014 Bold Stripes & Whimsical Shapes Print Set",
+          "niche": "home decor / trending aesthetic",
+          "suggested_price": 19.99,
+          "target_keyword": "funhaus playful maximalism gallery wall art",
+          "differentiator": "Pinterest Predicts 2026 officially designated FunHaus as a top trend (circus interior +130%, vintage circus aesthetic +70%, polka dot phone cases +835%), but Etsy listings remain fragmented between single clown prints and generic polka-dot items; this curated 5-piece gallery set captures the full playful-maximalist aesthetic for higher AOV gallery-wall purchases.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (FunHaus playful maximalism gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260626-0300-004",
+          "title": "Dog Dad \"House Rules\" Gallery Wall + Magnet Bundle",
+          "niche": "pet accessories / dad humor",
+          "suggested_price": 22.99,
+          "target_keyword": "dog dad funny wall art gift bundle gallery",
+          "differentiator": "Existing dog dad products are dominated by memorial keepsakes, rescue blankets, funny coasters, and single apparel; this gallery wall bundles sarcastic dog-dad 'house rules' prints with matching fridge magnets, targeting man-cave/kitchen gift buyers who want functional humor decor instead of throwaway novelties.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (dog dad house-rules functional gallery wall) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260626-0300-005",
+          "title": "Pet \"Gotcha Day\" Gallery Wall Bundle \u2014 Breed Silhouette + Adoption Date Print Set",
+          "niche": "pet accessories / celebration",
+          "suggested_price": 24.99,
+          "target_keyword": "pet gotcha day gallery wall print bundle",
+          "differentiator": "Pet adoption celebration products are overwhelmingly single digital certificates or photo-upload puzzles; this curated 3-piece gallery set targets gallery-wall pet parents seeking displayable celebration art for adoption anniversaries, birthdays, and 'just because' gifting, occupying the gap between cheap certificates and expensive custom portraits.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (pet gotcha day gallery wall celebration) not represented in existing queue",
+          "added_at": "2026-07-14T08:59:11.370201+00:00",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260623-1243-004",
+          "title": "America 250 Semi-Quincentennial Patriotic Bundle \u2014 Western Cowboy Military Gallery Wall",
+          "niche": "home decor / patriotic",
+          "suggested_price": 24.99,
+          "target_keyword": "america 250 patriotic gift gallery wall western",
+          "differentiator": "Once-in-a-generation 4th of July milestone with no current queue coverage. Dual-format bundle pairs vintage western rodeo patriotic prints with classic American flag keeper gallery art, allowing the same design to sell as 4th of July decor and year-round western/military/veteran home decor. Avoids generic single-print patriotic listings by targeting high-AOV gallery-wall buyers and man-cave/garage decor markets.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (america 250 patriotic + western/gallery wall) validated by Printful/Print-on-Demand Playbook summer 2026 trend data; zero existing queue coverage",
+          "added_at": "etsy-20260623-1243-004",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        },
+        {
+          "id": "etsy-20260623-1243-005",
+          "title": "Back-to-School Teacher Survival Gallery Wall + Desk Essentials Bundle",
+          "niche": "home decor / teacher",
+          "suggested_price": 19.99,
+          "target_keyword": "teacher back to school gift funny gallery wall",
+          "differentiator": "Back-to-school is one of the largest POD seasons but most sellers list only in August. This curated 4-piece gallery bundle pairs sarcastic teacher burnout art with practical desk inserts (grading tracker, coffee survival, hall pass motivation), creating a higher-AOV displayable gift for teacher-appreciation and new-year classroom setup. Avoids generic mug/tote saturation by targeting man-cave/desk display buyers instead of one-off novelty purchases.",
+          "status": "queued",
+          "status_note": "compaction override \u2014 new demand niche (back-to-school teacher displayable gallery wall) opening July\u2013August buying window; zero existing queue coverage",
+          "added_at": "etsy-20260623-1243-005",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        }
+      ],
+      "grave": [
+        {
+          "id": "etsy-20260615-003",
+          "reason": "rejected",
+          "added_at": "",
+          "source": "/Users/neosteinhoff/business-brain/data/etsy_approved_queue.json"
+        }
+      ],
+      "graveyard": []
+    },
+    "fiverr": {
+      "accepted": [
+        {
+          "id": "fiverr-thumb-001",
+          "title": "High-CTR YouTube thumbnail design for faceless channels",
+          "niche": "",
+          "status": "publish",
+          "status_note": "",
+          "added_at": "2026-06-12",
+          "source": "/Users/neosteinhoff/business-brain/data/fiverr_thumbnail_queue.json",
+          "package": "premium",
+          "publish_pack_ready": "2026-06-15",
+          "publish_pack_files": [
+            "~/business-brain/data/fiverr_thumb_001_pricing_guidance.json",
+            "~/business-brain/data/fiverr_thumb_001_gig_ideas_queue.json",
+            "~/business-brain/data/fiverr_thumb_001_outreach_template.json"
+          ]
+        },
+        {
+          "id": "fiverr-thumb-012",
+          "title": "Twitch/YouTube livestream event pack: stream start, intermission, and end cards",
+          "niche": "",
+          "status": "publish",
+          "status_note": "promoted to publish: livestream event packs have active summer demand; queue was at compact threshold, so converting stale queued entry to publish-ready instead of appending duplicate angle.",
+          "added_at": "2026-06-16",
+          "source": "/Users/neosteinhoff/business-brain/data/fiverr_thumbnail_queue.json",
+          "package": "premium",
+          "publish_pack_ready": null,
+          "publish_pack_files": null
+        }
+      ],
+      "pending": [
+        {
+          "id": "fiverr-thumb-050",
+          "title": "AI Tool Tutorial YouTube Thumbnail System - SaaS & App Demo CTR Pack",
+          "status_note": "new concept from Scout 2026-08-21: AI-tool-tutorial thumbnail niche +340% YouTube growth, zero queue coverage.",
+          "added_at": "2026-08-21",
+          "source": "/Users/neosteinhoff/business-brain/data/fiverr_thumbnail_queue.json"
+        },
+        {
+          "id": "fiverr-thumb-051",
+          "title": "Personal Finance Explainer Thumbnail System - Investing & Budgeting CTR Pack",
+          "status_note": "new concept from Scout 2026-08-21: personal-finance thumbnail niche +180% growth, $18-45 RPM, zero queue coverage.",
+          "added_at": "2026-08-21",
+          "source": "/Users/neosteinhoff/business-brain/data/fiverr_thumbnail_queue.json"
+        },
+        {
+          "id": "fiverr-thumb-052",
+          "title": "Wellness & Longevity Thumbnail System - Mental Health / Fitness / Biohacking CTR Pack",
+          "status_note": "new concept from Scout 2026-08-21: wellness/longevity thumbnail niche rising on YouTube/Shorts, zero queue coverage.",
+          "added_at": "2026-08-21",
+          "source": "/Users/neosteinhoff/business-brain/data/fiverr_thumbnail_queue.json"
+        }
+      ],
+      "grave": [
+        {
+          "id": "fiverr-thumb-031",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-032",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-033",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-034",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-035",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-036",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-037",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-038",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-039",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        },
+        {
+          "id": "fiverr-thumb-040",
+          "status": "culled",
+          "culled_at": "2026-07-06T18:57:11.367829+00:00"
+        }
+      ],
+      "graveyard": []
+    },
+    "services": {
+      "accepted": [
+        {
+          "id": "services-ai-workflow-audit",
+          "title": "AI Workflow Audit & Automation Setup \u2014 Fixed-Price Productized Service",
+          "tier": "$150/$250/$400+",
+          "status": "approved_publish",
+          "status_note": "Ready for listing on Upwork/LinkedIn/Fiverr",
+          "added_at": "2026-06-26T03:00:00Z",
+          "source": "~/business-brain/state/services-workflow-audit-one-pager.md",
+          "deliverables": [
+            "~/business-brain/state/services-workflow-audit-one-pager.md",
+            "~/business-brain/state/services-workflow-audit-sop.md"
+          ]
+        },
+        {
+          "id": "services-etsy-pod-seo-001",
+          "title": "Etsy POD Listing SEO & Mockup Refresh - Productized Service",
+          "tier": "$120/$220/$450",
+          "status": "approved_publish",
+          "status_note": "Package complete (one-pager + 31-step SOP + sales page) by Cipher cycle 73; ready for listing on Upwork/LinkedIn/Fiverr.",
+          "added_at": "2026-08-21T14:01:14.991491+00:00",
+          "source": "~/business-brain/state/services-etsy-pod-seo-001-one-pager.md",
+          "deliverables": [
+            "~/business-brain/state/services-etsy-pod-seo-001-one-pager.md",
+            "~/business-brain/state/services-etsy-pod-seo-001-sop.md",
+            "~/business-brain/state/services-etsy-pod-seo-001-sales.html"
+          ]
+        }
+      ],
+      "pending": [],
+      "grave": [],
+      "graveyard": []
+    },
+    "saas": {
+      "accepted": [
+        {
+          "id": "saas-whatsappbridge-001",
+          "title": "WhatsAppBridge \u2014 Ticket-to-WhatsApp Bridge",
+          "domain": "saas",
+          "status": "ready_for_review",
+          "score": 8.7,
+          "revenue_potential": "$3K\u2013$75K MRR",
+          "next_step": "Scaffold WhatsApp Business API sandbox + ticket parser",
+          "worker": "Forge",
+          "added_at": "2026-07-03T18:37:00.867367+00:00",
+          "status_note": "Cycle 57 smoke test passed (uvicorn /health ok); readiness report at ~/business-brain/logs/saas_scaffold_readiness_cycle57.json"
+        },
+        {
+          "id": "saas-rosterrush-001",
+          "title": "RosterRush \u2014 Registration & Scheduling Lite",
+          "domain": "saas",
+          "status": "ready_for_review",
+          "score": 8.4,
+          "revenue_potential": "$5K\u2013$10K MRR",
+          "next_step": "Scaffold registration form + scheduling calendar",
+          "worker": "Forge",
+          "added_at": "2026-07-03T18:37:00.867367+00:00",
+          "status_note": "Cycle 57 smoke test passed (uvicorn /health ok); readiness report at ~/business-brain/logs/saas_scaffold_readiness_cycle57.json"
+        },
+        {
+          "id": "saas-signlite-001",
+          "title": "SignLite \u2014 E-Signature + Audit Trail",
+          "domain": "saas",
+          "status": "ready_for_review",
+          "score": 8.0,
+          "revenue_potential": "$4K\u2013$25K MRR",
+          "next_step": "Scaffold MVP doc upload + signature request flow",
+          "worker": "Forge",
+          "added_at": "2026-07-03T18:37:00.867367+00:00",
+          "status_note": "Cycle 57 smoke test passed (uvicorn /health ok); readiness report at ~/business-brain/logs/saas_scaffold_readiness_cycle57.json"
+        }
+      ],
+      "pending": [],
+      "grave": [],
+      "graveyard": []
+    }
+  }
+}

@@ -135,9 +135,13 @@ function drawMesh(girls) {
   });
 
   // Pulse ring for due_now
-  due.forEach(d => {
-    // find node position and draw pulsing ring
-  });
+  const ctx2 = canvas.getContext('2d');
+  // Need to redraw with pulse animation - collect due nodes
+  const dueNodes = girls.filter(g => g.due_now);
+  if (dueNodes.length > 0) {
+    // Draw pulsing rings using animation frame
+    drawPulseRings(canvas, dueNodes, cx, cy);
+  }
 }
 
 function rowCard(g) {
@@ -206,6 +210,31 @@ async function markSent(name) {
 
 // Expose markSent for onclick handlers
 window.markSent = markSent;
+
+function drawPulseRings(canvas, dueNodes, cx, cy) {
+  const ctx = canvas.getContext('2d');
+  const nodes = dueNodes.slice(0, 20);
+  const radius = Math.min(canvas.width, canvas.height) / 2 - 60;
+
+  nodes.forEach((g, i) => {
+    const angle = (i / nodes.length) * Math.PI * 2;
+    const x = cx + Math.cos(angle) * radius;
+    const y = cy + Math.sin(angle) * radius;
+
+    ctx.save();
+    ctx.strokeStyle = '#ffb020';
+    ctx.globalAlpha = 0.6;
+    ctx.lineWidth = 1;
+    const time = Date.now();
+    const pulseRadius = 8 + Math.sin(time / 500) * 4;
+    ctx.beginPath();
+    ctx.arc(x, y, pulseRadius, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+  });
+
+  requestAnimationFrame(() => drawPulseRings(canvas, dueNodes, cx, cy));
+}
 
 function showFallback() {
   document.getElementById('cp-stats').innerHTML =

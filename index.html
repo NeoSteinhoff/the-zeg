@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Zeg — Unified Dashboard</title>
 <link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="dark">
+<body>
 <div id="app">
   <!-- Top Bar -->
   <header class="top-bar">
@@ -43,6 +43,14 @@
         <div class="nav-item" data-view="aurora-brain">○ Aurora Brain</div>
       </div>
     </div>
+    <div class="nav-section">
+      <div class="nav-group">
+        <div class="nav-item" data-view="tasks">○ Tasks & Delegations</div>
+        <div class="nav-item" data-view="cron-monitor">○ Cron Monitor</div>
+        <div class="nav-item" data-view="ventures">○ Venture Pipeline</div>
+        <div class="nav-item" data-view="treasury">○ Treasury</div>
+      </div>
+    </div>
     <div class="theme-selector">
       <div class="theme-option" data-theme="dark">○ Dark</div>
       <div class="theme-option" data-theme="cyberpunk">○ Cyberpunk</div>
@@ -62,7 +70,8 @@
     <span id="status-text">Ready</span>
     <span id="status-api">○ API: Disconnected</span>
     <span id="status-time">--:--:--</span>
-    <span class="shortcut-hint">○ Cmd+, theme · Cmd+R refresh · Cmd+L larp · Cmd+F fullscreen</span>
+    <span class="shortcut-hint">○ Cmd+, theme · Cmd+R refresh · Cmd+L larp · Cmd+F fullscreen · Cmd+1-9 switch</span>
+    <span id="status-refresh">○ Auto-refresh: 30s</span>
   </footer>
 
   <!-- Theme toggle indicator -->

@@ -78,7 +78,7 @@ async function sendToAurora() {
   respEl.innerHTML = '<div style="color:var(--muted)">Aurora is analyzing... 🤖</div>';
 
   try {
-    const result = await ZEG.api.fetch(`/api/aurora-brains?q=${encodeURIComponent(query)}`);
+    const result = await ZEG.api.fetch(`/api/aurora-brain?q=${encodeURIComponent(query)}`);
     if (result && result.response) {
       respEl.innerHTML = `<div>${result.response}</div>`;
     } else {

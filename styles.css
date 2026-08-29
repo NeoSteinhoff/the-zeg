@@ -294,7 +294,7 @@ body {
 }
 
 #status-api.connected { color: var(--good); }
-#status-api.disconnected { color: var(--hot); }
+#status-api.disconnected { color: var(--warm); }
 
 /* ═══ Theme Ribbon ═══ */
 .theme-ribbon {
@@ -461,6 +461,7 @@ tr:hover td { background: rgba(255, 255, 255, 0.03); }
   animation: pulse 2s infinite;
 }
 
+.status-dot.orange { background: var(--warm); }
 .status-dot.green { background: var(--good); }
 .status-dot.red { background: var(--hot); }
 
@@ -470,7 +471,66 @@ tr:hover td { background: rgba(255, 255, 255, 0.03); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
-/* ═══ LARP Mode ═══ */
+/* ═══ Missing Component Classes ═══ */
+
+/* Loading spinner */
+.loading-spinner {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+/* Section header */
+.sec-h {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin: 22px 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.sec-h .count { color: var(--muted); font-weight: 400; letter-spacing: 0; }
+.sec-h .rule { height: 1px; flex: 1; background: var(--border); }
+
+/* Sub text */
+.sub { font-size: 11px; color: var(--muted); }
+
+/* Lever bar */
+.leverbar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  margin: 4px 0 14px;
+}
+.leverbar b { color: var(--warm); }
+.leverbar span {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: var(--mono);
+}
+
+/* Circle pipeline dots */
+.dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.dot.obsession { background: var(--hot); }
+.dot.active { background: var(--good); }
+.dot.bench { background: var(--muted); }
+
+/* Badge hot (for dating souls) */
+.badge-hot {
+  background: rgba(255, 77, 94, 0.15);
+  color: var(--hot);
+  border: 1px solid var(--hot);
+}
+
+/* LARP Mode */
 body.larp-mode .stat .num {
   color: var(--hot) !important;
   text-shadow: 0 0 20px var(--hot);

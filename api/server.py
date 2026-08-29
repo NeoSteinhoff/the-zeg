@@ -147,8 +147,55 @@ def get_aurora_brain():
     from aurora_aggregator import get_aurora_data
     return safe_run(get_aurora_data, {"stats": {}, "recent_actions": []})
 
+def get_ventures():
+    """Business ventures from business-brain state.json."""
+    bb_state = os.path.join(BUSINESS_BRAIN, "core", "state.json")
+    state = load_json_file(bb_state, {})
+    return {"businesses": state.get("businesses", {})}
+
+def get_tasks():
+    """Kanban tasks from kanban.db — includes comments and events."""
+    tasks = safe_run(lambda: sqlite_query(KANBAN_DB,
+        "SELECT id, title, body, status, priority, created_by, created_at, "
+        "started_at, completed_at, assignee, result "
+        "FROM tasks ORDER BY "
+        "CASE status WHEN 'todo' THEN 0 WHEN 'in_progress' THEN 1 "
+        "WHEN 'blocked' THEN 2 WHEN 'done' THEN 3 ELSE 4 END, created_at DESC LIMIT 50"), [])
+    for t in tasks:
+        tid = t.get("id", "")
+        comments = sqlite_query(KANBAN_DB,
+            "SELECT content, created_at, author FROM task_comments WHERE task_id = ? ORDER BY created_at",
+            (tid,))
+        events = sqlite_query(KANBAN_DB,
+            "SELECT event_type, event_data, created_at FROM task_events WHERE task_id = ? ORDER BY created_at",
+            (tid,))
+        t["comments"] = comments
+        t["events"] = events
+    return {"tasks": tasks}
+
+def get_delegations():
+    """Active async delegations from state.db."""
+    dels = safe_run(lambda: sqlite_query(STATE_DB,
+        "SELECT delegation_id, origin_session, state, dispatched_at, completed_at, "
+        "task_json, delivery_state FROM async_delegations "
+        "ORDER BY dispatched_at DESC LIMIT 50"), [])
+    for d in dels:
+        try:
+            d["task"] = json.loads(d.get("task_json", "{}"))
+        except:
+            d["task"] = {}
+    return {"delegations": dels}
+
+def get_crons():
+    """Cron jobs from crons.json."""
+    crons = safe_run(lambda: load_json_file(CRONS_JSON, []), [])
+    return {"crons": crons}
+
 GET_ROUTES = {
     "/api/command-center": get_command_center,
+    "/api/tasks": get_tasks,
+    "/api/delegations": get_delegations,
+    "/api/crons": get_crons,
     "/api/circle-pipeline": get_circle_pipeline,
     "/api/mesh-crm": get_mesh_crm,
     "/api/goals": get_goals,
@@ -158,6 +205,7 @@ GET_ROUTES = {
     "/api/ecosystem": get_ecosystem,
     "/api/hermes-control": get_hermes_control,
     "/api/aurora-brain": get_aurora_brain,
+    "/api/ventures": get_ventures,
 }
 
 class ZegHandler(BaseHTTPRequestHandler):
