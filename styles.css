@@ -11,6 +11,19 @@
   --text-primary: var(--fg);
   --text-secondary: var(--muted);
   --accent-color: var(--accent);
+  /* Default dark theme values (fallback if data-theme not yet applied) */
+  --bg: #0b0d10;
+  --panel: #14171c;
+  --panel-2: #1b1f26;
+  --fg: #e6e9ef;
+  --muted: #8b93a3;
+  --border: #262b33;
+  --accent: #4ea8ff;
+  --hot: #ff4d5e;
+  --warm: #ffb020;
+  --good: #3fd07f;
+  --blue: #4ea8ff;
+  --purple: #a371ff;
 }
 
 /* ─── Theme: Dark (default) ─── */

@@ -18,7 +18,9 @@ function render(container, api) {
       <div class="leverbar" id="cp-leverbar"></div>
       <div class="card">
         <div class="card-header">Network Mesh — Visual Representation</div>
-        <canvas id="cp-mesh" width="800" height="400" style="background:var(--bg);border-radius:var(--radius);width:100%;"></canvas>
+        <div style="position:relative;width:100%;height:320px">
+          <canvas id="cp-mesh" width="800" height="320" style="display:block;width:100%;height:100%;background:var(--panel-2);border-radius:var(--radius);"></canvas>
+        </div>
       </div>
       <div class="sec-h">Due Now <span class="count" id="cp-due-count"></span></div>
       <div id="cp-due-list"></div>
@@ -80,68 +82,119 @@ async function loadData(api) {
   fillList('cp-obs-list', obs, rowCard);
   fillList('cp-active-list', act, rowCard);
   fillList('cp-bench-list', bench, rowCard);
+
+  // Store girls for live updates
+  window.__cpGirls = girls;
+
+  // Start live polling if not already running
+  if (!window.__cpLiveTimer) {
+    window.__cpLiveTimer = setInterval(async () => {
+      const fresh = await api.fetch('/api/circle-pipeline');
+      if (fresh && fresh.girls) {
+        window.__cpGirls = fresh.girls;
+        // Update only the mesh (lists would disrupt reading)
+        drawMesh(fresh.girls);
+        // Update due count badge
+        const dueNow = fresh.girls.filter(g => g.due_now).length;
+        const dueEl = document.getElementById('cp-due-count');
+        if (dueEl) dueEl.textContent = `(${dueNow})`;
+      }
+    }, 5000);
+  }
 }
 
 function drawMesh(girls) {
   const canvas = document.getElementById('cp-mesh');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const w = canvas.width, h = canvas.height;
+  // Set canvas resolution to match display size for crisp rendering
+  const rect = canvas.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  const w = rect.width, h = rect.height;
 
-  // Clear
-  ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--bg').trim() || '#0b0d10';
-  ctx.fillRect(0, 0, w, h);
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#0b0d10';
+  const fg = getComputedStyle(document.documentElement).getPropertyValue('--fg').trim() || '#e6e9ef';
+  const acc = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#4ea8ff';
+  const mut = getComputedStyle(document.documentElement).getPropertyValue('--muted').trim() || '#8b93a3';
 
-  // Center node (you)
-  const cx = w / 2, cy = h / 2;
-  ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#4ea8ff';
-  ctx.beginPath();
-  ctx.arc(cx, cy, 14, 0, Math.PI * 2);
-  ctx.fill();
-  ctx.strokeStyle = ctx.fillStyle;
-  ctx.strokeRect(cx - 18, cy - 18, 36, 36);
+  let frame = 0;
+  function render() {
+    frame++;
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, w, h);
 
-  // Draw nodes
-  const nodes = girls.slice(0, 40);
-  const radius = Math.min(w, h) / 2 - 60;
-  nodes.forEach((g, i) => {
-    const angle = (i / nodes.length) * Math.PI * 2;
-    const x = cx + Math.cos(angle) * radius;
-    const y = cy + Math.sin(angle) * radius;
+    const cx = w / 2, cy = h / 2;
 
-    // Connection line
-    ctx.strokeStyle = (g.rotation === 'obsession' ? '#ff4d5e' :
-                      g.rotation === 'active' ? '#3fd07f' : '#5b6473');
-    ctx.globalAlpha = 0.3;
+    // Draw nodes
+    const nodes = girls.slice(0, 40);
+    const radius = Math.min(w, h) / 2 - 50;
+    nodes.forEach((g, i) => {
+      const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(angle) * radius;
+      const y = cy + Math.sin(angle) * radius;
+
+      // Connection line with pulse
+      const pulse = 0.2 + Math.sin(frame / 20 + i) * 0.1;
+      ctx.strokeStyle = (g.rotation === 'obsession' ? '#ff4d5e' :
+                        g.rotation === 'active' ? '#3fd07f' : '#5b6473');
+      ctx.globalAlpha = pulse;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+
+      // Node with glow
+      const color = g.rotation === 'obsession' ? '#ff4d5e' :
+                   g.rotation === 'active' ? '#3fd07f' : '#5b6473';
+      const size = 4 + (g.heat / 100) * 8;
+
+      // Glow
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = color;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      // Label
+      ctx.fillStyle = mut;
+      ctx.font = '9px monospace';
+      ctx.fillText(g.name.slice(0, 12), x - 20, y - size - 4);
+    });
+
+    // Center node (you) - pulsing
+    const pulseSize = 14 + Math.sin(frame / 15) * 2;
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = acc;
+    ctx.fillStyle = acc;
     ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(x, y);
-    ctx.stroke();
-    ctx.globalAlpha = 1;
-
-    // Node
-    const color = g.rotation === 'obsession' ? '#ff4d5e' :
-                 g.rotation === 'active' ? '#3fd07f' : '#5b6473';
-    ctx.fillStyle = color;
-    const size = 4 + (g.heat / 100) * 8;
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.arc(cx, cy, pulseSize, 0, Math.PI * 2);
     ctx.fill();
+    ctx.shadowBlur = 0;
 
-    // Label
-    ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--muted').trim() || '#8b93a3';
-    ctx.font = '9px monospace';
-    ctx.fillText(g.name.slice(0, 12), x - 20, y - size - 4);
-  });
+    // Due now rings
+    const dueNodes = girls.filter(g => g.due_now).slice(0, 20);
+    dueNodes.forEach((g, i) => {
+      const angle = (i / dueNodes.length) * Math.PI * 2 - Math.PI / 2;
+      const x = cx + Math.cos(angle) * radius;
+      const y = cy + Math.sin(angle) * radius;
+      const ringPulse = (frame % 60) / 60;
+      ctx.strokeStyle = `rgba(255,176,32,${1 - ringPulse})`;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(x, y, 8 + ringPulse * 12, 0, Math.PI * 2);
+      ctx.stroke();
+    });
 
-  // Pulse ring for due_now
-  const ctx2 = canvas.getContext('2d');
-  // Need to redraw with pulse animation - collect due nodes
-  const dueNodes = girls.filter(g => g.due_now);
-  if (dueNodes.length > 0) {
-    // Draw pulsing rings using animation frame
-    drawPulseRings(canvas, dueNodes, cx, cy);
+    requestAnimationFrame(render);
   }
+  render();
 }
 
 function rowCard(g) {
@@ -210,31 +263,6 @@ async function markSent(name) {
 
 // Expose markSent for onclick handlers
 window.markSent = markSent;
-
-function drawPulseRings(canvas, dueNodes, cx, cy) {
-  const ctx = canvas.getContext('2d');
-  const nodes = dueNodes.slice(0, 20);
-  const radius = Math.min(canvas.width, canvas.height) / 2 - 60;
-
-  nodes.forEach((g, i) => {
-    const angle = (i / nodes.length) * Math.PI * 2;
-    const x = cx + Math.cos(angle) * radius;
-    const y = cy + Math.sin(angle) * radius;
-
-    ctx.save();
-    ctx.strokeStyle = '#ffb020';
-    ctx.globalAlpha = 0.6;
-    ctx.lineWidth = 1;
-    const time = Date.now();
-    const pulseRadius = 8 + Math.sin(time / 500) * 4;
-    ctx.beginPath();
-    ctx.arc(x, y, pulseRadius, 0, Math.PI * 2);
-    ctx.stroke();
-    ctx.restore();
-  });
-
-  requestAnimationFrame(() => drawPulseRings(canvas, dueNodes, cx, cy));
-}
 
 function showFallback() {
   document.getElementById('cp-stats').innerHTML =
