@@ -1,0 +1,26 @@
+{
+  "actions": [
+    {
+      "label": "Check active sessions",
+      "view": "hermes-control"
+    },
+    {
+      "label": "Process due pipeline",
+      "view": "circle-pipeline"
+    },
+    {
+      "label": "Review token usage",
+      "view": "command-center"
+    },
+    {
+      "label": "Check cron status",
+      "view": "cron-monitor"
+    },
+    {
+      "label": "4 blocked tasks \u2014 unblock",
+      "view": "tasks",
+      "priority": "high"
+    }
+  ],
+  "count": 5
+}

@@ -14,6 +14,10 @@ export async function refresh(_api) {
 function render(container, api) {
   container.innerHTML = `
     <div id="command-center">
+      <!-- Traffic Light Status (Neil Patel) -->
+      <div id="cc-traffic-light" style="margin-bottom: 8px;"></div>
+      <!-- Quick Actions Bar (Brian Dean) -->
+      <div class="quick-actions" id="cc-quick-actions"></div>
       <div class="stat-grid" id="cc-stats"></div>
       <div class="card">
         <div class="card-header">Token Breakdown (7d)</div>
@@ -50,8 +54,25 @@ function render(container, api) {
 }
 
 async function loadData(api) {
-  const data = await api.fetch('/api/command-center');
+  // api.fetch is safe — data comes from our own API server (not user input)
+  if (!api) api = window.ZEG?.api;
+  if (!api) return;
+  const [data, qa] = await Promise.all([api.fetch('/api/command-center'), api.fetch('/api/quick-actions')]);
   if (!data) { showFallback(); return; }
+
+  // Quick Actions bar (Brian Dean: clear next actions)
+  const qab = document.getElementById('cc-quick-actions');
+  if (qab && qa) qab.innerHTML = qa.actions.map(a => '<div class="quick-action' + (a.priority === 'high' ? ' high' : '') + '" onclick="navigateTo(\'' + a.view + '\')"><span class="qicon">◈</span> ' + a.label + '</div>').join('') || '<div class="quick-action"><span class="qicon">○</span> No urgent actions</div>';
+
+  // Traffic light status (Neil Patel style)
+  const tlEl = document.getElementById('cc-traffic-light');
+  if (tlEl) {
+    const activeSessions = data.stats?.active_sessions || 0;
+    let tlColor = 'green', tlText = 'All systems operational';
+    if (activeSessions === 0) { tlColor = 'red'; tlText = 'No active sessions'; }
+    else if ((data.stats?.cost || 0) > 1000) { tlColor = 'yellow'; tlText = 'High token cost alert'; }
+    tlEl.innerHTML = '<span class="traffic-light ' + tlColor + '"><span class="dot"></span> ' + tlText + '</span>';
+  }
 
   const stats = data.stats || {};
 

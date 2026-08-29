@@ -2,24 +2,24 @@
   "command_center": {
     "stats": {
       "sessions": 50,
-      "active_sessions": 11,
-      "tokens": 1598485701,
-      "input_tokens_7d": 220350543,
-      "output_tokens_7d": 12396114,
-      "cache_read_tokens_7d": 1363709382,
+      "active_sessions": 10,
+      "tokens": 1634813155,
+      "input_tokens_7d": 222851800,
+      "output_tokens_7d": 12578965,
+      "cache_read_tokens_7d": 1397253894,
       "cache_write_tokens_7d": 0,
-      "reasoning_tokens_7d": 2029662,
+      "reasoning_tokens_7d": 2128496,
       "cost": 0,
       "tasks": 0,
       "delegations": 0
     },
     "token_breakdown": {
-      "input": 220350543,
-      "output": 12396114,
-      "cache_read": 1363709382,
+      "input": 222851800,
+      "output": 12578965,
+      "cache_read": 1397253894,
       "cache_creation": 0,
-      "reasoning": 2029662,
-      "total": 1598485701
+      "reasoning": 2128496,
+      "total": 1634813155
     },
     "models": [
       {
@@ -109,14 +109,14 @@
       {
         "model": "poolside/laguna-s-2.1:free",
         "billing_provider": "nous",
-        "input_tok": 137203024,
-        "output_tok": 9451585,
-        "cache_read_tok": 913022304,
+        "input_tok": 139704281,
+        "output_tok": 9634436,
+        "cache_read_tok": 946566816,
         "cache_write_tok": 0,
-        "reasoning_tok": 1264063,
+        "reasoning_tok": 1362897,
         "est_cost": 0.0,
         "act_cost": 0,
-        "sess_count": 525
+        "sess_count": 529
       },
       {
         "model": "poolside/laguna-xs-2.1:free",
@@ -169,24 +169,6 @@
     ],
     "hermes": {
       "sessions": [
-        {
-          "id": "cron_a1a152879cfe_20260829_134525",
-          "title": null,
-          "started_at": 1787996730.682046,
-          "ended_at": null,
-          "end_reason": null,
-          "model": "poolside/laguna-s-2.1:free",
-          "input_tokens": 35356,
-          "output_tokens": 2070,
-          "cache_read_tokens": 928,
-          "cache_write_tokens": 0,
-          "reasoning_tokens": 668,
-          "estimated_cost_usd": 0.0,
-          "actual_cost_usd": null,
-          "session_key": null,
-          "display_name": null,
-          "billing_provider": "nous"
-        },
         {
           "id": "20260829_123707_04383f",
           "title": "Hermes Dashboard",
@@ -568,5 +550,27 @@
       "*/5 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/live-wa",
       "0 * * * * /usr/bin/python3 \"/Users/neosteinhoff/Documents/Steinhoff Systems/steinvault/00-core/vault-architect/vault-hea"
     ]
-  }
+  },
+  "status": {
+    "color": "orange",
+    "summary": "10 active sessions, 181 skills loaded"
+  },
+  "next_actions": [
+    {
+      "label": "Check active sessions",
+      "view": "hermes-control"
+    },
+    {
+      "label": "Process due pipeline",
+      "view": "circle-pipeline"
+    },
+    {
+      "label": "Review token usage",
+      "view": "command-center"
+    },
+    {
+      "label": "Check cron status",
+      "view": "cron-monitor"
+    }
+  ]
 }

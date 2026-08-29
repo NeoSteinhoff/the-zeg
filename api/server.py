@@ -273,15 +273,28 @@ def get_souls():
     return {"souls": souls, "total": len(souls), "with_data": sum(1 for s in souls if s["exists"])}
 
 def get_system():
-    """Full system snapshot."""
+    """Full system snapshot with traffic light status (Neil Patel style)."""
+    ports = get_ports()
+    cc = get_command_center()
     return {
-        "command_center": get_command_center(),
+        "command_center": cc,
         "pipeline": get_pipeline_status(),
         "email": get_email(),
         "souls": get_souls(),
         "gbrain": get_gbrain(),
-        "ports": get_ports(),
+        "ports": ports,
         "crontab": get_crontab(),
+        "status": {
+            # Traffic light: green=all good, yellow=warning, red=critical
+            "color": "green" if cc.get("stats", {}).get("active_sessions", 0) > 0 and ports.get("ports", [{}])[0].get("listening") else "orange",
+            "summary": f"{cc.get('stats', {}).get('active_sessions', 0)} active sessions, {cc.get('hermes', {}).get('skills', 0)} skills loaded",
+        },
+        "next_actions": [
+            {"label": "Check active sessions", "view": "hermes-control"},
+            {"label": "Process due pipeline", "view": "circle-pipeline"},
+            {"label": "Review token usage", "view": "command-center"},
+            {"label": "Check cron status", "view": "cron-monitor"},
+        ],
     }
 
 GET_ROUTES = {
@@ -299,14 +312,30 @@ GET_ROUTES = {
     "/api/hermes-control": get_hermes_control,
     "/api/aurora-brain": get_aurora_brain,
     "/api/ventures": get_ventures,
+    "/api/system": get_system,
     "/api/ports": get_ports,
     "/api/gbrain": get_gbrain,
     "/api/crontab": get_crontab,
     "/api/email": get_email,
     "/api/pipeline-status": get_pipeline_status,
     "/api/souls": get_souls,
-    "/api/system": get_system,
 }
+
+# Quick Actions endpoint (Brian Dean: "clear next actions, not just data")
+def get_quick_actions():
+    sys_data = get_system()
+    actions = sys_data.get("next_actions", [])
+    # Add dynamic actions based on state
+    pipeline = sys_data.get("pipeline", {}).get("pipeline", {})
+    if pipeline.get("due_today", 0) > 0:
+        actions.insert(0, {"label": f"{pipeline['due_today']} due today — process now", "view": "circle-pipeline", "priority": "high"})
+    tasks = get_tasks().get("tasks", [])
+    blocked = [t for t in tasks if t.get("status") == "blocked"]
+    if blocked:
+        actions.append({"label": f"{len(blocked)} blocked tasks — unblock", "view": "tasks", "priority": "high"})
+    return {"actions": actions, "count": len(actions)}
+
+GET_ROUTES["/api/quick-actions"] = get_quick_actions
 
 class ZegHandler(BaseHTTPRequestHandler):
     def do_GET(self):
