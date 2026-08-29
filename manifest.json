@@ -1,0 +1,16 @@
+{
+  "name": "The Zeg — Unified Command & Control",
+  "short_name": "Zeg",
+  "description": "Unified dashboard for Hermes agent orchestration, pipeline management, and real-time monitoring",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE3MiIgdmlld0JvedHg9IjAgMCAxNzIgMTcyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxNzIiIGhlaWdodD0iMTcyIiBmaWxsPSIjMDBiNGY0Ii8+PjxjaXJjbGUgY3g9Ijg2IiBzeD0iODYgODYgODYiIGNmaWxsPSIjZmZmZDYiLz48L3N2Zz4=",
+      "sizes": "172x172",
+      "type": "image/svg+xml"
+    }
+  ]
+}

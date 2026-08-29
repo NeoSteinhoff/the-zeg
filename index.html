@@ -2,12 +2,24 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>The Zeg — Unified Dashboard</title>
 <link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="/manifest.json">
+<script src="app.js" defer></script>
 </head>
 <body>
 <div id="app">
+  <!-- Toast Notifications -->
+  <div id="toast-container" class="toast-container"></div>
+  <!-- PWA Install Prompt -->
+  <div id="pwainstall">
+    <span>Install The Zeg for offline access</span>
+    <button onclick="installPWA()">Install</button>
+  </div>
   <!-- Top Bar -->
   <header class="top-bar">
     <div class="brand">

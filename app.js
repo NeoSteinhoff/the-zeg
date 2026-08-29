@@ -544,6 +544,30 @@ window.closeZegModal = function() {
   if (overlay) overlay.remove();
 };
 
+// ─── PWA Service Worker Registration ───
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
+
+// ─── Toast Notifications ───
+window.showZegToast = function(message, type = 'info', duration = 4000) {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 300);
+  }, duration);
+};
+
 // ═══ Live Event Stream (PAI/Webhook Awareness) ═══
 // Polls /api/events every 5s for real-time updates pushed from Hermes
 let lastEventId = 0;
@@ -561,6 +585,21 @@ async function pollLiveEvents() {
       detail: { type: ev.type, data: ev.data, ts: ev.ts }
     }));
 
+    // Show toast notification for important events
+    // Safe: ev.type comes from our own webhook endpoint, not user input
+    const messages = {
+      'session_started': 'New Hermes agent session started',
+      'session_ended': 'Agent session completed',
+      'task_updated': 'Task status changed — check Tasks view',
+      'pipeline_bump': 'Circle pipeline cadence bump logged',
+      'blockchain_new_block': 'Blockchain: new block mined',
+    };
+    const msg = messages[ev.type] || `Event: ${ev.type}`;
+    const type = ev.type === 'session_ended' || ev.type === 'task_updated' ? 'warning' : 'info';
+    if (typeof window.showZegToast === 'function') {
+      window.showZegToast(msg, type);
+    }
+
     // Update status bar with live event
     const statusApi = document.getElementById('status-api');
     if (statusApi && ev.type) {
@@ -576,3 +615,54 @@ async function pollLiveEvents() {
 setInterval(pollLiveEvents, 5000);
 // Also poll on init
 setTimeout(pollLiveEvents, 1000);
+
+// ═══ Sparkline Helper (mini charts for stat cards) ═══
+window.sparkline = function(canvas, data, color = 'var(--accent)') {
+  if (!canvas || !data || data.length < 2) return;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+  const min = Math.min(...data), max = Math.max(...data);
+  const range = max - min || 1;
+  ctx.clearRect(0, 0, w, h);
+  ctx.beginPath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.fillStyle = 'rgba(0, 180, 255, 0.05)';
+  const pts = [];
+  for (let i = 0; i < data.length; i++) {
+    const x = (i / (data.length - 1)) * w;
+    const y = h - ((data[i] - min) / range) * h;
+    pts.push([x, y]);
+    if (i === 0) ctx.moveTo(x, y);
+    else ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+  // Fill area under line
+  ctx.lineTo(w, h);
+  ctx.lineTo(0, h);
+  ctx.closePath();
+  ctx.fill();
+};
+
+// ─── PWA Install Prompt ───
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  const installBtn = document.getElementById('pwainstall');
+  if (installBtn) installBtn.style.display = 'block';
+});
+
+window.installPWA = function() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choice) => {
+      const installBtn = document.getElementById('pwainstall');
+      if (installBtn) installBtn.style.display = 'none';
+      if (choice.outcome === 'accepted') {
+        if (typeof window.showZegToast === 'function') window.showZegToast('PWA installed!', 'success');
+      }
+      deferredPrompt = null;
+    });
+  }
+};
