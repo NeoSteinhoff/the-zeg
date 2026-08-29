@@ -26,7 +26,8 @@ PORT = int(os.environ.get("PORT", "8700"))
 HERMES_HOME = os.path.expanduser("~/.hermes")
 STATE_DB = os.path.join(HERMES_HOME, "state.db")
 KANBAN_DB = os.path.join(HERMES_HOME, "kanban.db")
-CRONS_JSON = os.path.join(HERMES_HOME, "crons.json")
+CRONS_JSON = os.path.join(HERMES_HOME, "cron", "jobs.json")
+EXECUTIONS_DB = os.path.join(HERMES_HOME, "cron", "executions.db")
 
 PIPELINE_DIR = os.path.join(os.path.expanduser("~"),
     "Documents/Steinhoff Systems/steinvault/06-operations/dating-pipeline")
@@ -257,9 +258,42 @@ def get_delegations():
     return {"delegations": dels}
 
 def get_crons():
-    """Cron jobs from crons.json."""
-    crons = safe_run(lambda: load_json_file(CRONS_JSON, []), [])
+    """Cron jobs from ~/.hermes/cron/jobs.json."""
+    raw = safe_run(lambda: load_json_file(CRONS_JSON, {}), {})
+    jobs = raw.get("jobs", []) if isinstance(raw, dict) else (raw if isinstance(raw, list) else [])
+    crons = []
+    for j in jobs:
+        schedule = j.get("schedule", {})
+        sched_display = j.get("schedule_display") or (
+            schedule.get("cron") if isinstance(schedule, dict) else None
+        ) or "unknown"
+        repeat = j.get("repeat", {}) or {}
+        crons.append({
+            "id": j.get("id", ""),
+            "name": j.get("name", ""),
+            "schedule": sched_display,
+            "state": j.get("state", "unknown"),
+            "enabled": j.get("enabled", False),
+            "completed": repeat.get("completed", 0) if isinstance(repeat, dict) else 0,
+            "model": j.get("model", ""),
+            "provider": j.get("provider", ""),
+            "script": j.get("script", ""),
+            "no_agent": j.get("no_agent", False),
+        })
     return {"crons": crons}
+
+
+def get_executions():
+    """Recent cron executions from ~/.hermes/cron/executions.db."""
+    rows = safe_run(lambda: sqlite_query(EXECUTIONS_DB,
+        "SELECT id, job_id, source, pid, status, started_at, finished_at, error "
+        "FROM executions ORDER BY started_at DESC LIMIT 50"), [])
+    # Enrich with job names
+    crons = get_crons().get("crons", [])
+    job_names = {c["id"]: c["name"] for c in crons}
+    for r in rows:
+        r["job_name"] = job_names.get(r.get("job_id", ""), r.get("job_id", "?"))
+    return {"executions": rows, "total": len(rows)}
 
 def get_ports():
     """Check which ports are listening."""
@@ -377,6 +411,7 @@ GET_ROUTES = {
     "/api/tasks": get_tasks,
     "/api/delegations": get_delegations,
     "/api/crons": get_crons,
+    "/api/executions": get_executions,
     "/api/circle-pipeline": get_circle_pipeline,
     "/api/mesh-crm": get_mesh_crm,
     "/api/goals": get_goals,

@@ -1,125 +1,125 @@
 {
   "processes": [
     {
+      "pid": "79513",
+      "cpu": "42.6",
+      "mem": "0.3",
+      "command": "/opt/homebrew/Cellar/python@3.14/3.14.7/Frameworks/Python.framework/Versions/3.1"
+    },
+    {
       "pid": "1401",
-      "cpu": "12.6",
+      "cpu": "41.4",
       "mem": "2.6",
       "command": "/Users/neosteinhoff/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main serv"
     },
     {
+      "pid": "844",
+      "cpu": "12.9",
+      "mem": "2.6",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
+    },
+    {
       "pid": "817",
-      "cpu": "11.1",
+      "cpu": "11.3",
       "mem": "0.5",
       "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
     },
     {
-      "pid": "844",
-      "cpu": "9.5",
-      "mem": "2.9",
-      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
+      "pid": "4399",
+      "cpu": "5.8",
+      "mem": "0.4",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/venv/bin/python -m tui_gateway.slash_wo"
+    },
+    {
+      "pid": "371",
+      "cpu": "4.2",
+      "mem": "0.1",
+      "command": "/usr/libexec/opendirectoryd"
+    },
+    {
+      "pid": "79570",
+      "cpu": "3.9",
+      "mem": "0.1",
+      "command": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Version"
     },
     {
       "pid": "411",
-      "cpu": "2.8",
+      "cpu": "2.6",
       "mem": "0.2",
       "command": "/System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer -dae"
     },
     {
       "pid": "9730",
-      "cpu": "2.1",
+      "cpu": "2.3",
       "mem": "0.5",
       "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
     },
     {
-      "pid": "562",
+      "pid": "654",
       "cpu": "1.9",
-      "mem": "0.2",
-      "command": "/System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple"
+      "mem": "0.9",
+      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
     },
     {
-      "pid": "657",
-      "cpu": "1.8",
-      "mem": "0.2",
-      "command": "/System/Applications/Utilities/Activity Monitor.app/Contents/MacOS/Activity Moni"
-    },
-    {
-      "pid": "14516",
-      "cpu": "1.5",
+      "pid": "14890",
+      "cpu": "1.6",
       "mem": "0.2",
       "command": "/Users/neosteinhoff/Library/Application Support/Claude/Claude Extensions/ant.dir"
     },
     {
-      "pid": "14890",
-      "cpu": "1.5",
+      "pid": "14516",
+      "cpu": "1.4",
       "mem": "0.2",
       "command": "/Users/neosteinhoff/Library/Application Support/Claude/Claude Extensions/ant.dir"
     },
     {
       "pid": "673",
-      "cpu": "1.5",
+      "cpu": "1.0",
       "mem": "2.6",
       "command": "/Applications/Dia.app/Contents/MacOS/Dia"
     },
     {
-      "pid": "332",
-      "cpu": "1.4",
+      "pid": "396",
+      "cpu": "1.0",
+      "mem": "0.0",
+      "command": "/usr/sbin/notifyd"
+    },
+    {
+      "pid": "476",
+      "cpu": "0.9",
       "mem": "0.1",
-      "command": "/usr/libexec/UserEventAgent (System)"
+      "command": "/usr/sbin/mDNSResponder"
+    },
+    {
+      "pid": "1671",
+      "cpu": "0.8",
+      "mem": "0.8",
+      "command": "bun /Users/neosteinhoff/.bun/bin/gbrain serve --http --port 3141 --enable-dcr-in"
     },
     {
       "pid": "680",
-      "cpu": "1.1",
+      "cpu": "0.7",
       "mem": "0.5",
       "command": "/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder"
     },
     {
-      "pid": "677",
-      "cpu": "1.1",
-      "mem": "0.3",
-      "command": "/System/Library/CoreServices/ControlCenter.app/Contents/MacOS/ControlCenter"
-    },
-    {
-      "pid": "416",
-      "cpu": "0.9",
+      "pid": "1",
+      "cpu": "0.6",
       "mem": "0.1",
-      "command": "/System/Library/PrivateFrameworks/CoreAnalytics.framework/Support/analyticsd"
-    },
-    {
-      "pid": "344",
-      "cpu": "0.9",
-      "mem": "0.1",
-      "command": "/System/Library/CoreServices/powerd.bundle/powerd"
+      "command": "/sbin/launchd"
     },
     {
       "pid": "1663",
-      "cpu": "0.8",
+      "cpu": "0.5",
       "mem": "0.2",
       "command": "/opt/homebrew/bin/node /Users/neosteinhoff/Documents/Steinhoff Systems/steinvaul"
-    },
-    {
-      "pid": "654",
-      "cpu": "0.8",
-      "mem": "0.9",
-      "command": "/Users/neosteinhoff/.hermes/hermes-agent/apps/desktop/release/mac-arm64/Hermes.a"
-    },
-    {
-      "pid": "14366",
-      "cpu": "0.5",
-      "mem": "2.4",
-      "command": "/Applications/Claude.app/Contents/MacOS/Claude"
-    },
-    {
-      "pid": "369",
-      "cpu": "0.4",
-      "mem": "0.1",
-      "command": "/System/Library/PrivateFrameworks/CoreDuetContext.framework/Resources/contextsto"
     }
   ],
   "metrics": {
-    "cpu_user": 0.111122,
-    "cpu_sys": 0.097275,
-    "max_rss": 45219840,
-    "page_faults": 9262
+    "cpu_user": 0.326549,
+    "cpu_sys": 0.33636299999999997,
+    "max_rss": 45498368,
+    "page_faults": 9159
   },
-  "gateway_running": false
+  "gateway_running": true
 }

@@ -42,14 +42,14 @@ async function loadData(api) {
   }
 
   const crons = data.crons || [];
-  const errors = crons.filter(c => c.status === 'error').length;
-  const active = crons.filter(c => c.status !== 'error').length;
+  const errors = crons.filter(c => c.state === 'error' || (c.enabled && c.state !== 'running')).length;
+  const active = crons.filter(c => c.enabled && c.state !== 'error').length;
 
   document.getElementById('cron-stats').innerHTML = `
     <div class="stat blue"><div class="num">${crons.length}</div><div class="lbl">Total Cron Jobs</div></div>
     <div class="stat green"><div class="num">${active}</div><div class="lbl">Healthy</div></div>
     <div class="stat red"><div class="num">${errors}</div><div class="lbl">Errors</div></div>
-    <div class="stat orange"><div class="num">${crons.filter(c => !c.last_error).length}</div><div class="lbl">No Recent Errors</div></div>
+    <div class="stat orange"><div class="num">${crons.filter(c => c.completed).reduce((s, c) => s + (c.completed || 0), 0)}</div><div class="lbl">Total Execs</div></div>
     <div class="stat purple"><div class="num">${crons.filter(c => c.no_agent).length}</div><div class="lbl">Script-Only</div></div>
   `;
 
@@ -59,14 +59,29 @@ async function loadData(api) {
       <tr>
         <td><span style="font-family:var(--mono);font-size:11px">${c.name || '—'}</span></td>
         <td><span style="font-family:var(--mono);font-size:11px">${c.schedule || '—'}</span></td>
-        <td><span class="badge ${c.status === 'error' ? 'badge-failed' : c.status === 'running' ? 'badge-running' : c.no_agent ? 'badge-script' : 'badge-agent'}">${c.status || '—'}</span></td>
-        <td><span style="font-family:var(--mono);font-size:11px">${fmtTs(c.last_run)}</span></td>
-        <td style="color:var(--hot);font-size:11px">${c.last_error ? c.last_error.slice(0, 80) : '—'}</td>
+        <td><span class="badge ${c.state === 'error' ? 'badge-failed' : c.state === 'running' ? 'badge-running' : c.enabled ? 'badge-ok' : 'badge-blocked'}">${c.state || '—'}</span></td>
+        <td><span style="font-family:var(--mono);font-size:11px">runs: ${c.completed || 0}</span></td>
+        <td style="color:var(--muted);font-size:11px">${c.script || '—'}</td>
         <td>
           <button class="btn btn-ghost" style="font-size:9px;padding:2px 6px" onclick="repairCron('${c.name}')">Repair</button>
         </td>
       </tr>
     `).join('') || '<tr><td colspan="6" class="empty">No cron jobs</td></tr>';
+  }
+
+  // Recent executions
+  const execData = await api.fetch('/api/executions');
+  const execBox = document.getElementById('cron-recent');
+  if (execBox && execData) {
+    const execs = execData.executions || [];
+    execBox.innerHTML = execs.slice(0, 10).map(e => `
+      <div style="display:flex;gap:8px;align-items:center;padding:4px 0;border-bottom:1px solid var(--border)">
+        <span class="badge ${e.status === 'completed' ? 'badge-ok' : e.status === 'failed' ? 'badge-failed' : 'badge-running'}">${e.status || '—'}</span>
+        <span style="font-family:var(--mono);font-size:11px">${e.job_name || e.job_id || '?'}</span>
+        <span style="font-size:10px;color:var(--muted);margin-left:auto">${fmtTs(e.started_at)}</span>
+        ${e.error ? `<span style="color:var(--hot);font-size:10px">${e.error.slice(0, 60)}</span>` : ''}
+      </div>
+    `).join('') || '<div class="sub" style="padding:10px">No recent executions</div>';
   }
 }
 
@@ -90,9 +105,9 @@ window.refreshCrons = async function() {
       <tr>
         <td><span style="font-family:var(--mono);font-size:11px">${c.name || '—'}</span></td>
         <td><span style="font-family:var(--mono);font-size:11px">${c.schedule || '—'}</span></td>
-        <td><span class="badge ${c.status === 'error' ? 'badge-failed' : c.status === 'running' ? 'badge-running' : 'badge-ok'}">${c.status || '—'}</span></td>
-        <td><span style="font-family:var(--mono);font-size:11px">${fmtTs(c.last_run)}</span></td>
-        <td style="color:var(--hot);font-size:11px">${c.last_error ? c.last_error.slice(0, 80) : '—'}</td>
+        <td><span class="badge ${c.state === 'error' ? 'badge-failed' : c.state === 'running' ? 'badge-running' : c.enabled ? 'badge-ok' : 'badge-blocked'}">${c.state || '—'}</span></td>
+        <td><span style="font-family:var(--mono);font-size:11px">runs: ${c.completed || 0}</span></td>
+        <td style="color:var(--muted);font-size:11px">${c.script || '—'}</td>
         <td>
           <button class="btn btn-ghost" style="font-size:9px;padding:2px 6px" onclick="repairCron('${c.name}')">Repair</button>
         </td>
