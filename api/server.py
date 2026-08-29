@@ -7,9 +7,18 @@ import json
 import os
 import sys
 import sqlite3
+import time
+import threading
 import urllib.request
+from collections import deque
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qs
+
+# ═══ Real-time event streaming (SSE + Webhooks) ═══
+# PAI/Webhook system: Hermes pushes events → Zeg stores them → dashboard gets SSE stream
+EVENT_QUEUE = deque(maxlen=100)  # circular buffer of recent events
+EVENT_LOCK = threading.Lock()
+EVENT_ID = 0
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PORT = int(os.environ.get("PORT", "8700"))
@@ -335,7 +344,36 @@ def get_quick_actions():
         actions.append({"label": f"{len(blocked)} blocked tasks — unblock", "view": "tasks", "priority": "high"})
     return {"actions": actions, "count": len(actions)}
 
+# ═══ Real-time event streaming ═══
+def add_event(event_type, data):
+    """Add an event to the live queue (called by webhooks, SSE clients)."""
+    global EVENT_ID
+    with EVENT_LOCK:
+        EVENT_ID += 1
+        event = {
+            "id": EVENT_ID,
+            "type": event_type,
+            "data": data,
+            "ts": time.time(),
+        }
+        EVENT_QUEUE.append(event)
+        return event["id"]
+
+def get_live_events():
+    """Return recent events for SSE clients (polls use this too)."""
+    with EVENT_LOCK:
+        return list(EVENT_QUEUE)
+
+# Webhook receiver: Hermes CC pushes real-time events here
+def handle_webhook(body):
+    """Receive webhook from Hermes CC or other services."""
+    event_type = body.get("type", "generic")
+    payload = body.get("data", body)
+    event_id = add_event(event_type, payload)
+    return {"ok": True, "event_id": event_id, "type": event_type}
+
 GET_ROUTES["/api/quick-actions"] = get_quick_actions
+GET_ROUTES["/api/events"] = get_live_events
 
 class ZegHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -376,6 +414,12 @@ class ZegHandler(BaseHTTPRequestHandler):
             self._send_json({"ok": True, "action": body.get("action"), "executed": True})
         elif path == "/api/storefront/purchase":
             self._send_json({"ok": True, "success": True, "product_id": body.get("product_id")})
+        elif path == "/api/webhook/hermes":
+            result = handle_webhook(body)
+            self._send_json(result)
+        elif path == "/api/webhook/broadcast":
+            event_id = add_event("broadcast", body)
+            self._send_json({"ok": True, "event_id": event_id})
         else:
             self._send_json({"error": "Not found"}, 404)
 

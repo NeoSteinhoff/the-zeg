@@ -543,3 +543,36 @@ window.closeZegModal = function() {
   const overlay = document.querySelector('.modal-overlay');
   if (overlay) overlay.remove();
 };
+
+// ═══ Live Event Stream (PAI/Webhook Awareness) ═══
+// Polls /api/events every 5s for real-time updates pushed from Hermes
+let lastEventId = 0;
+
+async function pollLiveEvents() {
+  const events = await api.fetch('/api/events');
+  if (!events || !Array.isArray(events)) return;
+
+  for (const ev of events) {
+    if (ev.id <= lastEventId) continue;
+    lastEventId = ev.id;
+
+    // Dispatch event for views to react
+    window.dispatchEvent(new CustomEvent('zeg-event', {
+      detail: { type: ev.type, data: ev.data, ts: ev.ts }
+    }));
+
+    // Update status bar with live event
+    const statusApi = document.getElementById('status-api');
+    if (statusApi && ev.type) {
+      statusApi.innerHTML = `<span class="status-dot green"></span> LIVE: ${ev.type}`;
+      setTimeout(() => {
+        if (statusApi) statusApi.innerHTML = `<span class="status-dot green"></span> API: Healthy`;
+      }, 3000);
+    }
+  }
+}
+
+// Start polling for real-time events
+setInterval(pollLiveEvents, 5000);
+// Also poll on init
+setTimeout(pollLiveEvents, 1000);
