@@ -52,7 +52,7 @@ export function init(container, api) {
   initSeedForm();
 }
 
-export async function refresh() {
+export async function refresh(_api) {
   loadData(window.ZEG?.api);
 }
 

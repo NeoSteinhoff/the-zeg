@@ -26,7 +26,7 @@ export function init(container, api) {
   loadData(api);
 }
 
-export async function refresh() {
+export async function refresh(_api) {
   loadData(window.ZEG?.api);
 }
 

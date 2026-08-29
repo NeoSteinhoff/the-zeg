@@ -7,9 +7,9 @@ export function init(container, api) {
   render(container, api);
 }
 
-export async function refresh() {
+export async function refresh(_api) {
   const container = document.querySelector('.main-content');
-  if (container) render(container, ZEG.api);
+  if (container) render(container, _api || window.ZEG?.api);
 }
 
 const PIPELINE_STAGES = [
