@@ -24,6 +24,7 @@
   <header class="top-bar">
     <div class="brand">
       <button id="mobile-menu-btn" title="Menu" aria-label="Open navigation">☰</button>
+      <button id="sidebar-toggle" class="btn btn-ghost" title="Collapse sidebar" aria-label="Toggle sidebar">›</button>
       <span class="logo" aria-hidden="true">○</span>
       <span class="title">THE ZEG</span>
       <span class="subtitle">Unified Command & Control</span>
@@ -38,53 +39,65 @@
 
   <!-- Sidebar Overlay (mobile) -->
   <div class="sidebar-overlay"></div>
-  <!-- Sidebar Navigation -->
-  <nav class="sidebar" id="sidebar">
+  
+  <!-- App Body: Sidebar + Main Content -->
+  <div class="app-body">
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
     <div class="nav-section">
+      <div class="nav-section-title">Core</div>
       <div class="nav-group">
-        <div class="nav-item active" data-view="command-center">○ Command Center</div>
-        <div class="nav-item" data-view="circle-pipeline">○ Circle // Pipeline</div>
-        <div class="nav-item" data-view="mesh-crm">○ Mesh CRM</div>
-        <div class="nav-item" data-view="goals">○ Goals</div>
-        <div class="nav-item" data-view="timeline">○ Timeline</div>
-        <div class="nav-item" data-view="soul-engine">○ Soul Engine</div>
+        <div class="nav-item active" data-view="command-center"><span class="nav-icon">⚡</span><span>Command Center</span></div>
+        <div class="nav-item" data-view="circle-pipeline"><span class="nav-icon">○</span><span>Circle // Pipeline</span></div>
+        <div class="nav-item" data-view="mesh-crm"><span class="nav-icon">○</span><span>Mesh CRM</span></div>
+        <div class="nav-item" data-view="goals"><span class="nav-icon">○</span><span>Goals</span></div>
+        <div class="nav-item" data-view="timeline"><span class="nav-icon">○</span><span>Timeline</span></div>
+        <div class="nav-item" data-view="soul-engine"><span class="nav-icon">○</span><span>Soul Engine</span></div>
       </div>
     </div>
     <div class="nav-section">
+      <div class="nav-section-title">AI & Agents</div>
       <div class="nav-group">
-        <div class="nav-item" data-view="agent-storefront">○ Agent Storefront</div>
-        <div class="nav-item" data-view="ecosystem">○ AI Ecosystem</div>
-        <div class="nav-item" data-view="hermes-control">○ Hermes Control</div>
-        <div class="nav-item" data-view="aurora-brain">○ Aurora Brain</div>
+        <div class="nav-item" data-view="agent-storefront"><span class="nav-icon">○</span><span>Agent Storefront</span></div>
+        <div class="nav-item" data-view="ecosystem"><span class="nav-icon">○</span><span>AI Ecosystem</span></div>
+        <div class="nav-item" data-view="hermes-control"><span class="nav-icon">◉</span><span>Hermes Control</span></div>
+        <div class="nav-item" data-view="aurora-brain"><span class="nav-icon">○</span><span>Aurora Brain</span></div>
       </div>
     </div>
     <div class="nav-section">
+      <div class="nav-section-title">Systems</div>
       <div class="nav-group">
-        <div class="nav-item" data-view="system-health">○ System Health</div>
-        <div class="nav-item" data-view="agent-grid">○ Agent Grid</div>
-        <div class="nav-item" data-view="mission-control">○ Mission Control</div>
-        <div class="nav-item" data-view="live-feed">○ Live Feed</div>
-        <div class="nav-item" data-view="tasks">○ Tasks & Delegations</div>
-        <div class="nav-item" data-view="cron-monitor">○ Cron Monitor</div>
-        <div class="nav-item" data-view="cost-models">○ Cost & Models</div>
-        <div class="nav-item" data-view="ventures">○ Venture Pipeline</div>
-        <div class="nav-item" data-view="treasury">○ Treasury</div>
-        <div class="nav-item" data-view="war-room">○ War Room</div>
+        <div class="nav-item" data-view="system-health"><span class="nav-icon">○</span><span>System Health</span></div>
+        <div class="nav-item" data-view="agent-grid"><span class="nav-icon">○</span><span>Agent Grid</span></div>
+        <div class="nav-item" data-view="mission-control"><span class="nav-icon">○</span><span>Mission Control</span></div>
+        <div class="nav-item" data-view="live-feed"><span class="nav-icon">○</span><span>Live Feed</span></div>
+        <div class="nav-item" data-view="tasks"><span class="nav-icon">○</span><span>Tasks & Delegations</span></div>
+        <div class="nav-item" data-view="cron-monitor"><span class="nav-icon">○</span><span>Cron Monitor</span></div>
+        <div class="nav-item" data-view="ventures"><span class="nav-icon">○</span><span>Venture Pipeline</span></div>
+        <div class="nav-item" data-view="treasury"><span class="nav-icon">○</span><span>Treasury</span></div>
+        <div class="nav-item" data-view="war-room"><span class="nav-icon">○</span><span>War Room</span></div>
+        <div class="nav-item" data-view="cost-models"><span class="nav-icon">○</span><span>Cost & Models</span></div>
       </div>
     </div>
     <div class="theme-selector">
-      <div class="theme-option" data-theme="dark">○ Dark</div>
-      <div class="theme-option" data-theme="cyberpunk">○ Cyberpunk</div>
-      <div class="theme-option" data-theme="acid">○ Acid</div>
-      <div class="theme-option" data-theme="matrix">○ Matrix</div>
-      <div class="theme-option" data-theme="aurora">○ Aurora</div>
+      <div class="nav-section-title">Themes</div>
+      <div class="nav-group">
+        <div class="theme-option" data-theme="dark"><span class="nav-icon">🌙</span><span>Dark</span></div>
+        <div class="theme-option" data-theme="cyberpunk"><span class="nav-icon">⚡</span><span>Cyberpunk</span></div>
+        <div class="theme-option" data-theme="acid"><span class="nav-icon">🧪</span><span>Acid</span></div>
+        <div class="theme-option" data-theme="matrix"><span class="nav-icon">🟢</span><span>Matrix</span></div>
+        <div class="theme-option" data-theme="aurora"><span class="nav-icon">🌌</span><span>Aurora</span></div>
+      </div>
     </div>
+    <button id="sidebar-collapse" class="sidebar-collapse-btn" title="Toggle sidebar collapse" aria-label="Toggle sidebar">›</button>
   </nav>
 
   <!-- Main Content -->
   <main class="main-content" id="main-content">
     <div class="content-placeholder">Select a view from the sidebar</div>
   </main>
+  </div>
+  <!-- End App Body -->
 
   <!-- Status Bar -->
   <footer class="status-bar">

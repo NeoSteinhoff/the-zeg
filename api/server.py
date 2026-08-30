@@ -775,6 +775,11 @@ class ZegHandler(BaseHTTPRequestHandler):
             self._send_json(get_agent_detail(sid))
             return
 
+        # ─── Server-Sent Events (SSE) ───
+        if path == "/api/events/stream":
+            self._handle_sse()
+            return
+
         self._send_json({"error": "Not found", "routes": list(GET_ROUTES.keys())}, 404)
 
     def do_POST(self):
@@ -823,6 +828,53 @@ class ZegHandler(BaseHTTPRequestHandler):
 
     def log_message(self, fmt, *args):
         print("[Zeg] " + (fmt % args), flush=True)
+
+    # ─── SSE: Server-Sent Events for real-time data streaming ───
+    def _handle_sse(self):
+        """Stream live events to connected clients using SSE.
+        Clients connect to /api/events/stream and receive new events as they arrive.
+        Falls back to periodic polling if EventSource not supported."""
+        import time
+        self.send_response(200)
+        self.send_header("Content-Type", "text/event-stream")
+        self.send_header("Cache-Control", "no-cache")
+        self.send_header("Connection", "keep-alive")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+
+        # Send initial keepalive + current event count
+        try:
+            self.wfile.write(f"data: {json.dumps({'type': 'connected', 'count': len(EVENT_QUEUE)})}\n\n".encode())
+            self.wfile.flush()
+        except Exception:
+            return
+
+        last_id = 0
+        while True:
+            try:
+                with EVENT_LOCK:
+                    new_events = [e for e in EVENT_QUEUE if e["id"] > last_id]
+
+                if new_events:
+                    for ev in new_events:
+                        last_id = ev["id"]
+                        payload = json.dumps({
+                            "type": ev["type"],
+                            "data": ev["data"],
+                            "ts": ev["ts"],
+                        }, default=str)
+                        self.wfile.write(f"id: {ev['id']}\ndata: {payload}\n\n".encode())
+                        self.wfile.flush()
+
+                # Heartbeat every 15s to keep connection alive
+                self.wfile.write(f": ping\n\n".encode())
+                self.wfile.flush()
+
+                time.sleep(15)
+            except BrokenPipeError:
+                break
+            except Exception:
+                break
 
 if __name__ == "__main__":
     print("[Zeg] Unified API Server on:" + str(PORT), flush=True)

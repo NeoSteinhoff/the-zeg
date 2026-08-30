@@ -26,6 +26,7 @@ const elements = {
   themeToggle: document.getElementById('theme-toggle'),
   fullscreenBtn: document.getElementById('fullscreen-btn'),
   refreshBtn: document.getElementById('refresh-btn'),
+  sidebarToggle: document.getElementById('sidebar-toggle'),
   sidebar: document.getElementById('sidebar'),
   mainContent: document.getElementById('main-content'),
   statusText: document.getElementById('status-text'),
@@ -470,8 +471,45 @@ document.querySelectorAll('.nav-item').forEach(item => {
   });
 });
 
-// Mobile sidebar toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+// Sidebar collapse toggle (desktop)
+const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+const sidebarCollapseBtn = document.getElementById('sidebar-collapse');
+let sidebarCollapsed = localStorage.getItem('zeg-sidebar-collapsed') === 'true';
+
+function toggleSidebar() {
+  sidebarCollapsed = !sidebarCollapsed;
+  sidebar.classList.toggle('collapsed', sidebarCollapsed);
+  localStorage.setItem('zeg-sidebar-collapsed', sidebarCollapsed);
+  // Update button text
+  if (sidebarToggleBtn) {
+    sidebarToggleBtn.textContent = sidebarCollapsed ? '›' : '‹';
+  }
+}
+
+if (sidebarToggleBtn) {
+  sidebarToggleBtn.addEventListener('click', toggleSidebar);
+}
+
+if (sidebarCollapseBtn) {
+  sidebarCollapseBtn.addEventListener('click', toggleSidebar);
+}
+
+// Keyboard shortcut for sidebar toggle (Cmd/Ctrl + ])
+function setupSidebarToggleKey() {
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === ']') {
+      e.preventDefault();
+      toggleSidebar();
+    }
+  });
+}
+
+// Apply collapsed state on load
+if (sidebarCollapsed) {
+  sidebar.classList.add('collapsed');
+}
+
+setupSidebarToggleKey();
 const sidebar = document.getElementById('sidebar');
 let overlay = document.querySelector('.sidebar-overlay');
 if (!overlay) {
@@ -568,6 +606,7 @@ function init() {
     Cmd+R  · Refresh view
     Cmd+F  · Fullscreen
     Cmd+L  · LARP mode
+    Cmd+]  · Collapse sidebar
     1-9    · Quick view switch
   `);
 }
@@ -629,52 +668,88 @@ window.showZegToast = function(message, type = 'info', duration = 4000) {
 };
 
 // ═══ Live Event Stream (PAI/Webhook Awareness) ═══
-// Polls /api/events every 5s for real-time updates pushed from Hermes
+// Uses Server-Sent Events (SSE) for real-time streaming from Hermes
+// Falls back to polling if SSE not available
 let lastEventId = 0;
+let sse = null;
 
-async function pollLiveEvents() {
-  const events = await api.fetch('/api/events');
-  if (!events || !Array.isArray(events)) return;
+function initLiveEvents() {
+    // Try SSE first for real-time streaming
+    if (typeof EventSource !== 'undefined' && API_BASE) {
+        sse = new EventSource(API_BASE + '/api/events/stream');
 
-  for (const ev of events) {
-    if (ev.id <= lastEventId) continue;
-    lastEventId = ev.id;
+        sse.onmessage = function(event) {
+            try {
+                const data = JSON.parse(event.data);
+                if (data.type === 'connected') {
+                    console.log('[Zeg] SSE connected,', data.count, 'events in queue');
+                    return;
+                }
+                if (data.type === 'ping') return; // heartbeat
+
+                handleLiveEvent(data);
+            } catch (e) {
+                console.warn('[Zeg] SSE parse error:', e);
+            }
+        };
+
+        sse.onerror = function(err) {
+            console.warn('[Zeg] SSE error, falling back to polling:', err);
+            sse.close();
+            sse = null;
+            // Fall back to polling
+            setInterval(pollLiveEvents, 10000);
+        };
+    } else {
+        // No SSE support — poll every 5s
+        setInterval(pollLiveEvents, 5000);
+        setTimeout(pollLiveEvents, 1000);
+    }
+}
+
+function handleLiveEvent(ev) {
+    if (ev.id && ev.id <= lastEventId) return;
+    if (ev.id) lastEventId = ev.id;
 
     // Dispatch event for views to react
     window.dispatchEvent(new CustomEvent('zeg-event', {
-      detail: { type: ev.type, data: ev.data, ts: ev.ts }
+        detail: { type: ev.type, data: ev.data, ts: ev.ts }
     }));
 
     // Show toast notification for important events
-    // Safe: ev.type comes from our own webhook endpoint, not user input
     const messages = {
-      'session_started': 'New Hermes agent session started',
-      'session_ended': 'Agent session completed',
-      'task_updated': 'Task status changed — check Tasks view',
-      'pipeline_bump': 'Circle pipeline cadence bump logged',
-      'blockchain_new_block': 'Blockchain: new block mined',
+        'session_started': 'New Hermes agent session started',
+        'session_ended': 'Agent session completed',
+        'task_updated': 'Task status changed — check Tasks view',
+        'pipeline_bump': 'Circle pipeline cadence bump logged',
+        'blockchain_new_block': 'Blockchain: new block mined',
     };
     const msg = messages[ev.type] || `Event: ${ev.type}`;
     const type = ev.type === 'session_ended' || ev.type === 'task_updated' ? 'warning' : 'info';
     if (typeof window.showZegToast === 'function') {
-      window.showZegToast(msg, type);
+        window.showZegToast(msg, type);
     }
 
     // Update status bar with live event
     const statusApi = document.getElementById('status-api');
     if (statusApi && ev.type) {
-      statusApi.innerHTML = `<span class="status-dot green"></span> LIVE: ${ev.type}`;
-      setTimeout(() => {
-        if (statusApi) statusApi.innerHTML = `<span class="status-dot green"></span> API: Healthy`;
-      }, 3000);
+        statusApi.innerHTML = '<span class="status-dot green"></span> LIVE: ' + ev.type;
+        setTimeout(() => {
+            if (statusApi) statusApi.innerHTML = '<span class="status-dot green"></span> API: Healthy';
+        }, 3000);
     }
-  }
 }
 
-// Start polling for real-time events
-setInterval(pollLiveEvents, 5000);
-// Also poll on init
-setTimeout(pollLiveEvents, 1000);
+async function pollLiveEvents() {
+    const events = await api.fetch('/api/events');
+    if (!events || !Array.isArray(events)) return;
+    for (const ev of events) {
+        handleLiveEvent(ev);
+    }
+}
+
+// Start real-time event streaming (SSE with polling fallback)
+initLiveEvents();
 
 // ═══ Sparkline Helper (mini charts for stat cards) ═══
 window.sparkline = function(canvas, data, color = 'var(--accent)') {
