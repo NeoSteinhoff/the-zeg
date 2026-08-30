@@ -1,0 +1,15 @@
+{
+  "tools": [
+    { "name": "terminal", "status": "active", "category": "core" },
+    { "name": "web_search", "status": "active", "category": "web" },
+    { "name": "vision_analyze", "status": "active", "category": "multimodal" },
+    { "name": "code_execution", "status": "active", "category": "code" },
+    { "name": "file_operations", "status": "active", "category": "core" },
+    { "name": "memory", "status": "active", "category": "core" },
+    { "name": "cronjob", "status": "active", "category": "automation" },
+    { "name": "delegation", "status": "active", "category": "orchestration" },
+    { "name": "skills", "status": "active", "category": "extensibility" }
+  ],
+  "skills_count": 24,
+  "toolsets": ["core", "web", "code", "automation", "orchestration", "extensibility"]
+}

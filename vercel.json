@@ -32,6 +32,12 @@
     { "source": "/api/quick-actions", "destination": "/data/static/quick-actions.json" },
     { "source": "/api/events", "destination": "/data/static/events.json" },
     { "source": "/api/gateway-logs", "destination": "/data/static/gateway-logs.json" },
-    { "source": "/api/executions", "destination": "/data/static/executions.json" }
+    { "source": "/api/executions", "destination": "/data/static/executions.json" },
+    { "source": "/api/finance", "destination": "/data/static/finance.json" },
+    { "source": "/api/health-data", "destination": "/data/static/health.json" },
+    { "source": "/api/dating", "destination": "/data/static/dating.json" },
+    { "source": "/api/learning", "destination": "/data/static/learning.json" },
+    { "source": "/api/habits", "destination": "/data/static/habits.json" },
+    { "source": "/api/ai-tools", "destination": "/data/static/ai-tools.json" }
   ]
 }
