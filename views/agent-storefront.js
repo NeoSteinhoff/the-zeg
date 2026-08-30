@@ -3,7 +3,10 @@
    Lead packs: AED 950 (3,200 leads) + 12% commission
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading storefront…', container);
   render(container, api);
 }
 

@@ -1,9 +1,12 @@
-/* ═══════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    THE ZEG — Soul Engine View
    20 first-person souls + Hamza-Ali persona
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading soul engine…', container);
   render(container, api);
 }
 

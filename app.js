@@ -17,6 +17,8 @@ const state = {
   apiConnected: false,
   data: {},
   refreshTimer: null,
+  countdownTimer: null,
+  refreshRemaining: 0,
 };
 
 // ─── DOM Elements ───
@@ -94,8 +96,12 @@ function renderView(viewName) {
   // Lazy-load view module
   import(`./views/${viewName}.js`)
     .then(module => {
-      module.init(elements.mainContent, api);
-      elements.statusText.textContent = `${viewName} ready`;
+      if (module && module.init) {
+        module.init(elements.mainContent, api);
+        elements.statusText.textContent = `${viewName} ready`;
+      } else {
+        throw new Error('View module has no init function');
+      }
     })
     .catch(err => {
       elements.mainContent.innerHTML = `<div class="card"><div class="card-header">Error</div><p>Failed to load view: ${err.message}</p></div>`;
@@ -196,6 +202,20 @@ const api = {
     return await this.fetch('/api/aurora-brain');
   },
 
+  // ─── Hermes Control (Hermes Agent direct interface) ───
+  async hermesChat(query, opts = {}) {
+    return this.post('/api/hermes/chat', { query, ...opts });
+  },
+
+  async getHermesStatus() {
+    return await this.fetch('/api/hermes/status');
+  },
+
+  async getHermesSessions(limit) {
+    const qs = limit ? `?limit=${limit}` : '';
+    return await this.fetch(`/api/hermes/sessions${qs}`);
+  },
+
   // ─── Skill dashboard endpoints (from hermes-dashboard skill) ───
   async getSessionDetail(sessionId) {
     return await this.fetch('/api/session?id=' + encodeURIComponent(sessionId));
@@ -275,7 +295,7 @@ function toggleLarpMode() {
     if (el) {
         el.innerHTML = larpMode
             ? '<span style="color:var(--hot)">⚡ LARP MODE ACTIVE</span>'
-            : 'Welcome to THE ZEG';
+            : 'Ready';
     }
     elements.body.classList.toggle('larp-mode', larpMode);
 
@@ -409,12 +429,17 @@ function activateLarpData() {
     };
 }
 async function refreshData() {
+  if (!elements.refreshBtn) return;
   elements.refreshBtn.textContent = '○';
-  const viewModule = await import(`./views/${state.currentView}.js`);
-  if (viewModule.refresh) {
-    await viewModule.refresh(api);
+  try {
+    const viewModule = await import(`./views/${state.currentView}.js`);
+    if (viewModule && typeof viewModule.refresh === 'function') {
+      await viewModule.refresh(api);
+    }
+  } catch (err) {
+    console.warn('[Zeg] Refresh failed:', err.message);
   }
-  setTimeout(() => { elements.refreshBtn.textContent = '↻'; }, 500);
+  setTimeout(() => { if (elements.refreshBtn) elements.refreshBtn.textContent = '↻'; }, 500);
 }
 
 async function refreshCurrentView() {
@@ -490,23 +515,31 @@ window.addEventListener('resize', handleResize);
 // ─── Auto Refresh ───
 function startRefreshTimer() {
   if (state.refreshTimer) clearInterval(state.refreshTimer);
-  let remaining = REFRESH_INTERVAL / 1000;
-  elements.statusRefresh.textContent = `○ Auto-refresh: ${remaining}s`;
+  if (state.countdownTimer) clearInterval(state.countdownTimer);
+
+  state.refreshRemaining = REFRESH_INTERVAL / 1000;
+  updateRefreshDisplay();
+
   state.refreshTimer = setInterval(() => {
     refreshData();
-    remaining = REFRESH_INTERVAL / 1000;
-    elements.statusRefresh.textContent = `○ Auto-refresh: ${remaining}s`;
+    state.refreshRemaining = REFRESH_INTERVAL / 1000;
+    updateRefreshDisplay();
   }, REFRESH_INTERVAL);
 
   // Countdown timer
-  const countdownTimer = setInterval(() => {
-    remaining--;
-    if (remaining <= 0) remaining = REFRESH_INTERVAL / 1000;
-    if (elements.statusRefresh) {
-      elements.statusRefresh.textContent = `○ Auto-refresh: ${remaining}s`;
+  state.countdownTimer = setInterval(() => {
+    state.refreshRemaining--;
+    if (state.refreshRemaining <= 0) {
+      state.refreshRemaining = REFRESH_INTERVAL / 1000;
     }
+    updateRefreshDisplay();
   }, 1000);
-  state.countdownTimer = countdownTimer;
+}
+
+function updateRefreshDisplay() {
+  if (elements.statusRefresh) {
+    elements.statusRefresh.textContent = `○ Auto-refresh: ${state.refreshRemaining}s`;
+  }
 }
 
 // ─── Init ───
@@ -521,7 +554,7 @@ function init() {
   setInterval(checkApiHealth, 15000);
 
   // Show welcome message
-  elements.statusText.textContent = 'Welcome to THE ZEG';
+  elements.statusText.textContent = 'Ready';
 
   // Navigate to command center by default
   renderView('command-center');

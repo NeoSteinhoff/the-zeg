@@ -125,7 +125,12 @@ when the API is unavailable.
 | `/api/task?id=ID` | Single task detail with comments + events |
 | `/api/costs` | Cost breakdown by model (7d, est + actual) |
 | `/api/models` | Model usage aggregation (all-time totals) |
-| `POST /api/tasks/create` | Create a new kanban task (title, body, priority) |
+| `POST /api/tasks/create` | Create a new kanban task (title, body, priority, created_by) |
+| `/api/cost-models` | Cost & Models view (dedicated cost breakdown + model usage) |
+
+**Views:** The dashboard includes a dedicated **Cost & Models** view accessible
+via the sidebar navigation, showing 7-day cost breakdown by model and all-time
+token usage aggregation.
 
 ## Live Deployment
 

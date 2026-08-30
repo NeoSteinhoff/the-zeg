@@ -3,7 +3,10 @@
    Chronological feed of all activities and events
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading timeline…', container);
   render(container, api);
 }
 

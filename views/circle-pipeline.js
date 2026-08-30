@@ -2,7 +2,10 @@
    THE ZEG — Circle // Pipeline View
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading circle pipeline…', container);
   render(container, api);
 }
 

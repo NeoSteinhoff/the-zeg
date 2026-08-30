@@ -42,10 +42,10 @@
   {
     "model": "poolside/laguna-s-2.1:free",
     "billing_provider": "nous",
-    "total_in": 146007429,
-    "total_out": 10084155,
+    "total_in": 159635927,
+    "total_out": 10537840,
     "total_cost": null,
-    "sess_count": 597
+    "sess_count": 604
   },
   {
     "model": "nemotron-3.5-lightning-free",
@@ -58,10 +58,10 @@
   {
     "model": "nemotron-3-ultra-free",
     "billing_provider": "opencode-free",
-    "total_in": 34117337,
-    "total_out": 426913,
+    "total_in": 34155265,
+    "total_out": 428369,
     "total_cost": null,
-    "sess_count": 24
+    "sess_count": 25
   },
   {
     "model": "meituan/longcat-2.0:free",
@@ -82,10 +82,10 @@
   {
     "model": "hy3-free",
     "billing_provider": "opencode-free",
-    "total_in": 6291592,
-    "total_out": 841252,
+    "total_in": 10220218,
+    "total_out": 1042620,
     "total_cost": null,
-    "sess_count": 32
+    "sess_count": 39
   },
   {
     "model": "anthropic/claude-fable-5",

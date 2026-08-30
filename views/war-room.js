@@ -1,7 +1,9 @@
-/* ═══════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    THE ZEG — War Room View
    Incident tracking + system health watchdog
    ═══════════════════════════════════════════════════ */
+
+import { showLoading } from '../utils.js';
 
 const WAR_ISSUES = [
   {
@@ -12,6 +14,7 @@ const WAR_ISSUES = [
 ];
 
 export function init(container, api) {
+  showLoading('Loading war room…', container);
   render(container, api);
 }
 

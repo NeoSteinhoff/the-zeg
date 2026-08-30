@@ -237,13 +237,15 @@ def get_ventures():
 def get_tasks():
     """Kanban tasks from kanban.db — includes comments and events."""
     tasks = safe_run(lambda: sqlite_query(KANBAN_DB,
-        "SELECT id, title, body, status, priority, created_by, created_at, "
+        "SELECT rowid, id, title, body, status, priority, created_by, created_at, "
         "started_at, completed_at, assignee, result "
         "FROM tasks ORDER BY "
         "CASE status WHEN 'todo' THEN 0 WHEN 'in_progress' THEN 1 "
         "WHEN 'blocked' THEN 2 WHEN 'done' THEN 3 ELSE 4 END, created_at DESC LIMIT 50"), [])
     for t in tasks:
-        tid = t.get("id", "")
+        # Use id if present, otherwise fall back to rowid (for legacy null-id tasks)
+        tid = t.get("id") or str(t.get("rowid", ""))
+        t["id"] = tid
         comments = sqlite_query(KANBAN_DB,
             "SELECT content, created_at, author FROM task_comments WHERE task_id = ? ORDER BY created_at",
             (tid,))
@@ -411,9 +413,16 @@ def get_sessions_simple(params=None):
         out.append(r)
     return out
 
+def _get_param(params, key):
+    """Extract a single value from parse_qs params (handles list and scalar)."""
+    val = (params or {}).get(key, "")
+    if isinstance(val, list):
+        return val[0] if val else ""
+    return val or ""
+
 def get_session_detail(params):
     """Detail for a single session — includes messages list."""
-    sid = (params or {}).get("id", [""])[0] if isinstance((params or {}).get("id"), list) else (params or {}).get("id", "")
+    sid = _get_param(params, "id")
     if not sid:
         return {"error": "missing ?id="}
     sess = safe_run(lambda: sqlite_query(STATE_DB,
@@ -433,11 +442,11 @@ def get_session_detail(params):
 
 def get_task_detail(params):
     """Detail for a single kanban task — includes comments and events."""
-    tid = (params or {}).get("id", [""])[0] if isinstance((params or {}).get("id"), list) else (params or {}).get("id", "")
+    tid = _get_param(params, "id")
     if not tid:
         return {"error": "missing ?id="}
     task = safe_run(lambda: sqlite_query(KANBAN_DB,
-        "SELECT * FROM tasks WHERE id=?", (tid,)), [])
+        "SELECT rowid, * FROM tasks WHERE id=? OR CAST(rowid AS TEXT)=?", (tid, tid)), [])
     if not task:
         return {"error": "task not found"}
     t = task[0]
@@ -451,27 +460,134 @@ def get_task_detail(params):
 
 def create_task(body):
     """Create a new kanban task. Note: requires write access to kanban.db
-    (not available under delegation context)."""
+    (not available under delegation context — the dashboard API reads fine
+    under delegation but writes are blocked by a HERMES_DELEGATED_CHILD_CONTEXT guard).
+    Returns {"id": <uuid>, "status": "created"} on success."""
+    import os
     from datetime import datetime
+    # Guard against delegation context — kanban.db writes will fail
+    if os.environ.get("HERMES_DELEGATED_CHILD_CONTEXT") == "1":
+        return {"error": "kanban.db writes blocked under delegation context — run from a foreground process", "status": "failed"}
+    # Input validation
+    title = (body.get("title") or "").strip()
+    if not title:
+        return {"error": "title is required", "status": "failed"}
+    if len(title) > 500:
+        return {"error": "title exceeds 500 chars", "status": "failed"}
+    desc = (body.get("body") or "").strip()[:2000]
+    priority = body.get("priority", "normal")
+    if priority not in ("normal", "high", "low", "urgent"):
+        priority = "normal"
+    if not isinstance(priority, str) or len(priority) > 50:
+        priority = "normal"
+    created_by = (body.get("created_by") or "zeg")[:100]
+    # Normalize priority to integer (1-10) if string was passed
+    if isinstance(priority, str):
+        pl = {"low": 3, "normal": 5, "high": 8, "urgent": 10}
+        try:
+            priority_val = pl.get(priority, 5)
+        except Exception:
+            priority_val = 5
+    else:
+        priority_val = int(priority) if 0 < int(priority) <= 10 else 5
     try:
+        import uuid as _uuid
+        task_uuid = "t_" + _uuid.uuid4().hex[:8]
         conn = sqlite3.connect(KANBAN_DB)
         conn.row_factory = sqlite3.Row
         cur = conn.execute("""
-            INSERT INTO tasks (title, body, status, priority, created_by, created_at)
-            VALUES (?, ?, 'pending', ?, ?, ?)
-        """, (
-            body.get("title", "Untitled"),
-            body.get("body", ""),
-            body.get("priority", "normal"),
-            body.get("created_by", "zeg"),
-            datetime.now().isoformat(),
-        ))
+            INSERT INTO tasks (id, title, body, status, priority, created_by, created_at)
+            VALUES (?, ?, ?, 'todo', ?, ?, ?)
+        """, (task_uuid, title, desc, priority_val, created_by, datetime.now().isoformat()))
         conn.commit()
-        task_id = cur.lastrowid
+        task_id = task_uuid
         conn.close()
-        return {"id": task_id, "status": "created"}
+        return {"id": task_id, "status": "created", "task_id": task_id, "title": title}
     except Exception as e:
         return {"error": str(e), "status": "failed"}
+
+def hermes_chat(body):
+    """Send a one-shot prompt to Hermes CLI and return the response.
+    
+    Uses `hermes -z` for fire-and-forget queries (one-shot mode, no session).
+    The response is captured and returned as JSON.
+    """
+    import subprocess
+    query = (body.get("query") or "").strip()
+    if not query:
+        return {"error": "query is required", "status": "failed"}
+    
+    profile = body.get("profile", "")
+    model = body.get("model", "")
+    skills = body.get("skills", "")
+    
+    cmd = ["hermes", "-z", query]
+    if profile:
+        cmd.extend(["-p", profile])
+    if model:
+        cmd.extend(["-m", model])
+    if skills:
+        cmd.extend(["-s", skills])
+    
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=120,
+            cwd=os.path.expanduser("~/"),
+        )
+        return {
+            "status": "ok" if result.returncode == 0 else "error",
+            "query": query,
+            "response": result.stdout.strip(),
+            "stderr": result.stderr.strip()[:500] if result.stderr else "",
+            "returncode": result.returncode,
+        }
+    except subprocess.TimeoutExpired:
+        return {"error": "Hermes query timed out after 120s", "status": "failed", "query": query}
+    except FileNotFoundError:
+        return {"error": "hermes CLI not found", "status": "failed", "query": query}
+    except Exception as e:
+        return {"error": str(e), "status": "failed", "query": query}
+
+
+def hermes_sessions_list(params=None):
+    """List recent Hermes sessions from state.db."""
+    params = params or {}
+    limit = int(params.get("limit", ["20"])[0]) if isinstance(params.get("limit"), list) else int(params.get("limit", 20))
+    rows = safe_run(lambda: sqlite_query(STATE_DB,
+        "SELECT id, title, started_at, ended_at, model, input_tokens, output_tokens, actual_cost_usd, message_count, session_key, display_name, end_reason FROM sessions ORDER BY started_at DESC LIMIT ?",
+        (limit,)), [])
+    for r in rows:
+        if r.get("started_at") is not None: r["started_at"] = ts_to_iso(r["started_at"])
+        if r.get("ended_at") is not None: r["ended_at"] = ts_to_iso(r["ended_at"])
+    return {"sessions": rows, "count": len(rows)}
+
+
+def hermes_status():
+    """Check if Hermes processes are running and return their status."""
+    import subprocess
+    result = {"running": [], "gateway": False}
+    try:
+        ps = subprocess.run(["ps", "aux"], capture_output=True, text=True, timeout=5)
+        for line in ps.stdout.strip().split("\n")[1:]:
+            parts = line.split(None, 10)
+            if len(parts) < 11: continue
+            cmd = parts[10]
+            pid = parts[1]
+            if "hermes" in cmd.lower() and "ps aux" not in cmd and "grep" not in cmd:
+                result["running"].append({
+                    "pid": pid,
+                    "command": cmd[:80],
+                    "cpu": parts[2],
+                    "mem": parts[3],
+                })
+                if "gateway" in cmd.lower():
+                    result["gateway"] = True
+    except Exception:
+        pass
+    return result
 
 def get_costs():
     """Cost breakdown by model — estimated and actual costs (7d)."""
@@ -610,6 +726,8 @@ def handle_webhook(body):
 GET_ROUTES["/api/quick-actions"] = get_quick_actions
 GET_ROUTES["/api/events"] = get_live_events
 GET_ROUTES["/api/gateway-logs"] = get_gateway_logs
+GET_ROUTES["/api/hermes/sessions"] = hermes_sessions_list
+GET_ROUTES["/api/hermes/status"] = hermes_status
 
 class ZegHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -671,6 +789,8 @@ class ZegHandler(BaseHTTPRequestHandler):
             self._send_json({"ok": True, "msg": "Cadence bumped"})
         elif path == "/api/hermes-control/action":
             self._send_json({"ok": True, "action": body.get("action"), "executed": True})
+        elif path == "/api/hermes/chat":
+            self._send_json(hermes_chat(body))
         elif path == "/api/storefront/purchase":
             self._send_json({"ok": True, "success": True, "product_id": body.get("product_id")})
         elif path == "/api/webhook/hermes":

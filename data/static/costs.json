@@ -14,14 +14,14 @@
   {
     "model": "hy3-free",
     "billing_provider": "opencode-free",
-    "input_tok": 6244445,
-    "output_tok": 824025,
-    "cache_read_tok": 68815552,
+    "input_tok": 10173071,
+    "output_tok": 1025393,
+    "cache_read_tok": 88987072,
     "cache_write_tok": 0,
-    "reasoning_tok": 255237,
+    "reasoning_tok": 363279,
     "est_cost": 0.0,
     "act_cost": null,
-    "sess_count": 31
+    "sess_count": 38
   },
   {
     "model": "laguna-s-2.1-free",
@@ -50,14 +50,14 @@
   {
     "model": "nemotron-3-ultra-free",
     "billing_provider": "opencode-free",
-    "input_tok": 34117337,
-    "output_tok": 426913,
-    "cache_read_tok": 41812160,
+    "input_tok": 34155265,
+    "output_tok": 428369,
+    "cache_read_tok": 41820800,
     "cache_write_tok": 0,
-    "reasoning_tok": 142523,
+    "reasoning_tok": 143053,
     "est_cost": 0.0,
     "act_cost": null,
-    "sess_count": 24
+    "sess_count": 25
   },
   {
     "model": "nemotron-3.5-lightning-free",
@@ -74,14 +74,14 @@
   {
     "model": "poolside/laguna-s-2.1:free",
     "billing_provider": "nous",
-    "input_tok": 144673161,
-    "output_tok": 9971727,
-    "cache_read_tok": 1027696992,
+    "input_tok": 157573213,
+    "output_tok": 10397353,
+    "cache_read_tok": 1129386272,
     "cache_write_tok": 0,
-    "reasoning_tok": 1432572,
+    "reasoning_tok": 1519296,
     "est_cost": 0.0,
     "act_cost": null,
-    "sess_count": 535
+    "sess_count": 541
   },
   {
     "model": "poolside/laguna-xs-2.1:free",

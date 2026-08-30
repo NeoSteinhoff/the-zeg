@@ -3,7 +3,10 @@
    Business ventures in Kanban board format (Etsy POD, Fiverr, SaaS, etc.)
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading ventures…', container);
   render(container, api);
 }
 

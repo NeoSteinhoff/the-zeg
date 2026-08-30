@@ -3,7 +3,10 @@
    645-agent pipeline, Telegram, AI lead automation
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading ecosystem…', container);
   render(container, api);
 }
 

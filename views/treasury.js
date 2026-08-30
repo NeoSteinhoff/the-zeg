@@ -1,9 +1,12 @@
-/* ═══════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    THE ZEG — Treasury View
    Money tracking: revenue, costs, goal ladder, ledger
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading treasury…', container);
   render(container, api);
 }
 

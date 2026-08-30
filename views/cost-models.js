@@ -1,9 +1,12 @@
-/* ═══════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    THE ZEG — Cost & Models View
    Dedicated cost breakdown by model with full token info
    ═══════════════════════════════════════════════════ */
 
+import { fmtNum, showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading cost data…', container);
   render(container, api);
 }
 
@@ -15,18 +18,22 @@ export async function refresh(_api) {
 function render(container, api) {
   container.innerHTML = `
     <div id="cost-models-view">
+      <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
+        <span>Cost & Model Usage</span>
+        <button class="btn btn-ghost" style="font-size:11px;padding:2px 8px" onclick="refreshData()">↻ Refresh</button>
+      </div>
       <div class="stat-grid" id="cm-stats"></div>
       <div class="card">
-        <div class="card-header">Cost Breakdown by Model (7d)</div>
+        <div class="card-header">Cost Breakdown by Model (last 7d)</div>
         <table id="cm-costs-table">
           <thead>
-            <tr><th>Model</th><th>Provider</th><th>Input</th><th>Output</th><th>Cache Read</th><th>Cache Write</th><th>Reasoning</th><th>Est Cost</th><th>Act Cost</th><th>Sessions</th></tr>
+            <tr><th>Model</th><th>Provider</th><th>Input</th><th>Output</th><th>Cache Read</th><th>Cache Write</th><th>Reasoning</th><th>Est.$</th><th>Act.$</th><th>Sessions</th></tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
       <div class="card">
-        <div class="card-header">Total Model Usage (all-time)</div>
+        <div class="card-header">All-Time Model Usage</div>
         <table id="cm-models-table">
           <thead>
             <tr><th>Model</th><th>Provider</th><th>Total Input</th><th>Total Output</th><th>Total Cost</th><th>Sessions</th></tr>
@@ -59,13 +66,13 @@ async function loadData(api) {
   const totalSessions = models.reduce((s, m) => s + (m.sess_count || 0), 0);
 
   document.getElementById('cm-stats').innerHTML = `
-    <div class="stat blue"><div class="num">$${totalEstCost.toFixed(2)}</div><div class="lbl">Total Est Cost (7d)</div></div>
-    <div class="stat green"><div class="num">$${totalActCost.toFixed(2)}</div><div class="lbl">Total Act Cost (7d)</div></div>
+    <div class="stat blue"><div class="num">$${totalEstCost.toFixed(2)}</div><div class="lbl">Est Cost (7d)</div></div>
+    <div class="stat green"><div class="num">$${totalActCost.toFixed(2)}</div><div class="lbl">Act Cost (7d)</div></div>
     <div class="stat purple"><div class="num">${costs.length}</div><div class="lbl">Models (7d)</div></div>
-    <div class="stat orange"><div class="num">${fmtNum(totalSessions)}</div><div class="lbl">Sessions</div></div>
+    <div class="stat orange"><div class="num">${fmtNum(totalSessions)}</div><div class="lbl">Total Sessions</div></div>
   `;
 
-  // Costs table
+  // Costs table (7d breakdown)
   const costsBody = document.querySelector('#cm-costs-table tbody');
   if (costsBody) {
     costsBody.innerHTML = costs.map(c => `
@@ -77,14 +84,14 @@ async function loadData(api) {
         <td>${fmtNum(c.cache_read_tok)}</td>
         <td>${fmtNum(c.cache_write_tok)}</td>
         <td>${fmtNum(c.reasoning_tok)}</td>
-        <td>$${((c.est_cost || 0).toFixed(2)}</td>
+        <td>$${(c.est_cost || 0).toFixed(2)}</td>
         <td>$${(c.act_cost || 0).toFixed(2)}</td>
         <td>${c.sess_count || 0}</td>
       </tr>
-    `).join('') || '<tr><td colspan="10" class="empty">No cost data</td></tr>';
+    `).join('') || '<tr><td colspan="10" class="empty">No cost data for this period</td></tr>';
   }
 
-  // Models table (all-time)
+  // Models table (all-time aggregation)
   const modelsBody = document.querySelector('#cm-models-table tbody');
   if (modelsBody) {
     modelsBody.innerHTML = models.map(m => `
@@ -98,15 +105,6 @@ async function loadData(api) {
       </tr>
     `).join('') || '<tr><td colspan="6" class="empty">No model data</td></tr>';
   }
-}
-
-function fmtNum(n) {
-  if (n == null) return '0';
-  if (n >= 1e12) return (n / 1e12).toFixed(1) + 'T';
-  if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
-  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
-  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
-  return String(n);
 }
 
 function showFallback() {

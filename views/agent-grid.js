@@ -4,7 +4,10 @@
    Features from: Aurora BusinessBrain Mission Control (agent-grid)
    ════════════════════════════════════════════════════════════ */
 
+import { fmtNum, showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading agent grid…', container);
   container.innerHTML = `
     <div id="agent-grid">
       <h1>👥 Agent Grid</h1>
@@ -105,12 +108,4 @@ function render(portsData, sysData) {
     `;
   });
   el('ag-health-bars').innerHTML = bars;
-}
-
-function fmtNum(n) {
-  n = Number(n);
-  if (n >= 1e9) return (n/1e9).toFixed(1) + 'B';
-  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
-  if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
-  return String(n);
 }

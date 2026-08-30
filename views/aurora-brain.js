@@ -3,7 +3,10 @@
    AI lead automation for Dubai real estate agents
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading Aurora Brain…', container);
   render(container, api);
 }
 

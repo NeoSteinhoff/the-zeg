@@ -1,9 +1,12 @@
-/* ═══════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    THE ZEG — Cron Monitor View
    Shows cron job status, failures, and timing
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading cron monitor…', container);
   render(container, api);
 }
 

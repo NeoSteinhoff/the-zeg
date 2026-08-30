@@ -1,9 +1,12 @@
-/* ═══════════════════════════════════════════════════
+/* ══════════════════════════════════════════════════
    THE ZEG — Mesh CRM View
    Visual network of all circles (friendship + romantic)
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading mesh CRM…', container);
   render(container, api);
 }
 

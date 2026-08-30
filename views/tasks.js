@@ -3,7 +3,10 @@
    Kanban tasks from kanban.db + async delegations from state.db
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading tasks…', container);
   render(container, api);
 }
 

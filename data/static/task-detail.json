@@ -1,3 +1,109 @@
 {
-  "error": "No data"
+  "task": {
+    "rowid": 1,
+    "id": "t_7f6fd354",
+    "title": "Sponsers for planit and unifest",
+    "body": null,
+    "assignee": "default",
+    "status": "done",
+    "priority": 0,
+    "created_by": "dashboard",
+    "created_at": "2026-08-25T10:25:28",
+    "started_at": 1787641099,
+    "completed_at": 1787641136,
+    "workspace_kind": "scratch",
+    "workspace_path": "/Users/neosteinhoff/.hermes/kanban/workspaces/t_7f6fd354",
+    "branch_name": null,
+    "claim_lock": null,
+    "claim_expires": null,
+    "tenant": null,
+    "result": null,
+    "idempotency_key": null,
+    "consecutive_failures": 0,
+    "worker_pid": null,
+    "last_failure_error": null,
+    "max_runtime_seconds": null,
+    "last_heartbeat_at": 1787641101,
+    "current_run_id": null,
+    "workflow_template_id": null,
+    "current_step_key": null,
+    "skills": null,
+    "model_override": null,
+    "max_retries": null,
+    "goal_mode": 0,
+    "goal_max_turns": null,
+    "session_id": null,
+    "project_id": null,
+    "provider_override": null,
+    "reasoning_effort": null,
+    "block_kind": null,
+    "block_recurrences": 0
+  },
+  "comments": [
+    {
+      "id": 1,
+      "task_id": "t_7f6fd354",
+      "author": "auto-decomposer",
+      "body": "Decomposed into t_2c69f6ec, t_09ad646d, t_1d2ecf0d. Root will wake when all children complete.",
+      "created_at": 1787639200
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "task_id": "t_7f6fd354",
+      "run_id": null,
+      "kind": "created",
+      "payload": "{\"assignee\": null, \"status\": \"triage\", \"parents\": [], \"tenant\": null, \"workspace_kind\": \"scratch\", \"workspace_path\": null, \"branch_name\": null, \"project_id\": null, \"skills\": null, \"goal_mode\": null, \"model_override\": null, \"provider_override\": null}",
+      "created_at": 1787639128
+    },
+    {
+      "id": 8,
+      "task_id": "t_7f6fd354",
+      "run_id": null,
+      "kind": "decomposed",
+      "payload": "{\"child_ids\": [\"t_2c69f6ec\", \"t_09ad646d\", \"t_1d2ecf0d\"], \"root_assignee\": \"default\"}",
+      "created_at": 1787639200
+    },
+    {
+      "id": 208,
+      "task_id": "t_7f6fd354",
+      "run_id": null,
+      "kind": "promoted",
+      "payload": null,
+      "created_at": 1787641089
+    },
+    {
+      "id": 209,
+      "task_id": "t_7f6fd354",
+      "run_id": 16,
+      "kind": "claimed",
+      "payload": "{\"lock\": \"Neos-MacBook-Air-2.local:72709\", \"expires\": 1787641999, \"run_id\": 16}",
+      "created_at": 1787641099
+    },
+    {
+      "id": 210,
+      "task_id": "t_7f6fd354",
+      "run_id": 16,
+      "kind": "spawned",
+      "payload": "{\"pid\": 89401}",
+      "created_at": 1787641099
+    },
+    {
+      "id": 211,
+      "task_id": "t_7f6fd354",
+      "run_id": 16,
+      "kind": "heartbeat",
+      "payload": null,
+      "created_at": 1787641101
+    },
+    {
+      "id": 213,
+      "task_id": "t_7f6fd354",
+      "run_id": 16,
+      "kind": "completed",
+      "payload": "{\"result_len\": 0, \"summary\": \"Sponsor outreach campaign for Planit Inc. and UniFest 2026 is complete. Researched 15 potential sponsors across 3 tiers (existing UniFest sponsors, ETA sponsors, aligned partners), created prospectuses and email templates, and executed the full outreach campaign \u2014 15 personalized emails sent via sendmail fallback with follow-ups scheduled for days 3, 7, and 14. Tracking infrastructure (Excel workb\"}",
+      "created_at": 1787641136
+    }
+  ]
 }

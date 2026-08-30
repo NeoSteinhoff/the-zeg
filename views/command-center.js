@@ -2,7 +2,10 @@
    THE ZEG — Command Center View
    ═══════════════════════════════════════════════════ */
 
+import { showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading command center…', container);
   render(container, api);
 }
 

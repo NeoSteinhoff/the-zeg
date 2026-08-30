@@ -4,7 +4,10 @@
    Features from: Hermes Command Center timeline.html + Aurora live feed
    ════════════════════════════════════════════════════════════ */
 
+import { fmtNum, showLoading } from '../utils.js';
+
 export function init(container, api) {
+  showLoading('Loading live feed…', container);
   container.innerHTML = `
     <div id="live-feed">
       <div class="feed-header">
@@ -175,11 +178,3 @@ const badgeMap = {
   'pending': 'badge-pending', 'todo': 'badge-pending',
   'script': 'badge-script', 'agent': 'badge-agent',
 };
-
-function fmtNum(n) {
-  n = Number(n);
-  if (n >= 1e9) return (n/1e9).toFixed(1) + 'B';
-  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
-  if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
-  return String(n);
-}

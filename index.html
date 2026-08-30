@@ -23,19 +23,21 @@
   <!-- Top Bar -->
   <header class="top-bar">
     <div class="brand">
-      <button id="mobile-menu-btn" title="Menu">☰</button>
-      <span class="logo">○</span>
+      <button id="mobile-menu-btn" title="Menu" aria-label="Open navigation">☰</button>
+      <span class="logo" aria-hidden="true">○</span>
       <span class="title">THE ZEG</span>
       <span class="subtitle">Unified Command & Control</span>
     </div>
     <div class="top-bar-actions">
-      <button id="theme-toggle" class="btn btn-ghost" title="Switch theme">◉</button>
-      <button id="fullscreen-btn" class="btn btn-ghost" title="Fullscreen">⛶</button>
-      <button id="refresh-btn" class="btn btn-ghost" title="Refresh">↻</button>
-      <button id="larp-btn" class="btn btn-ghost" title="LARP mode (Cmd+L)">⚡</button>
+      <button id="theme-toggle" class="btn btn-ghost" title="Switch theme (Cmd+,)" aria-label="Switch theme">◉</button>
+      <button id="fullscreen-btn" class="btn btn-ghost" title="Fullscreen (Cmd+F)" aria-label="Toggle fullscreen">⛶</button>
+      <button id="refresh-btn" class="btn btn-ghost" title="Refresh data (Cmd+R)" aria-label="Refresh data">↻</button>
+      <button id="larp-btn" class="btn btn-ghost" title="LARP mode - inflated demo data (Cmd+L)" aria-label="Toggle LARP mode">⚡</button>
     </div>
   </header>
 
+  <!-- Sidebar Overlay (mobile) -->
+  <div class="sidebar-overlay"></div>
   <!-- Sidebar Navigation -->
   <nav class="sidebar" id="sidebar">
     <div class="nav-section">

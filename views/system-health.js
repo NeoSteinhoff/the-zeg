@@ -4,6 +4,8 @@
    Features from: Hermes Command Center + Super Dashboard API
    ════════════════════════════════════════════════════════════ */
 
+import { fmtNum, showLoading } from '../utils.js';
+
 const PORT_LABELS = {
   4242: 'Neo Brain', 8502: 'Hermes Cmd Center', 8765: 'Aurora Brain',
   9120: 'Agent Dashboard', 31337: 'Hermes Core', 8700: 'The Zeg',
@@ -11,6 +13,7 @@ const PORT_LABELS = {
 };
 
 export function init(container, api) {
+  showLoading('Loading system health…', container);
   container.innerHTML = `
     <div id="system-health">
       <h1>🖥️ System Health</h1>
@@ -140,15 +143,16 @@ function render(sys, ports, gbrain, crons, email, pipeline, souls, crontab) {
   `;
 
   // ─── Souls ───
+  const soulsList = (souls?.souls || []).slice(0, 12);
   el('sh-souls').innerHTML = `
     <div class="row"><span>Total Souls</span><span>${souls?.total || 0}</span></div>
     <div class="row"><span>With Data</span><span><span class="badge badge-done">${souls?.with_data || 0}</span></span></div>
     <div style="margin-top:8px">
-      ${(souls?.souls || []).slice(0,12).map(s => `
+      ${soulsList.map(s => `
         <div style="display:flex;align-items:center;gap:6px;font-size:11px;padding:2px 0">
           <span class="dot ${s.exists ? 'green' : 'orange'}" style="width:6px;height:6px;border-radius:50%"></span>
-          <span style="font-family:var(--mono)">${s.name}</span>
-          <span style="margin-left:auto;color:var(--muted)">${s.size > 1000 ? `${(s.size/1000).toFixed(1)}K` : s.size}</span>
+          <span class="mono">${s.name}</span>
+          <span style="margin-left:auto;color:var(--muted)">${fmtFileSize(s.size)}</span>
         </div>
       `).join('')}
     </div>
@@ -169,14 +173,6 @@ function render(sys, ports, gbrain, crons, email, pipeline, souls, crontab) {
       </tbody>
     </table>
   ` : '<span class="sub">No crontab entries found</span>';
-}
-
-function fmtNum(n) {
-  n = Number(n);
-  if (n >= 1e9) return (n/1e9).toFixed(1) + 'B';
-  if (n >= 1e6) return (n/1e6).toFixed(1) + 'M';
-  if (n >= 1e3) return (n/1e3).toFixed(1) + 'K';
-  return String(n);
 }
 
 function healthBar(label, value, max) {
