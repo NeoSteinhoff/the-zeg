@@ -1,0 +1,59 @@
+{
+  "stats": {
+    "due_today": 6,
+    "completed_today": 3,
+    "today_rate": 0.5,
+    "active_habits": 14,
+    "longest_streak": 89,
+    "monthly_rate": 0.78
+  },
+  "habits": [
+    { "name": "Morning Workout", "category": "fitness", "schedule": "Daily 06:00", "current_streak": 23, "longest_streak": 45, "completion_rate_30d": 0.93, "total_completions": 412, "active": true, "done_today": true },
+    { "name": "Protein Target (180g)", "category": "health", "schedule": "Daily", "current_streak": 18, "longest_streak": 38, "completion_rate_30d": 0.87, "total_completions": 356, "active": true, "done_today": true },
+    { "name": "Sleep by 22:30", "category": "health", "schedule": "Daily 22:30", "current_streak": 12, "longest_streak": 31, "completion_rate_30d": 0.73, "total_completions": 289, "active": true, "done_today": false },
+    { "name": "Read 30 min", "category": "learning", "schedule": "Daily 20:00", "current_streak": 31, "longest_streak": 67, "completion_rate_30d": 0.97, "total_completions": 523, "active": true, "done_today": false },
+    { "name": "Arabic Practice (15 min)", "category": "learning", "schedule": "Daily 12:00", "current_streak": 8, "longest_streak": 22, "completion_rate_30d": 0.60, "total_completions": 145, "active": true, "done_today": false },
+    { "name": "Deep Work Block (3hr)", "category": "productivity", "schedule": "Mon-Fri 09:00", "current_streak": 15, "longest_streak": 28, "completion_rate_30d": 0.82, "total_completions": 198, "active": true, "done_today": true },
+    { "name": "No Phone First Hour", "category": "mindfulness", "schedule": "Daily", "current_streak": 41, "longest_streak": 89, "completion_rate_30d": 0.95, "total_completions": 634, "active": true, "done_today": true },
+    { "name": "Meditation (10 min)", "category": "mindfulness", "schedule": "Daily 07:00", "current_streak": 27, "longest_streak": 54, "completion_rate_30d": 0.90, "total_completions": 401, "active": true, "done_today": false },
+    { "name": "Walk 10k Steps", "category": "fitness", "schedule": "Daily", "current_streak": 5, "longest_streak": 18, "completion_rate_30d": 0.55, "total_completions": 267, "active": true, "done_today": false },
+    { "name": "Journal Evening", "category": "mindfulness", "schedule": "Daily 21:30", "current_streak": 19, "longest_streak": 41, "completion_rate_30d": 0.83, "total_completions": 312, "active": true, "done_today": false },
+    { "name": "Cold Shower", "category": "health", "schedule": "Mon/Wed/Fri", "current_streak": 11, "longest_streak": 24, "completion_rate_30d": 0.78, "total_completions": 89, "active": true, "done_today": false },
+    { "name": "Supplements AM", "category": "health", "schedule": "Daily 07:30", "current_streak": 89, "longest_streak": 89, "completion_rate_30d": 1.0, "total_completions": 1247, "active": true, "done_today": true },
+    { "name": "Supplements PM", "category": "health", "schedule": "Daily 21:00", "current_streak": 67, "longest_streak": 89, "completion_rate_30d": 0.98, "total_completions": 987, "active": true, "done_today": false },
+    { "name": "Weekly Review (Sun)", "category": "productivity", "schedule": "Sunday 10:00", "current_streak": 8, "longest_streak": 15, "completion_rate_30d": 1.0, "total_completions": 42, "active": true, "done_today": false }
+  ],
+  "completions": [
+    { "timestamp": "2026-08-29T06:15:00Z", "habit_name": "Morning Workout", "category": "fitness", "value": 1, "notes": "Chest/Triceps - felt strong" },
+    { "timestamp": "2026-08-29T07:05:00Z", "habit_name": "Meditation (10 min)", "category": "mindfulness", "value": 1, "notes": "Breath focus" },
+    { "timestamp": "2026-08-29T07:30:00Z", "habit_name": "Supplements AM", "category": "health", "value": 1, "notes": "All taken" },
+    { "timestamp": "2026-08-29T07:45:00Z", "habit_name": "No Phone First Hour", "category": "mindfulness", "value": 1, "notes": "" },
+    { "timestamp": "2026-08-29T09:15:00Z", "habit_name": "Deep Work Block (3hr)", "category": "productivity", "value": 1, "notes": "Finance view implementation" },
+    { "timestamp": "2026-08-29T12:00:00Z", "habit_name": "Protein Target (180g)", "category": "health", "value": 1, "notes": "185g hit" },
+    { "timestamp": "2026-08-28T06:10:00Z", "habit_name": "Morning Workout", "category": "fitness", "value": 1, "notes": "Back/Biceps" },
+    { "timestamp": "2026-08-28T07:00:00Z", "habit_name": "Meditation (10 min)", "category": "mindfulness", "value": 1, "notes": "" },
+    { "timestamp": "2026-08-28T07:30:00Z", "habit_name": "Supplements AM", "category": "health", "value": 1, "notes": "" },
+    { "timestamp": "2026-08-28T09:00:00Z", "habit_name": "Deep Work Block (3hr)", "category": "productivity", "value": 1, "notes": "Health view + dating view" }
+  ],
+  "heatmap": [
+    { "week": "Jul 28 - Aug 3", "days": [{ "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 4, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 4, "total": 5 }, { "done": 3, "total": 4 }] },
+    { "week": "Aug 4 - Aug 10", "days": [{ "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 4, "total": 5 }, { "done": 3, "total": 4 }] },
+    { "week": "Aug 11 - Aug 17", "days": [{ "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 4, "total": 5 }, { "done": 4, "total": 4 }] },
+    { "week": "Aug 18 - Aug 24", "days": [{ "done": 6, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 5, "total": 5 }, { "done": 3, "total": 4 }] },
+    { "week": "Aug 25 - Aug 31", "days": [{ "done": 5, "total": 6 }, { "done": 4, "total": 6 }, { "done": 6, "total": 6 }, { "done": 5, "total": 6 }, { "done": 6, "total": 6 }, { "done": 4, "total": 5 }, { "done": 3, "total": 4 }] }
+  ],
+  "categories": [
+    { "name": "fitness", "completed": 45, "total": 54 },
+    { "name": "health", "completed": 78, "total": 90 },
+    { "name": "learning", "completed": 38, "total": 54 },
+    { "name": "productivity", "completed": 32, "total": 42 },
+    { "name": "mindfulness", "completed": 65, "total": 72 }
+  ],
+  "insights": [
+    { "type": "streak", "title": "🔥 Supplements AM at 89 days!", "description": "Your longest active streak. Consistency compounds.", "metric": "Next milestone: 100 days in 11 days" },
+    { "type": "consistency", "title": "Morning Workout → Deep Work correlation", "description": "Days with morning workout show 94% deep work completion vs 67% without.", "metric": "r = 0.73 correlation" },
+    { "type": "improvement", "title": "Arabic Practice trending up", "description": "30-day rate improved from 45% to 60% this month. New Anki deck helping.", "metric": "+15% MoM" },
+    { "type": "warning", "title": "Walk 10k Steps slipping", "description": "Only 55% completion this month. Consider scheduling explicit walk breaks.", "metric": "Down from 72% last month" },
+    { "type": "celebration", "title": "No Phone First Hour — 41 day streak!", "description": "Morning phone abstinence is your most consistent habit. Mental clarity gains massive.", "metric": "95% 30-day rate" }
+  ]
+}

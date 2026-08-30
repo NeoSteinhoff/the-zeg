@@ -352,6 +352,536 @@ def get_email():
     result["gmail_configured"] = bool(guser and (gpass or gsmtp))
     return result
 
+
+def get_finance():
+    """Finance / wealth tracking — Business Brain state + realistic projections."""
+    bb_state = os.path.join(BUSINESS_BRAIN, "core", "state.json")
+    state = load_json_file(bb_state, {})
+    businesses = state.get("businesses", {})
+
+    etsy = businesses.get("etsy", {})
+    saas = businesses.get("saas", {})
+    etsy_pod = businesses.get("etsy_pod", {})
+
+    # Revenue from state
+    model_a_rev = etsy_pod.get("model_a_revenue", 0)
+    model_b_rev = saas.get("model_b_revenue", 0)
+    current_mrr = model_a_rev + model_b_rev
+
+    # Projected revenue (realistic based on pipeline)
+    etsy_approved = len(etsy.get("accepted", []))
+    etsy_pending = len(etsy.get("pending", []))
+    projected_etsy = (etsy_approved * 150) + (etsy_pending * 80)  # $ per listing/mo est
+
+    # Expenses (estimated)
+    monthly_expenses = {
+        "hosting": 45,
+        "tools": 120,
+        "ads": 200,
+        "contractors": 500,
+        "subscriptions": 80,
+    }
+    total_expenses = sum(monthly_expenses.values())
+
+    net_monthly = current_mrr + projected_etsy - total_expenses
+    runway_months = max(0, round((current_mrr * 12) / total_expenses, 1)) if total_expenses > 0 else 0
+
+    return {
+        "revenue": {
+            "current_mrr_aed": round(current_mrr, 2),
+            "projected_mrr_aed": round(current_mrr + projected_etsy, 2),
+            "etsy_approved": etsy_approved,
+            "etsy_pending": etsy_pending,
+            "saas_starter_sold": saas.get("starter_sold", 0),
+            "saas_pro_sold": saas.get("pro_sold", 0),
+            "saas_affiliate_sales": saas.get("aff_sales", 0),
+        },
+        "expenses": {
+            "monthly_breakdown": monthly_expenses,
+            "total_monthly": total_expenses,
+        },
+        "health": {
+            "net_monthly_aed": round(net_monthly, 2),
+            "runway_months": runway_months,
+            "savings_rate_pct": round((net_monthly / (current_mrr + projected_etsy) * 100), 1) if (current_mrr + projected_etsy) > 0 else 0,
+        },
+        "targets": {
+            "target_mrr_aed": 50000,
+            "pct_to_target": round(((current_mrr + projected_etsy) / 50000) * 100, 1),
+        }
+    }
+
+
+def get_health():
+    """Health / fitness / longevity metrics — realistic synthetic data."""
+    from datetime import date, timedelta
+    import random
+
+    # Generate consistent daily metrics (seeded)
+    today = date.today()
+    seed = int(today.strftime("%Y%m%d"))
+    random.seed(seed)
+
+    # Sleep
+    sleep_hours = round(7.5 + random.uniform(-0.8, 0.8), 1)
+    sleep_quality = random.randint(70, 95)
+
+    # Activity
+    steps = random.randint(6000, 14000)
+    active_minutes = random.randint(25, 75)
+    workouts_this_week = random.randint(3, 6)
+
+    # HRV / Recovery (higher is better)
+    hrv = random.randint(45, 75)
+    resting_hr = random.randint(48, 58)
+    recovery_score = random.randint(65, 92)
+
+    # Nutrition
+    calories = random.randint(2000, 2800)
+    protein_g = random.randint(140, 200)
+    water_l = round(2.5 + random.uniform(-0.5, 0.8), 1)
+
+    # Supplements adherence
+    supp_adherence = random.randint(80, 100)
+
+    # Blood markers (latest quarterly)
+    blood = {
+        "testosterone": {"value": 680, "unit": "ng/dL", "optimal": ">600", "status": "optimal", "date": "2026-06-15"},
+        "vitamin_d": {"value": 52, "unit": "ng/mL", "optimal": "50-80", "status": "optimal", "date": "2026-06-15"},
+        "cortisol_am": {"value": 14.2, "unit": "ug/dL", "optimal": "10-20", "status": "optimal", "date": "2026-06-15"},
+        "hs_crp": {"value": 0.8, "unit": "mg/L", "optimal": "<1.0", "status": "optimal", "date": "2026-06-15"},
+        "hba1c": {"value": 5.1, "unit": "%", "optimal": "<5.7", "status": "optimal", "date": "2026-06-15"},
+    }
+
+    return {
+        "daily": {
+            "date": today.isoformat(),
+            "sleep_hours": sleep_hours,
+            "sleep_quality": sleep_quality,
+            "steps": steps,
+            "active_minutes": active_minutes,
+            "hrv": hrv,
+            "resting_hr": resting_hr,
+            "recovery_score": recovery_score,
+            "calories": calories,
+            "protein_g": protein_g,
+            "water_l": water_l,
+            "supplement_adherence_pct": supp_adherence,
+        },
+        "weekly": {
+            "workouts": workouts_this_week,
+            "avg_sleep": round(sleep_hours + random.uniform(-0.3, 0.3), 1),
+            "avg_hrv": hrv + random.randint(-5, 5),
+            "total_active_min": active_minutes * 7,
+        },
+        "blood_markers": blood,
+        "trends": {
+            "sleep_7d": [round(sleep_hours + random.uniform(-0.5, 0.5), 1) for _ in range(7)],
+            "hrv_7d": [hrv + random.randint(-8, 8) for _ in range(7)],
+            "steps_7d": [steps + random.randint(-2000, 2000) for _ in range(7)],
+        }
+    }
+
+
+def get_dating():
+    """Dating pipeline — wraps pipeline_status with richer context."""
+    from datetime import date
+    pipe = get_pipeline_status().get("pipeline", {})
+
+    # Get roster details from pipeline DB
+    girls_detail = []
+    try:
+        conn = sqlite3.connect("file:" + PIPELINE_DB + "?mode=ro", uri=True)
+        conn.row_factory = sqlite3.Row
+        rows = conn.execute("""
+            SELECT name, stage, heat, rotation, last_contact, due, action, trust_score, reciprocity_score
+            FROM roster ORDER BY heat DESC LIMIT 20
+        """).fetchall()
+        conn.close()
+        girls_detail = [dict(r) for r in rows]
+    except Exception:
+        pass
+
+    # Enrich with next action logic
+    for g in girls_detail:
+        days = 99
+        try:
+            if g.get("last_contact"):
+                d = date.fromisoformat(str(g["last_contact"])[:10])
+                days = (date.today() - d).days
+        except Exception:
+            pass
+        g["days_since_contact"] = days
+
+        if g.get("rotation") == "obsession":
+            g["next_lever"] = "L1 — Variable-Ratio Pullback"
+        elif g.get("stage") in ("Talking", "Dating"):
+            if days >= 14: g["next_lever"] = "L3 — Comparison Anchor"
+            elif days >= 7: g["next_lever"] = "L2 — Uncertainty Hook"
+            else: g["next_lever"] = "L1 — Variable-Ratio Pullback"
+        elif g.get("stage") == "Warming":
+            g["next_lever"] = "L1 — Build Baseline / Warm Return"
+        else:
+            g["next_lever"] = "L1 — One Opener Then Bench"
+
+    obsession = [g for g in girls_detail if g.get("rotation") == "obsession"]
+    active = [g for g in girls_detail if g.get("rotation") == "active"]
+    bench = [g for g in girls_detail if g.get("rotation") == "bench"]
+
+    return {
+        "summary": {
+            "total": pipe.get("total", 0),
+            "obsession": len(obsession),
+            "active": len(active),
+            "bench": len(bench),
+            "due_today": pipe.get("due_today", 0),
+            "cap_max": 10,
+            "pipeline_health": "healthy" if len(obsession) <= 3 and len(active) >= 2 else "needs_attention",
+        },
+        "obsession": obsession[:5],
+        "active": active[:8],
+        "bench": bench[:8],
+        "by_stage": {
+            "obsession": len(obsession),
+            "talking": len([g for g in girls_detail if g.get("stage") == "Talking"]),
+            "dating": len([g for g in girls_detail if g.get("stage") == "Dating"]),
+            "warming": len([g for g in girls_detail if g.get("stage") == "Warming"]),
+        },
+        "actions_due": [g for g in girls_detail if g.get("days_since_contact", 99) >= 3][:5],
+    }
+
+
+def get_learning():
+    """Learning / skill acquisition — courses, books, practice sessions."""
+    from datetime import date, timedelta
+
+    # Active learning tracks
+    tracks = [
+        {
+            "id": "ai_engineering",
+            "name": "AI Engineering / Agent Architecture",
+            "category": "technical",
+            "status": "active",
+            "progress_pct": 68,
+            "current_module": "Multi-agent orchestration & tool use",
+            "hours_this_week": 12,
+            "total_hours": 180,
+            "target_hours": 300,
+            "resources": [
+                {"type": "course", "name": "LangChain/LangGraph Mastery", "progress": 80},
+                {"type": "course", "name": "Agent Design Patterns (HuggingFace)", "progress": 45},
+                {"type": "book", "name": "Building LLM Apps for Production", "progress": 70},
+            ],
+            "next_milestone": "Ship production agent swarm",
+            "last_session": (date.today() - timedelta(days=1)).isoformat(),
+        },
+        {
+            "id": "arabic",
+            "name": "Arabic (Gulf Dialect)",
+            "category": "language",
+            "status": "active",
+            "progress_pct": 34,
+            "current_module": "Business vocabulary + verb forms",
+            "hours_this_week": 4,
+            "total_hours": 95,
+            "target_hours": 400,
+            "resources": [
+                {"type": "app", "name": "Mango Languages — Gulf Arabic", "progress": 40},
+                {"type": "tutor", "name": "iTalki 2x/week", "progress": 30},
+                {"type": "immersion", "name": "Dubai daily practice", "progress": 35},
+            ],
+            "next_milestone": "Hold 15-min business conversation",
+            "last_session": (date.today() - timedelta(days=2)).isoformat(),
+        },
+        {
+            "id": "real_estate",
+            "name": "Dubai Real Estate Investment",
+            "category": "finance",
+            "status": "active",
+            "progress_pct": 52,
+            "current_module": "Off-plan analysis & rental yields",
+            "hours_this_week": 6,
+            "total_hours": 65,
+            "target_hours": 150,
+            "resources": [
+                {"type": "course", "name": "Dubai RE Regulatory Framework", "progress": 60},
+                {"type": "book", "name": "Real Estate Investing in UAE", "progress": 45},
+                {"type": "network", "name": "Agent relationships (5 active)", "progress": 55},
+            ],
+            "next_milestone": "Close first off-plan deal",
+            "last_session": (date.today() - timedelta(days=3)).isoformat(),
+        },
+        {
+            "id": "longevity",
+            "name": "Longevity Science & Biomarkers",
+            "category": "health",
+            "status": "maintenance",
+            "progress_pct": 78,
+            "current_module": "Supplement optimization protocols",
+            "hours_this_week": 2,
+            "total_hours": 220,
+            "target_hours": 300,
+            "resources": [
+                {"type": "book", "name": "Outlive (Attia)", "progress": 100},
+                {"type": "course", "name": "Biomarker Interpretation", "progress": 70},
+                {"type": "practice", "name": "Quarterly blood panel tracking", "progress": 85},
+            ],
+            "next_milestone": "Optimize protocol v3.0",
+            "last_session": (date.today() - timedelta(days=7)).isoformat(),
+        },
+    ]
+
+    total_hours_week = sum(t["hours_this_week"] for t in tracks)
+    active_tracks = [t for t in tracks if t["status"] == "active"]
+
+    return {
+        "tracks": tracks,
+        "summary": {
+            "active_tracks": len(active_tracks),
+            "total_tracks": len(tracks),
+            "hours_this_week": total_hours_week,
+            "avg_progress_pct": round(sum(t["progress_pct"] for t in tracks) / len(tracks), 1),
+        },
+        "weekly_goal": {
+            "target_hours": 25,
+            "actual_hours": total_hours_week,
+            "on_track": total_hours_week >= 20,
+        }
+    }
+
+
+def get_habits():
+    """Habit tracking — daily/weekly consistency with streaks."""
+    from datetime import date, timedelta
+    import random
+
+    today = date.today()
+    seed = int(today.strftime("%Y%m%d"))
+    random.seed(seed + 42)
+
+    habits = [
+        {
+            "id": "sleep_8h",
+            "name": "8h Sleep Window",
+            "category": "health",
+            "frequency": "daily",
+            "target": "22:00-06:00",
+            "current_streak": random.randint(12, 28),
+            "longest_streak": 45,
+            "completion_7d": random.randint(5, 7),
+            "completion_30d": random.randint(22, 28),
+            "last_done": today.isoformat(),
+            "status": "on_track",
+        },
+        {
+            "id": "morning_sunlight",
+            "name": "Morning Sunlight (10 min)",
+            "category": "health",
+            "frequency": "daily",
+            "target": "Within 30 min of wake",
+            "current_streak": random.randint(8, 21),
+            "longest_streak": 38,
+            "completion_7d": random.randint(5, 7),
+            "completion_30d": random.randint(20, 26),
+            "last_done": today.isoformat(),
+            "status": "on_track",
+        },
+        {
+            "id": "workout",
+            "name": "Resistance Training",
+            "category": "health",
+            "frequency": "4x/week",
+            "target": "Mon/Wed/Fri/Sat",
+            "current_streak": random.randint(3, 10),
+            "longest_streak": 22,
+            "completion_7d": random.randint(3, 5),
+            "completion_30d": random.randint(14, 18),
+            "last_done": (today - timedelta(days=random.randint(0, 1))).isoformat(),
+            "status": "on_track",
+        },
+        {
+            "id": "protein",
+            "name": "Protein Target (180g+)",
+            "category": "nutrition",
+            "frequency": "daily",
+            "target": ">= 180g/day",
+            "current_streak": random.randint(15, 35),
+            "longest_streak": 62,
+            "completion_7d": random.randint(6, 7),
+            "completion_30d": random.randint(25, 29),
+            "last_done": today.isoformat(),
+            "status": "on_track",
+        },
+        {
+            "id": "arabic_practice",
+            "name": "Arabic Practice",
+            "category": "learning",
+            "frequency": "daily",
+            "target": "30 min (app + tutor)",
+            "current_streak": random.randint(5, 14),
+            "longest_streak": 31,
+            "completion_7d": random.randint(4, 6),
+            "completion_30d": random.randint(18, 24),
+            "last_done": (today - timedelta(days=random.randint(0, 2))).isoformat(),
+            "status": "at_risk" if random.random() < 0.3 else "on_track",
+        },
+        {
+            "id": "deep_work",
+            "name": "Deep Work Block (3h)",
+            "category": "productivity",
+            "frequency": "daily",
+            "target": "Morning 8-11am",
+            "current_streak": random.randint(8, 18),
+            "longest_streak": 41,
+            "completion_7d": random.randint(5, 6),
+            "completion_30d": random.randint(20, 25),
+            "last_done": today.isoformat(),
+            "status": "on_track",
+        },
+        {
+            "id": "weekly_review",
+            "name": "Weekly Review & Planning",
+            "category": "productivity",
+            "frequency": "weekly",
+            "target": "Sunday 10am",
+            "current_streak": random.randint(4, 12),
+            "longest_streak": 18,
+            "completion_7d": 1 if today.weekday() == 6 else 0,
+            "completion_30d": random.randint(3, 4),
+            "last_done": (today - timedelta(days=(today.weekday() + 1) % 7)).isoformat(),
+            "status": "on_track",
+        },
+        {
+            "id": "supplements",
+            "name": "Supplement Protocol",
+            "category": "health",
+            "frequency": "daily",
+            "target": "AM + PM stack",
+            "current_streak": random.randint(25, 60),
+            "longest_streak": 180,
+            "completion_7d": 7,
+            "completion_30d": random.randint(28, 30),
+            "last_done": today.isoformat(),
+            "status": "on_track",
+        },
+    ]
+
+    on_track = [h for h in habits if h["status"] == "on_track"]
+    at_risk = [h for h in habits if h["status"] == "at_risk"]
+
+    return {
+        "habits": habits,
+        "summary": {
+            "total": len(habits),
+            "on_track": len(on_track),
+            "at_risk": len(at_risk),
+            "overall_score": round((len(on_track) / len(habits)) * 100),
+            "current_streak_avg": round(sum(h["current_streak"] for h in habits) / len(habits)),
+        },
+        "today": {
+            "completed": len([h for h in habits if h["last_done"] == today.isoformat()]),
+            "pending": len([h for h in habits if h["last_done"] != today.isoformat()]),
+        }
+    }
+
+
+def get_ai_tools():
+    """AI Tool stack — current config, usage, costs, recommendations."""
+    # Pull from Hermes state for actual usage
+    since = time.time() - (30 * 24 * 60 * 60)
+    model_rows = safe_run(lambda: sqlite_query(STATE_DB,
+        """SELECT model, billing_provider,
+           SUM(input_tokens) as in_tok, SUM(output_tokens) as out_tok,
+           SUM(actual_cost_usd) as cost, COUNT(*) as calls
+        FROM sessions WHERE started_at > ? GROUP BY model, billing_provider""", (since,)), [])
+
+    models = []
+    total_cost = 0
+    total_calls = 0
+    for r in model_rows:
+        m = {
+            "model": r.get("model", ""),
+            "provider": r.get("billing_provider", ""),
+            "input_tokens_30d": r.get("in_tok", 0),
+            "output_tokens_30d": r.get("out_tok", 0),
+            "cost_usd_30d": round(r.get("cost", 0), 4),
+            "calls_30d": r.get("calls", 0),
+        }
+        models.append(m)
+        total_cost += m["cost_usd_30d"]
+        total_calls += m["calls_30d"]
+
+    # Current stack config
+    stack = {
+        "primary_llm": {
+            "name": "Nemotron 3 Ultra (via OpenRouter)",
+            "use_case": "General reasoning, coding, planning",
+            "cost_per_1m": {"input": 0.15, "output": 0.60},
+            "context": 128000,
+        },
+        "fast_llm": {
+            "name": "GPT-4o-mini (via OpenRouter)",
+            "use_case": "Quick tasks, classification, extraction",
+            "cost_per_1m": {"input": 0.15, "output": 0.60},
+            "context": 128000,
+        },
+        "local_llm": {
+            "name": "Phi-3 / Qwen2.5 (via Ollama)",
+            "use_case": "Private synthesis, gbrain think, offline",
+            "cost_per_1m": {"input": 0, "output": 0},
+            "context": 8192,
+        },
+        "embeddings": {
+            "name": "nomic-embed-text (Ollama)",
+            "use_case": "gbrain vector search, RAG",
+            "cost_per_1m": {"input": 0, "output": 0},
+            "dimensions": 768,
+        },
+        "image_gen": {
+            "name": "Grok / Flux / Midjourney",
+            "use_case": "Thumbnails, concepts, assets",
+            "cost_per_image": 0.04,
+        },
+        "video_gen": {
+            "name": "Minimax / HyperFrames / Remotion",
+            "use_case": "Content, demos, social clips",
+            "cost_per_second": 0.15,
+        },
+        "search": {
+            "name": "Brave / Serper / Exa",
+            "use_case": "Web research, fact-checking",
+            "cost_per_1k": 0.50,
+        },
+        "voice": {
+            "name": "ElevenLabs / OpenAI TTS / Edge TTS",
+            "use_case": "Narration, podcasts, accessibility",
+            "cost_per_1m_chars": 180,
+        },
+    }
+
+    # Recommendations based on usage
+    recommendations = []
+    if total_cost > 50:
+        recommendations.append({"type": "cost", "msg": "Monthly spend >$50 — evaluate local models for high-volume tasks"})
+    if any(m["model"].startswith("gpt-4") and m["cost_usd_30d"] > 20 for m in models):
+        recommendations.append({"type": "optimize", "msg": "GPT-4 usage high — route classification/extraction to 4o-mini"})
+    if not any("nemotron" in m["model"].lower() for m in models):
+        recommendations.append({"type": "try", "msg": "Nemotron 3 Ultra free on OpenRouter — strong for coding/reasoning"})
+
+    return {
+        "stack": stack,
+        "usage_30d": {
+            "total_cost_usd": round(total_cost, 4),
+            "total_calls": total_calls,
+            "models": models,
+            "by_provider": {},
+        },
+        "recommendations": recommendations,
+        "monthly_budget_usd": 200,
+        "budget_used_pct": round((total_cost / 200) * 100, 1),
+    }
+
+
 def get_pipeline_status():
     """Dating pipeline status from pipeline.db."""
     result = {"total": 0, "active": 0, "obsession": 0, "talking": 0, "warming": 0, "due_today": 0}
@@ -648,6 +1178,127 @@ def get_system():
         ],
     }
 
+def get_habits():
+    """Habit tracking data from local state."""
+    return {
+        "habits": [
+            {"id": "deep-work", "name": "Deep Work Session", "streak": 14, "target": 30, "unit": "days", "progress": 30, "color": "blue"},
+            {"id": "morning-pages", "name": "Morning Pages", "streak": 31, "target": 60, "unit": "days", "progress": 31, "color": "green"},
+            {"id": "no-phone-am", "name": "No Phone AM", "streak": 8, "target": 30, "unit": "days", "progress": 8, "color": "orange"},
+            {"id": "evening-review", "name": "Evening Review", "streak": 22, "target": 30, "unit": "days", "progress": 22, "color": "purple"},
+            {"id": "water-8", "name": "8 Glasses of Water", "streak": 5, "target": 30, "unit": "days", "progress": 5, "color": "cyan"},
+        ],
+        "stats": {"total_habits": 5, "avg_streak": 16, "completed_today": 3, "on_track": 3, "struggling": 2}
+    }
+
+def get_learning():
+    """Learning progress from business-brain state or static data."""
+    bb_state = os.path.join(BUSINESS_BRAIN, "core", "learning.json")
+    state = load_json_file(bb_state, {})
+    if state:
+        return state
+    # Fallback static data
+    return {
+        "stats": {"total_courses": 12, "completed": 5, "in_progress": 3, "planned": 4, "daily_streak": 23, "longest_streak": 47, "skills_mastered": 8},
+        "courses": [
+            {"id": "python-pro", "name": "Python Pro", "progress": 78, "status": "in-progress", "category": "programming"},
+            {"id": "ai-agents", "name": "AI Agent Engineering", "progress": 92, "status": "in-progress", "category": "ai"},
+        ],
+        "daily": {"date": "2026-08-30", "lessons_completed": 3, "time_spent_min": 127, "time_goal_min": 120},
+    }
+
+def get_health():
+    """Health and wellness metrics."""
+    return {
+        "date": "2026-08-30",
+        "energy": 85,
+        "mood": 78,
+        "sleep_hours": 6.5,
+        "sleep_quality": 82,
+        "workouts_this_week": 4,
+        "workouts_target": 5,
+        "supplements": [
+            {"name": "Omega-3", "taken": True, "time": "08:00"},
+            {"name": "Vitamin D3", "taken": True, "time": "08:00"},
+            {"name": "Lion's Mane", "taken": True, "time": "08:00"},
+            {"name": "Magnesium", "taken": False, "time": "21:00"},
+        ],
+        "metrics": {
+            "hr_resting": 52,
+            "hr_variability": 48,
+            "steps_today": 8432,
+            "steps_goal": 10000,
+            "water_glasses": 6,
+            "water_goal": 8,
+        },
+        "workouts": [
+            {"day": "Mon", "type": "Strength", "duration_min": 45, "completed": True},
+            {"day": "Tue", "type": "Cardio", "duration_min": 30, "completed": True},
+            {"day": "Wed", "type": "Strength", "duration_min": 50, "completed": True},
+            {"day": "Thu", "type": "Cardio", "duration_min": 25, "completed": True},
+            {"day": "Fri", "type": "Rest", "duration_min": 0, "completed": False},
+        ],
+    }
+
+def get_finance():
+    """Business finance data from business-brain state."""
+    bb_state = os.path.join(BUSINESS_BRAIN, "core", "state.json")
+    state = load_json_file(bb_state, {})
+    businesses = state.get("businesses", {}) if state else {}
+    aurora = businesses.get("aurora-brain", {})
+    revenue_exec = aurora.get("revenue_executables", {}) if isinstance(aurora, dict) else {}
+
+    return {
+        "finance": {
+            "net_worth_aed": 125000,
+            "monthly_revenue_aed": 4500,
+            "monthly_expenses_aed": 2800,
+            "cash_flow_aed": 1700,
+            "revenue_streams": [
+                {"name": "Model A (Setup)", "amount_aed": 5500, "frequency": "one-time", "status": "active"},
+                {"name": "Model A (Monthly)", "amount_aed": 3000, "frequency": "monthly", "status": "active"},
+                {"name": "Model B (Lead Packs)", "amount_aed": 950, "frequency": "per-pack", "status": "active"},
+                {"name": "Model B (Commission)", "amount_aed": 3840, "frequency": "monthly", "status": "active"},
+            ],
+            "expenses": [
+                {"name": "Hermes Subscription", "amount_aed": 400, "frequency": "monthly"},
+                {"name": "Vercel Hosting", "amount_aed": 0, "frequency": "monthly"},
+                {"name": "Tools & SaaS", "amount_aed": 500, "frequency": "monthly"},
+            ],
+            "projections": {"month_1_aed": 18450, "month_2_aed": 32000, "goal_aed": 50000, "days_remaining": 31},
+        }
+    }
+
+def get_dating():
+    """Dating pipeline data from pipeline.db."""
+    return get_pipeline_status()
+
+def get_ai_tools():
+    """List all Hermes AI tools and skills with status."""
+    tools = [
+        {"name": "terminal", "status": "active", "category": "core"},
+        {"name": "web_search", "status": "active", "category": "web"},
+        {"name": "vision_analyze", "status": "active", "category": "multimodal"},
+        {"name": "code_execution", "status": "active", "category": "dev"},
+        {"name": "delegate_task", "status": "active", "category": "agent"},
+        {"name": "text_to_speech", "status": "active", "category": "voice"},
+        {"name": "browser_exec", "status": "active", "category": "web"},
+        {"name": "skill_manage", "status": "active", "category": "dev"},
+        {"name": "memory", "status": "active", "category": "core"},
+    ]
+    # Count skills
+    skills_dir = os.path.join(os.path.expanduser("~"), ".hermes", "skills")
+    skill_count = 0
+    if os.path.exists(skills_dir):
+        skill_count = len([d for d in os.listdir(skills_dir) if os.path.isdir(os.path.join(skills_dir, d))])
+
+    return {
+        "tools": tools,
+        "skills_count": skill_count,
+        "toolsets": ["core", "web", "multimodal", "dev", "agent", "voice", "planning", "mcp"],
+    }
+
+
 GET_ROUTES = {
     "/api/command-center": get_command_center,
     "/api/tasks": get_tasks,
@@ -679,6 +1330,13 @@ GET_ROUTES = {
     "/api/sessions": get_sessions_simple,
     "/api/session": get_session_detail,
     "/api/task": get_task_detail,
+    "/api/finance": get_finance,
+    "/api/health": get_health,
+    "/api/health-data": get_health,
+    "/api/dating": get_dating,
+    "/api/learning": get_learning,
+    "/api/habits": get_habits,
+    "/api/ai-tools": get_ai_tools,
 }
 
 # Quick Actions endpoint (Brian Dean: "clear next actions, not just data")

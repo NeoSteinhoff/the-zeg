@@ -1,4 +1,62 @@
 {
-  "status": "ok",
-  "port": 8700
+  "stats": {
+    "workouts_this_week": 4,
+    "total_active_minutes": 320,
+    "avg_sleep_hours": 7.5,
+    "current_streak": 12,
+    "resting_hr": 52,
+    "hrv": 68
+  },
+  "vitals": {
+    "resting_hr": 52,
+    "hrv": 68,
+    "bp_systolic": 118,
+    "bp_diastolic": 72,
+    "spo2": 98,
+    "body_temp": 36.6,
+    "respiratory_rate": 14,
+    "vo2max": 54,
+    "stress_score": 22
+  },
+  "workouts": [
+    { "date": "2026-08-28", "type": "strength", "duration_min": 75, "calories": 480, "rpe": 8, "notes": "Upper body push - PR on bench" },
+    { "date": "2026-08-26", "type": "cardio", "duration_min": 45, "calories": 520, "rpe": 7, "notes": "Interval run - 5x800m" },
+    { "date": "2026-08-25", "type": "strength", "duration_min": 80, "calories": 420, "rpe": 7, "notes": "Lower body - squats 140kg x 5" },
+    { "date": "2026-08-23", "type": "hiit", "duration_min": 30, "calories": 380, "rpe": 9, "notes": "Burpees, KB swings, rowing" },
+    { "date": "2026-08-21", "type": "strength", "duration_min": 70, "calories": 390, "rpe": 6, "notes": "Pull day - weighted pullups" },
+    { "date": "2026-08-19", "type": "yoga", "duration_min": 45, "calories": 180, "rpe": 3, "notes": "Recovery flow" },
+    { "date": "2026-08-18", "type": "cardio", "duration_min": 50, "calories": 580, "rpe": 7, "notes": "Long run - 10km" }
+  ],
+  "sleep": [
+    { "date": "2026-08-29", "duration_hours": 7.8, "quality": "good", "deep_hours": 1.8, "rem_hours": 1.9, "hrv": 70 },
+    { "date": "2026-08-28", "duration_hours": 7.2, "quality": "good", "deep_hours": 1.5, "rem_hours": 1.6, "hrv": 65 },
+    { "date": "2026-08-27", "duration_hours": 8.1, "quality": "excellent", "deep_hours": 2.1, "rem_hours": 2.0, "hrv": 72 },
+    { "date": "2026-08-26", "duration_hours": 7.5, "quality": "good", "deep_hours": 1.7, "rem_hours": 1.8, "hrv": 68 },
+    { "date": "2026-08-25", "duration_hours": 6.9, "quality": "fair", "deep_hours": 1.3, "rem_hours": 1.4, "hrv": 60 },
+    { "date": "2026-08-24", "duration_hours": 7.3, "quality": "good", "deep_hours": 1.6, "rem_hours": 1.7, "hrv": 66 },
+    { "date": "2026-08-23", "duration_hours": 8.0, "quality": "excellent", "deep_hours": 2.0, "rem_hours": 2.1, "hrv": 74 }
+  ],
+  "measurements": [
+    { "date": "2026-08-01", "weight": 78.5, "body_fat": 14.2, "muscle_mass": 38.2, "waist": 82, "notes": "Start of cut" },
+    { "date": "2026-08-15", "weight": 77.8, "body_fat": 13.8, "muscle_mass": 38.5, "waist": 81, "notes": "Progressing well" },
+    { "date": "2026-08-29", "weight": 77.2, "body_fat": 13.5, "muscle_mass": 38.7, "waist": 80, "notes": "Leanest in months" }
+  ],
+  "targets": {
+    "workouts_done": 4,
+    "workouts_target": 5,
+    "active_minutes_done": 320,
+    "active_minutes_target": 300,
+    "avg_steps": 9200,
+    "steps_target": 10000,
+    "avg_sleep": 7.5,
+    "sleep_target": 8
+  },
+  "supplements": [
+    { "name": "Creatine Monohydrate", "dosage": "5g", "frequency": "Daily", "time": "Post-workout", "purpose": "Strength & power", "active": true },
+    { "name": "Vitamin D3 + K2", "dosage": "5000 IU", "frequency": "Daily", "time": "Morning", "purpose": "Bone health, immunity", "active": true },
+    { "name": "Omega-3", "dosage": "2g", "frequency": "Daily", "time": "Lunch", "purpose": "Inflammation, heart", "active": true },
+    { "name": "Magnesium Glycinate", "dosage": "400mg", "frequency": "Daily", "time": "Before bed", "purpose": "Sleep, recovery", "active": true },
+    { "name": "Zinc Picolinate", "dosage": "30mg", "frequency": "Daily", "time": "Morning", "purpose": "Testosterone, immunity", "active": true },
+    { "name": "Pre-workout", "dosage": "1 scoop", "frequency": "Training days", "time": "Pre-workout", "purpose": "Energy, focus", "active": true }
+  ]
 }

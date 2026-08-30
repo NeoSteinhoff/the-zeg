@@ -1,0 +1,50 @@
+{
+  "stats": {
+    "active_courses": 3,
+    "reading_books": 2,
+    "active_projects": 2,
+    "weekly_hours": 12.5,
+    "weekly_target": 15,
+    "completed_this_month": 4,
+    "total_skills": 8
+  },
+  "courses": [
+    { "title": "Advanced Machine Learning Specialization", "platform": "coursera", "progress": 65, "hours_spent": 28, "next_lesson": "Transformer Architectures (Week 7)", "status": "active" },
+    { "title": "System Design Interview Prep", "platform": "udemy", "progress": 40, "hours_spent": 15, "next_lesson": "Rate Limiting & Throttling", "status": "active" },
+    { "title": "Arabic for Business - Level 3", "platform": "other", "progress": 80, "hours_spent": 35, "next_lesson": "Negotiation Vocabulary", "status": "active" }
+  ],
+  "books": [
+    { "title": "The Almanack of Naval Ravikant", "author": "Eric Jorgenson", "status": "reading", "progress": 70, "pages_read": 168, "total_pages": 240, "started": "2026-07-15", "rating": 4.8 },
+    { "title": "Designing Data-Intensive Applications", "author": "Martin Kleppmann", "status": "reading", "progress": 45, "pages_read": 285, "total_pages": 616, "started": "2026-06-01", "rating": 4.9 },
+    { "title": "Atomic Habits", "author": "James Clear", "status": "finished", "progress": 100, "pages_read": 320, "total_pages": 320, "started": "2026-05-01", "rating": 4.7 },
+    { "title": "Zero to One", "author": "Peter Thiel", "status": "want_to_read", "progress": 0, "pages_read": 0, "total_pages": 224, "started": null, "rating": null }
+  ],
+  "projects": [
+    { "name": "Personal AI Agent Framework", "primary_skill": "programming", "progress": 55, "hours_invested": 42, "last_worked": "2026-08-28T20:00:00Z", "status": "active" },
+    { "name": "Dubai Real Estate Analysis Dashboard", "primary_skill": "business", "progress": 30, "hours_invested": 18, "last_worked": "2026-08-25T14:00:00Z", "status": "active" },
+    { "name": "Learn Rust by Building a CLI", "primary_skill": "programming", "progress": 100, "hours_invested": 35, "last_worked": "2026-07-20T10:00:00Z", "status": "completed" }
+  ],
+  "weekly_time": [
+    { "week": "Jul 28 - Aug 3", "hours": 10.5 },
+    { "week": "Aug 4 - Aug 10", "hours": 14.0 },
+    { "week": "Aug 11 - Aug 17", "hours": 12.5 },
+    { "week": "Aug 18 - Aug 24", "hours": 15.5 },
+    { "week": "Aug 25 - Aug 31", "hours": 12.5 }
+  ],
+  "skills": [
+    { "name": "Python / ML Engineering", "level": 5, "xp": 12500 },
+    { "name": "System Architecture", "level": 4, "xp": 8200 },
+    { "name": "Arabic (Gulf Dialect)", "level": 3, "xp": 4100 },
+    { "name": "Technical Writing", "level": 4, "xp": 7800 },
+    { "name": "Investment Analysis", "level": 3, "xp": 3900 },
+    { "name": "Public Speaking", "level": 2, "xp": 1800 },
+    { "name": "UX/UI Design", "level": 2, "xp": 1650 },
+    { "name": "Project Management", "level": 3, "xp": 3200 }
+  ],
+  "completed": [
+    { "title": "Rust CLI Project - Task Manager", "type": "project", "completed": "2026-07-20", "hours": 35, "notes": "Published to crates.io" },
+    { "title": "Atomic Habits", "type": "book", "completed": "2026-06-15", "hours": 8, "notes": "Re-read, implemented habit stacking" },
+    { "title": "Distributed Systems Fundamentals", "type": "course", "completed": "2026-07-10", "hours": 24, "notes": "MIT 6.824 - all labs passed" },
+    { "title": "Neural Networks from Scratch", "type": "project", "completed": "2026-06-28", "hours": 30, "notes": "Built micrograd in Python" }
+  ]
+}

@@ -9,7 +9,6 @@
 <title>The Zeg — Unified Dashboard</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="manifest" href="/manifest.json">
-<script src="app.js" defer></script>
 </head>
 <body>
 <div id="app">
@@ -79,6 +78,16 @@
         <div class="nav-item" data-view="cost-models"><span class="nav-icon">○</span><span>Cost & Models</span></div>
       </div>
     </div>
+    <div class="nav-section">
+      <div class="nav-section-title">Personal</div>
+      <div class="nav-group">
+        <div class="nav-item" data-view="finance"><span class="nav-icon">💰</span><span>Finance</span></div>
+        <div class="nav-item" data-view="health"><span class="nav-icon">💪</span><span>Health</span></div>
+        <div class="nav-item" data-view="dating"><span class="nav-icon">💘</span><span>Dating</span></div>
+        <div class="nav-item" data-view="learning"><span class="nav-icon">📚</span><span>Learning</span></div>
+        <div class="nav-item" data-view="habits"><span class="nav-icon">✅</span><span>Habits</span></div>
+      </div>
+    </div>
     <div class="theme-selector">
       <div class="nav-section-title">Themes</div>
       <div class="nav-group">
@@ -124,6 +133,7 @@
   </div>
 </div>
 
-<script src="app.js"></script>
+<script src="components.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

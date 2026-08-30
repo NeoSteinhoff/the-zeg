@@ -3,7 +3,7 @@
    Kanban tasks from kanban.db + async delegations from state.db
    ═══════════════════════════════════════════════════ */
 
-import { showLoading } from '../utils.js';
+import { showLoading, escapeHtml } from '../utils.js';
 
 export function init(container, api) {
   showLoading('Loading tasks…', container);
@@ -66,47 +66,148 @@ async function loadData(api) {
     statusCounts[s] = (statusCounts[s] || 0) + 1;
   });
 
-  document.getElementById('tasks-stats').innerHTML = `
-    <div class="stat blue"><div class="num">${tasks.length}</div><div class="lbl">Total Tasks</div></div>
-    <div class="stat orange"><div class="num">${statusCounts.todo || 0}</div><div class="lbl">Todo</div></div>
-    <div class="stat purple"><div class="num">${statusCounts.in_progress || 0}</div><div class="lbl">In Progress</div></div>
-    <div class="stat green"><div class="num">${statusCounts.done || 0}</div><div class="lbl">Done</div></div>
-    <div class="stat red"><div class="num">${delegations.filter(d => d.state === 'running').length}</div><div class="lbl">Active Dels</div></div>
-  `;
+  // SECURITY: Use DOM APIs instead of innerHTML
+  const statsEl = document.getElementById('tasks-stats');
+  statsEl.innerHTML = '';
+  [
+    { class: 'blue', num: tasks.length, lbl: 'Total Tasks' },
+    { class: 'orange', num: statusCounts.todo || 0, lbl: 'Todo' },
+    { class: 'purple', num: statusCounts.in_progress || 0, lbl: 'In Progress' },
+    { class: 'green', num: statusCounts.done || 0, lbl: 'Done' },
+    { class: 'red', num: delegations.filter(d => d.state === 'running').length, lbl: 'Active Dels' },
+  ].forEach(s => {
+    const card = document.createElement('div');
+    card.className = `stat ${s.class}`;
+    const num = document.createElement('div');
+    num.className = 'num';
+    num.textContent = s.num;
+    const lbl = document.createElement('div');
+    lbl.className = 'lbl';
+    lbl.textContent = s.lbl;
+    card.appendChild(num);
+    card.appendChild(lbl);
+    statsEl.appendChild(card);
+  });
 
   // Tasks table
   const tbody = document.querySelector('#tasks-table tbody');
   if (tbody) {
-    tbody.innerHTML = tasks.map(t => `
-      <tr>
-        <td><span style="font-family:var(--mono);font-size:11px">#${(t.id || '').slice(0, 8)}</span></td>
-        <td>${t.title || '—'}</td>
-        <td><span class="badge ${statusBadge(t.status)}">${t.status || '—'}</span></td>
-        <td><span class="badge ${priorityBadge(t.priority)}">P${t.priority || 0}</span></td>
-        <td>${t.assignee || t.created_by || '—'}</td>
-        <td><span style="font-family:var(--mono);font-size:11px">${fmtTs(t.created_at)}</span></td>
-        <td>
-          <button class="btn btn-ghost" style="font-size:9px;padding:2px 6px" onclick="viewTaskDetail('${t.id}')">View</button>
-        </td>
-      </tr>
-    `).join('') || '<tr><td colspan="7" class="empty">No tasks found</td></tr>';
+    tbody.innerHTML = '';
+    if (tasks.length === 0) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 7;
+      td.className = 'empty';
+      td.textContent = 'No tasks found';
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    } else {
+      tasks.forEach(t => {
+        const tr = document.createElement('tr');
+        
+        const tdId = document.createElement('td');
+        const idSpan = document.createElement('span');
+        idSpan.style.cssText = 'font-family:var(--mono);font-size:11px';
+        idSpan.textContent = `#${(t.id || '').slice(0, 8)}`;
+        tdId.appendChild(idSpan);
+        
+        const tdTitle = document.createElement('td');
+        tdTitle.textContent = t.title || '—';
+        
+        const tdStatus = document.createElement('td');
+        const statusBadgeEl = document.createElement('span');
+        statusBadgeEl.className = `badge ${statusBadge(t.status)}`;
+        statusBadgeEl.textContent = t.status || '—';
+        tdStatus.appendChild(statusBadgeEl);
+        
+        const tdPriority = document.createElement('td');
+        const priorityBadgeEl = document.createElement('span');
+        priorityBadgeEl.className = `badge ${priorityBadge(t.priority)}`;
+        priorityBadgeEl.textContent = `P${t.priority || 0}`;
+        tdPriority.appendChild(priorityBadgeEl);
+        
+        const tdAssignee = document.createElement('td');
+        tdAssignee.textContent = t.assignee || t.created_by || '—';
+        
+        const tdCreated = document.createElement('td');
+        const createdSpan = document.createElement('span');
+        createdSpan.style.cssText = 'font-family:var(--mono);font-size:11px';
+        createdSpan.textContent = fmtTs(t.created_at);
+        tdCreated.appendChild(createdSpan);
+        
+        const tdActions = document.createElement('td');
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-ghost';
+        btn.style.cssText = 'font-size:9px;padding:2px 6px';
+        btn.textContent = 'View';
+        btn.onclick = () => viewTaskDetail(t.id);
+        tdActions.appendChild(btn);
+        
+        tr.appendChild(tdId);
+        tr.appendChild(tdTitle);
+        tr.appendChild(tdStatus);
+        tr.appendChild(tdPriority);
+        tr.appendChild(tdAssignee);
+        tr.appendChild(tdCreated);
+        tr.appendChild(tdActions);
+        tbody.appendChild(tr);
+      });
+    }
   }
 
   // Delegations table
   const delBody = document.querySelector('#delegations-table tbody');
   if (delBody) {
-    delBody.innerHTML = delegations.map(d => {
-      const task = d.task || {};
-      return `
-      <tr>
-        <td style="font-family:var(--mono);font-size:11px">${(task.goal || '').slice(0, 40)}</td>
-        <td><span class="badge ${d.state === 'running' ? 'badge-running' : d.state === 'completed' ? 'badge-ok' : 'badge-pending'}">${d.state || '—'}</span></td>
-        <td><span style="font-family:var(--mono);font-size:11px">${fmtTs(d.dispatched_at)}</span></td>
-        <td><span style="font-family:var(--mono);font-size:11px">#${(d.origin_session || '').slice(0, 8)}</span></td>
-        <td><span class="badge ${d.delivery_state === 'delivered' ? 'badge-ok' : d.delivery_state === 'pending' ? 'badge-running' : 'badge-pending'}">${d.delivery_state || '—'}</span></td>
-      </tr>
-      `;
-    }).join('') || '<tr><td colspan="5" class="empty">No active delegations</td></tr>';
+    delBody.innerHTML = '';
+    if (delegations.length === 0) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = 5;
+      td.className = 'empty';
+      td.textContent = 'No active delegations';
+      tr.appendChild(td);
+      delBody.appendChild(tr);
+    } else {
+      delegations.forEach(d => {
+        const task = d.task || {};
+        const tr = document.createElement('tr');
+        
+        const tdTask = document.createElement('td');
+        tdTask.style.cssText = 'font-family:var(--mono);font-size:11px';
+        tdTask.textContent = (task.goal || '').slice(0, 40);
+        
+        const tdState = document.createElement('td');
+        const stateBadge = document.createElement('span');
+        stateBadge.className = `badge ${d.state === 'running' ? 'badge-running' : d.state === 'completed' ? 'badge-ok' : 'badge-pending'}`;
+        stateBadge.textContent = d.state || '—';
+        tdState.appendChild(stateBadge);
+        
+        const tdStarted = document.createElement('td');
+        const startedSpan = document.createElement('span');
+        startedSpan.style.cssText = 'font-family:var(--mono);font-size:11px';
+        startedSpan.textContent = fmtTs(d.dispatched_at);
+        tdStarted.appendChild(startedSpan);
+        
+        const tdOwner = document.createElement('td');
+        const ownerSpan = document.createElement('span');
+        ownerSpan.style.cssText = 'font-family:var(--mono);font-size:11px';
+        ownerSpan.textContent = `#${(d.origin_session || '').slice(0, 8)}`;
+        tdOwner.appendChild(ownerSpan);
+        
+        const tdDelivery = document.createElement('td');
+        const deliveryBadge = document.createElement('span');
+        deliveryBadge.className = `badge ${d.delivery_state === 'delivered' ? 'badge-ok' : d.delivery_state === 'pending' ? 'badge-running' : 'badge-pending'}`;
+        deliveryBadge.textContent = d.delivery_state || '—';
+        tdDelivery.appendChild(deliveryBadge);
+        
+        tr.appendChild(tdTask);
+        tr.appendChild(tdState);
+        tr.appendChild(tdStarted);
+        tr.appendChild(tdOwner);
+        tr.appendChild(tdDelivery);
+        delBody.appendChild(tr);
+      });
+    }
   }
 }
 
@@ -128,8 +229,19 @@ function fmtTs(ts) {
 }
 
 function showFallback() {
-  document.getElementById('tasks-stats').innerHTML =
-    '<div class="stat orange"><div class="num">○○○</div><div class="lbl">API Disconnected</div></div>';
+  const statsEl = document.getElementById('tasks-stats');
+  statsEl.innerHTML = '';
+  const card = document.createElement('div');
+  card.className = 'stat orange';
+  const num = document.createElement('div');
+  num.className = 'num';
+  num.textContent = '○○○';
+  const lbl = document.createElement('div');
+  lbl.className = 'lbl';
+  lbl.textContent = 'API Disconnected';
+  card.appendChild(num);
+  card.appendChild(lbl);
+  statsEl.appendChild(card);
 }
 
 // ─── Task Detail (delegates to dedicated /api/task?id= endpoint) ───

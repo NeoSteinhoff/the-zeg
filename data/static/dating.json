@@ -1,0 +1,48 @@
+{
+  "stats": {
+    "total_leads": 47,
+    "obsession": 2,
+    "active": 8,
+    "warming": 12,
+    "due_today": 5,
+    "dates_this_month": 4,
+    "new_leads": 47,
+    "contacted": 38,
+    "replied": 22,
+    "dates_set": 6,
+    "dates_completed": 4
+  },
+  "leads": [
+    { "name": "Sarah K.", "source": "app", "stage": "date_set", "last_contact": "2026-08-28T14:30:00Z", "next_action": "Confirm Saturday dinner", "due": "2026-08-30T19:00:00Z", "heat": 88, "message_count": 34, "rotation": "active", "due_now": true },
+    { "name": "Leila M.", "source": "instagram", "stage": "replied", "last_contact": "2026-08-27T20:15:00Z", "next_action": "Ask out for coffee", "due": "2026-08-30T10:00:00Z", "heat": 72, "message_count": 18, "rotation": "active", "due_now": true },
+    { "name": "Aisha R.", "source": "referral", "stage": "contacted", "last_contact": "2026-08-26T11:00:00Z", "next_action": "Follow up on story reply", "due": "2026-08-30T12:00:00Z", "heat": 55, "message_count": 5, "rotation": "warming", "due_now": true },
+    { "name": "Nadia A.", "source": "app", "stage": "replied", "last_contact": "2026-08-25T18:45:00Z", "next_action": "Send meme, gauge vibe", "due": "2026-08-30T15:00:00Z", "heat": 63, "message_count": 12, "rotation": "warming", "due_now": true },
+    { "name": "Mariam H.", "source": "event", "stage": "contacted", "last_contact": "2026-08-24T22:00:00Z", "next_action": "Voice note about the conference", "due": "2026-08-30T09:00:00Z", "heat": 48, "message_count": 3, "rotation": "warming", "due_now": true },
+    { "name": "Yasmin T.", "source": "instagram", "stage": "dating", "last_contact": "2026-08-28T16:00:00Z", "next_action": "Plan second date", "due": "2026-09-01T10:00:00Z", "heat": 82, "message_count": 45, "rotation": "obsession", "due_now": false },
+    { "name": "Layla S.", "source": "app", "stage": "replied", "last_contact": "2026-08-27T13:30:00Z", "next_action": "Transition to WhatsApp", "due": "2026-08-31T10:00:00Z", "heat": 68, "message_count": 22, "rotation": "active", "due_now": false },
+    { "name": "Fatima Z.", "source": "cold", "stage": "new", "last_contact": "2026-08-29T10:00:00Z", "next_action": "Opening message sent", "due": "2026-08-31T10:00:00Z", "heat": 15, "message_count": 1, "rotation": "bench", "due_now": false }
+  ],
+  "conversations": [
+    { "timestamp": "2026-08-28T14:32:00Z", "lead_name": "Sarah K.", "channel": "whatsapp", "direction": "in", "preview": "Saturday at 7 works! Pierchic?" },
+    { "timestamp": "2026-08-28T14:30:00Z", "lead_name": "Sarah K.", "channel": "whatsapp", "direction": "out", "preview": "Perfect. I'll book a table. What time works?" },
+    { "timestamp": "2026-08-27T20:18:00Z", "lead_name": "Leila M.", "channel": "instagram", "direction": "in", "preview": "Haha that reel was actually funny 😂" },
+    { "timestamp": "2026-08-27T20:15:00Z", "lead_name": "Leila M.", "channel": "instagram", "direction": "out", "preview": "Saw this and thought of you [meme sent]" },
+    { "timestamp": "2026-08-27T13:35:00Z", "lead_name": "Layla S.", "channel": "app", "direction": "in", "preview": "My WhatsApp is +971 50 xxx xxxx if easier" },
+    { "timestamp": "2026-08-26T11:05:00Z", "lead_name": "Aisha R.", "channel": "instagram", "direction": "out", "preview": "Your story about the desert trip looked amazing" }
+  ],
+  "dates": [
+    { "scheduled_at": "2026-08-30T19:00:00Z", "lead_name": "Sarah K.", "type": "dinner", "location": "Pierchic, Madinat Jumeirah", "status": "confirmed", "notes": "Anniversary of first match" },
+    { "scheduled_at": "2026-09-02T10:30:00Z", "lead_name": "Leila M.", "type": "coffee", "location": "% Arabica, DIFC", "status": "scheduled", "notes": "First date - keep it light" },
+    { "scheduled_at": "2026-09-05T18:00:00Z", "lead_name": "Yasmin T.", "type": "activity", "location": "Kayaking at Hatta", "status": "scheduled", "notes": "Second date - adventure" }
+  ],
+  "levers": [
+    { "lead": "Sarah K.", "lever": "L1" },
+    { "lead": "Sarah K.", "lever": "L3" },
+    { "lead": "Leila M.", "lever": "L2" },
+    { "lead": "Aisha R.", "lever": "L1" },
+    { "lead": "Nadia A.", "lever": "L2" },
+    { "lead": "Yasmin T.", "lever": "L3" },
+    { "lead": "Yasmin T.", "lever": "L1" },
+    { "lead": "Layla S.", "lever": "L2" }
+  ]
+}

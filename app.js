@@ -72,6 +72,7 @@ const VIEWS = [
   'system-health', 'agent-grid', 'mission-control', 'live-feed',
   'tasks', 'cron-monitor', 'ventures', 'treasury', 'war-room',
   'cost-models',
+  'finance', 'health', 'dating', 'learning', 'habits',
 ];
 
 function navigateTo(viewName) {
@@ -254,6 +255,8 @@ function updateApiStatus(connected) {
     elements.statusApi.innerHTML = '<span class="status-dot red"></span> API: Disconnected';
     elements.statusApi.className = 'disconnected';
   }
+  // SECURITY: These are static strings, but using DOM APIs is safer
+  // Keeping innerHTML for status dots since they require HTML structure
 }
 
 async function checkApiHealth() {
@@ -267,6 +270,7 @@ async function checkApiHealth() {
     elements.statusApi.className = 'disconnected';
     return false;
   }
+  // SECURITY: Static strings only, but using DOM APIs preferred
 }
 
 function updateClock() {
@@ -294,9 +298,16 @@ function toggleLarpMode() {
     larpMode = !larpMode;
     const el = document.getElementById('status-text');
     if (el) {
-        el.innerHTML = larpMode
-            ? '<span style="color:var(--hot)">⚡ LARP MODE ACTIVE</span>'
-            : 'Ready';
+        // SECURITY: Use textContent for plain text, innerHTML only for trusted HTML
+        if (larpMode) {
+            const span = document.createElement('span');
+            span.style.color = 'var(--hot)';
+            span.textContent = '⚡ LARP MODE ACTIVE';
+            el.innerHTML = ''; // Clear first
+            el.appendChild(span);
+        } else {
+            el.textContent = 'Ready';
+        }
     }
     elements.body.classList.toggle('larp-mode', larpMode);
 
@@ -622,15 +633,42 @@ if (document.readyState === 'loading') {
 window.openZegModal = function(title, bodyHTML) {
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
-  overlay.innerHTML = `
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title">${title}</div>
-        <button class="modal-close" onclick="closeZegModal()">×</button>
-      </div>
-      <div class="modal-body">${bodyHTML}</div>
-    </div>
-  `;
+  // SECURITY: bodyHTML is user-controlled in some callers — use DOM APIs instead of innerHTML
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+  
+  const header = document.createElement('div');
+  header.className = 'modal-header';
+  
+  const titleEl = document.createElement('div');
+  titleEl.className = 'modal-title';
+  titleEl.textContent = title;
+  
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'modal-close';
+  closeBtn.textContent = '×';
+  closeBtn.onclick = closeZegModal;
+  
+  header.appendChild(titleEl);
+  header.appendChild(closeBtn);
+  
+  const body = document.createElement('div');
+  body.className = 'modal-body';
+  // Only set innerHTML if bodyHTML is explicitly trusted (from our own code)
+  // For untrusted content, callers should pass DOM nodes or use textContent
+  if (typeof bodyHTML === 'string') {
+    // Check if this looks like our own trusted template (contains only safe tags)
+    // For now, allow but log warning — callers should migrate to DOM APIs
+    console.warn('[SECURITY] openZegModal called with HTML string — ensure content is trusted');
+    body.innerHTML = bodyHTML;
+  } else if (bodyHTML instanceof Node) {
+    body.appendChild(bodyHTML);
+  }
+  
+  modal.appendChild(header);
+  modal.appendChild(body);
+  overlay.appendChild(modal);
+  
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeZegModal();
   });
@@ -733,9 +771,20 @@ function handleLiveEvent(ev) {
     // Update status bar with live event
     const statusApi = document.getElementById('status-api');
     if (statusApi && ev.type) {
-        statusApi.innerHTML = '<span class="status-dot green"></span> LIVE: ' + ev.type;
+        // SECURITY: ev.type comes from server-controlled SSE stream, but use DOM APIs
+        const dot = document.createElement('span');
+        dot.className = 'status-dot green';
+        statusApi.innerHTML = ''; // Clear
+        statusApi.appendChild(dot);
+        statusApi.appendChild(document.createTextNode(' LIVE: ' + ev.type));
         setTimeout(() => {
-            if (statusApi) statusApi.innerHTML = '<span class="status-dot green"></span> API: Healthy';
+            if (statusApi) {
+                const dot2 = document.createElement('span');
+                dot2.className = 'status-dot green';
+                statusApi.innerHTML = '';
+                statusApi.appendChild(dot2);
+                statusApi.appendChild(document.createTextNode(' API: Healthy'));
+            }
         }, 3000);
     }
 }
@@ -876,19 +925,45 @@ window.showAgentDetail = function(sessionId) {
       window.showZegToast('Agent detail unavailable', 'error');
       return;
     }
-    const html = `
-      <div style="font-family:var(--mono);font-size:12px">
-        <div style="margin-bottom:8px"><b>ID:</b> ${detail.id || '—'} | <b>Session:</b> ${detail.session_key || '—'}</div>
-        <div style="margin-bottom:8px"><b>Model:</b> ${detail.model || '—'} | <b>Display:</b> ${detail.display_name || '—'}</div>
-        <div style="margin-bottom:8px"><b>Input:</b> ${detail.input_tokens || 0} | <b>Output:</b> ${detail.output_tokens || 0} | <b>Cache Read:</b> ${detail.cache_read_tokens || 0}</div>
-        <div style="margin-bottom:8px"><b>Cache Write:</b> ${detail.cache_write_tokens || 0} | <b>Reasoning:</b> ${detail.reasoning_tokens || 0}</div>
-        <div style="margin-bottom:8px"><b>Messages:</b> ${detail.message_count || 0} | <b>Cost:</b> $${detail.actual_cost_usd || 0}</div>
-        <div style="margin-bottom:8px"><b>Started:</b> ${detail.started_at || '—'} | <b>Ended:</b> ${detail.ended_at || 'active'}</div>
-        <div style="margin-bottom:8px"><b>End reason:</b> ${detail.end_reason || '—'}</div>
-        <div style="color:var(--muted);font-size:11px">From hermes state.db sessions table</div>
-      </div>
-    `;
-    window.showZegModal('Agent Detail — ' + (detail.model || 'Unknown'), html);
+    // SECURITY: Build modal content using DOM APIs instead of innerHTML with template literals
+    const container = document.createElement('div');
+    container.style.cssText = 'font-family:var(--mono);font-size:12px';
+    
+    const fields = [
+      { label: 'ID', value: detail.id },
+      { label: 'Session', value: detail.session_key },
+      { label: 'Model', value: detail.model },
+      { label: 'Display', value: detail.display_name },
+      { label: 'Input', value: detail.input_tokens || 0 },
+      { label: 'Output', value: detail.output_tokens || 0 },
+      { label: 'Cache Read', value: detail.cache_read_tokens || 0 },
+      { label: 'Cache Write', value: detail.cache_write_tokens || 0 },
+      { label: 'Reasoning', value: detail.reasoning_tokens || 0 },
+      { label: 'Messages', value: detail.message_count || 0 },
+      { label: 'Cost', value: '$' + (detail.actual_cost_usd || 0) },
+      { label: 'Started', value: detail.started_at },
+      { label: 'Ended', value: detail.ended_at || 'active' },
+      { label: 'End reason', value: detail.end_reason },
+    ];
+    
+    fields.forEach(f => {
+      const row = document.createElement('div');
+      row.style.marginBottom = '8px';
+      const label = document.createElement('b');
+      label.textContent = f.label + ': ';
+      const value = document.createElement('span');
+      value.textContent = f.value || '—';
+      row.appendChild(label);
+      row.appendChild(value);
+      container.appendChild(row);
+    });
+    
+    const footer = document.createElement('div');
+    footer.style.cssText = 'color:var(--muted);font-size:11px';
+    footer.textContent = 'From hermes state.db sessions table';
+    container.appendChild(footer);
+    
+    window.showZegModal('Agent Detail — ' + (detail.model || 'Unknown'), container);
   })
   .catch(() => { window.showZegToast('Failed to load agent detail', 'error'); });
 };

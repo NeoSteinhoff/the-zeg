@@ -3,7 +3,7 @@
    20 first-person souls + Hamza-Ali persona
    ═══════════════════════════════════════════════════ */
 
-import { showLoading } from '../utils.js';
+import { showLoading, escapeHtml, createTextElement } from '../utils.js';
 
 export function init(container, api) {
   showLoading('Loading soul engine…', container);
@@ -46,29 +46,84 @@ async function loadData(api) {
   }
 
   const stats = data.stats || {};
-  document.getElementById('soul-stats').innerHTML = `
-    <div class="stat blue"><div class="num">${stats.total_souls || 20}</div><div class="lbl">Total Souls</div></div>
-    <div class="stat green"><div class="num">${stats.dating_souls || 6}</div><div class="lbl">Dating Souls</div></div>
-    <div class="stat orange"><div class="num">${stats.business_souls || 12}</div><div class="lbl">Business Souls</div></div>
-    <div class="stat red"><div class="num">${stats.discipline_souls || 1}</div><div class="lbl">Discipline Souls</div></div>
-    <div class="stat purple"><div class="num">${stats.creative_souls || 1}</div><div class="lbl">Creative Souls</div></div>
-  `;
+  // SECURITY: Use DOM APIs instead of innerHTML with template literals
+  const statsEl = document.getElementById('soul-stats');
+  statsEl.innerHTML = ''; // Clear
+  [
+    { class: 'blue', num: stats.total_souls || 20, lbl: 'Total Souls' },
+    { class: 'green', num: stats.dating_souls || 6, lbl: 'Dating Souls' },
+    { class: 'orange', num: stats.business_souls || 12, lbl: 'Business Souls' },
+    { class: 'red', num: stats.discipline_souls || 1, lbl: 'Discipline Souls' },
+    { class: 'purple', num: stats.creative_souls || 1, lbl: 'Creative Souls' },
+  ].forEach(s => {
+    const card = document.createElement('div');
+    card.className = `stat ${s.class}`;
+    const num = document.createElement('div');
+    num.className = 'num';
+    num.textContent = s.num;
+    const lbl = document.createElement('div');
+    lbl.className = 'lbl';
+    lbl.textContent = s.lbl;
+    card.appendChild(num);
+    card.appendChild(lbl);
+    statsEl.appendChild(card);
+  });
 
   const souls = data.souls || [];
   const grid = document.getElementById('soul-grid');
   if (grid) {
-    grid.innerHTML = souls.map(s => `
-      <div class="card" style="cursor:pointer" onclick="selectSoul('${s.name}')">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <span class="badge ${s.category === 'dating' ? 'badge-hot' : s.category === 'business' ? 'badge-agent' : s.category === 'discipline' ? 'badge-pending' : 'badge-running'}">${s.category}</span>
-          <span style="font-weight:500;font-size:12px">${s.name}</span>
-        </div>
-        <div style="font-size:10px;color:var(--muted);line-height:1.4">${(s.description || '').slice(0, 80)}${(s.description || '').length > 80 ? '...' : ''}</div>
-        <div style="margin-top:6px;display:flex;gap:4px">
-          ${['ask','talk','advise'].map(fn => `<button class="btn btn-ghost" style="font-size:9px;padding:2px 6px" onclick="quickSoul('${s.name}','${fn}')">${fn}</button>`).join('')}
-        </div>
-      </div>
-    `).join('') || '<div class="sub">No souls loaded</div>';
+    grid.innerHTML = '';
+    souls.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.cursor = 'pointer';
+      card.onclick = () => selectSoul(s.name);
+      
+      const header = document.createElement('div');
+      header.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:8px';
+      
+      const badge = document.createElement('span');
+      const category = s.category || 'unknown';
+      const badgeClass = category === 'dating' ? 'badge-hot' : 
+                        category === 'business' ? 'badge-agent' : 
+                        category === 'discipline' ? 'badge-pending' : 'badge-running';
+      badge.className = `badge ${badgeClass}`;
+      badge.textContent = category;
+      
+      const nameSpan = document.createElement('span');
+      nameSpan.style.cssText = 'font-weight:500;font-size:12px';
+      nameSpan.textContent = s.name || '—';
+      
+      header.appendChild(badge);
+      header.appendChild(nameSpan);
+      
+      const desc = document.createElement('div');
+      desc.style.cssText = 'font-size:10px;color:var(--muted);line-height:1.4';
+      desc.textContent = (s.description || '').slice(0, 80) + ((s.description || '').length > 80 ? '...' : '');
+      
+      const btnContainer = document.createElement('div');
+      btnContainer.style.cssText = 'margin-top:6px;display:flex;gap:4px';
+      ['ask', 'talk', 'advise'].forEach(fn => {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-ghost';
+        btn.style.cssText = 'font-size:9px;padding:2px 6px';
+        btn.textContent = fn;
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          quickSoul(s.name, fn);
+        };
+        btnContainer.appendChild(btn);
+      });
+      
+      card.appendChild(header);
+      card.appendChild(desc);
+      card.appendChild(btnContainer);
+      grid.appendChild(card);
+    });
+    
+    if (!souls.length) {
+      grid.innerHTML = '<div class="sub">No souls loaded</div>';
+    }
   }
 
   // Select default soul
@@ -79,8 +134,12 @@ async function loadData(api) {
 
 function selectSoul(name) {
   document.getElementById('soul-active-name').textContent = name;
-  document.getElementById('soul-response').innerHTML =
-    `<div style="color:var(--muted)">Soul "${name}" selected. Ask it anything.</div>`;
+  const response = document.getElementById('soul-response');
+  response.innerHTML = '';
+  const div = document.createElement('div');
+  div.style.color = 'var(--muted)';
+  div.textContent = `Soul "${name}" selected. Ask it anything.`;
+  response.appendChild(div);
 }
 
 async function sendToSoul() {
@@ -90,17 +149,32 @@ async function sendToSoul() {
   if (!prompt.value.trim()) return;
 
   const query = prompt.value;
-  response.innerHTML = `<div style="color:var(--muted)">Thinking... 🤔</div>`;
+  response.innerHTML = '';
+  const thinking = document.createElement('div');
+  thinking.style.color = 'var(--muted)';
+  thinking.textContent = 'Thinking... 🤔';
+  response.appendChild(thinking);
 
   try {
     const result = await ZEG.api.fetch(`/api/soul/${soul}?q=${encodeURIComponent(query)}`);
+    response.innerHTML = '';
     if (result && result.response) {
-      response.innerHTML = `<div>${result.response}</div>`;
+      // SECURITY: result.response comes from API — treat as untrusted, use textContent
+      const div = document.createElement('div');
+      div.textContent = result.response;
+      response.appendChild(div);
     } else {
-      response.innerHTML = `<div style="color:var(--muted)">[Offline mode] Soul "${soul}" would respond to: "${query}"</div>`;
+      const div = document.createElement('div');
+      div.style.color = 'var(--muted)';
+      div.textContent = `[Offline mode] Soul "${soul}" would respond to: "${query}"`;
+      response.appendChild(div);
     }
   } catch (e) {
-    response.innerHTML = `<div style="color:var(--muted)">[API Error] Could not reach soul "${soul}"</div>`;
+    response.innerHTML = '';
+    const div = document.createElement('div');
+    div.style.color = 'var(--muted)';
+    div.textContent = `[API Error] Could not reach soul "${soul}"`;
+    response.appendChild(div);
   }
 }
 
@@ -108,9 +182,14 @@ async function talkToSoul() {
   const soul = document.getElementById('soul-active-name').textContent;
   try {
     const result = await ZEG.api.fetch(`/api/soul/${soul}/talk?duration=30`);
+    const response = document.getElementById('soul-response');
+    response.innerHTML = '';
     if (result && result.transcript) {
-      document.getElementById('soul-response').innerHTML =
-        `<pre style="font-size:12px;line-height:1.6;white-space:pre-wrap">${result.transcript}</pre>`;
+      // SECURITY: transcript from API — use textContent in pre element
+      const pre = document.createElement('pre');
+      pre.style.cssText = 'font-size:12px;line-height:1.6;white-space:pre-wrap';
+      pre.textContent = result.transcript;
+      response.appendChild(pre);
     }
   } catch (e) {
     console.error(e);
@@ -136,6 +215,17 @@ window.talkToSoul = talkToSoul;
 window.quickSoul = quickSoul;
 
 function showFallback() {
-  document.getElementById('soul-stats').innerHTML =
-    '<div class="stat orange"><div class="num">○○○</div><div class="lbl">API Disconnected</div></div>';
+  const statsEl = document.getElementById('soul-stats');
+  statsEl.innerHTML = '';
+  const div = document.createElement('div');
+  div.className = 'stat orange';
+  const num = document.createElement('div');
+  num.className = 'num';
+  num.textContent = '○○○';
+  const lbl = document.createElement('div');
+  lbl.className = 'lbl';
+  lbl.textContent = 'API Disconnected';
+  div.appendChild(num);
+  div.appendChild(lbl);
+  statsEl.appendChild(div);
 }

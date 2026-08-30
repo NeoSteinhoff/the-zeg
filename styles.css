@@ -602,9 +602,85 @@ body {
 /* ═══ Cards Grid (stat cards) ═══ */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* Section header with icon */
+.section-header {
+  display: flex;
+  align-items: center;
   gap: var(--space-3);
   margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-header .section-icon {
+  font-size: 20px;
+  color: var(--accent);
+}
+
+.section-header .section-title {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fg);
+  letter-spacing: 0.5px;
+}
+
+.section-header .section-subtitle {
+  color: var(--muted);
+  font-size: 11px;
+  font-family: var(--mono);
+  margin-left: auto;
+}
+
+/* ═══ Data Tables ═══ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+.data-table th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 10px;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--border);
+  color: var(--fg);
+}
+
+.data-table tbody tr:hover {
+  background: var(--panel-2);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table .mono {
+  font-family: var(--mono);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
 }
 
 /* ═══ Grid Layout Helpers ═══ */
@@ -1816,3 +1892,203 @@ html { height: 100dvh; height: 100lvh; }
 }
 .agent-detail .label { color: var(--muted); }
 .agent-detail .value { color: var(--foreground); }
+
+/* ═══ ZEG Component Library ═══ */
+.stat-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  transition: var(--transition);
+  box-shadow: var(--glow-sm);
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-md);
+}
+.stat-icon {
+  font-size: 24px;
+  opacity: 0.5;
+}
+.stat-content {
+  flex: 1;
+}
+.stat-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-sub {
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+/* Data Table */
+.zeg-table {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.table-header {
+  display: flex;
+  background: var(--panel-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+.table-header .table-cell {
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+}
+.table-row {
+  display: flex;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.table-cell {
+  padding: var(--space-2) var(--space-3);
+  color: var(--fg);
+}
+.table-row:hover {
+  background: var(--panel-2);
+}
+
+/* Health Bar */
+.health-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.health-label {
+  font-size: 12px;
+  color: var(--muted);
+  min-width: 100px;
+  text-transform: capitalize;
+}
+.health-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.health-fill {
+  height: 100%;
+  border-radius: var(--radius-sm);
+  transition: width 0.3s ease;
+}
+.health-num {
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Status Dots */
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  font-size: 8px;
+  line-height: 1;
+}
+.status-dot.online, .status-dot.green { color: var(--good); }
+.status-dot.offline, .status-dot.red { color: var(--hot); }
+.status-dot.warning, .status-dot.yellow { color: var(--warm); }
+.status-dot.pending { color: var(--muted); }
+
+/* Tags / Chips */
+.zeg-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.zeg-tag-default { background: var(--panel-2); color: var(--muted); }
+.zeg-tag-primary { background: var(--accent); color: var(--bg); }
+.zeg-tag-success { background: var(--good); color: var(--bg); }
+.zeg-tag-warning { background: var(--warm); color: var(--bg); }
+.zeg-tag-danger { background: var(--hot); color: var(--bg); }
+.zeg-tag-sm { padding: 1px 6px; font-size: 10px; }
+.zeg-tag-lg { padding: 4px 12px; font-size: 12px; }
+
+/* Sparkline */
+.zeg-spark {
+  display: block;
+  overflow: visible;
+}
+
+/* Skeleton */
+.zeg-skeleton {
+  padding: var(--space-2);
+}
+.skeleton-line {
+  height: 14px;
+  background: var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-1);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+.skeleton-line:last-child { margin-bottom: 0; }
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  gap: var(--space-2);
+}
+.section-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+.section-header .actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+/* Panel wrapper */
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  box-shadow: var(--glow-sm);
+}
+.panel.compact { padding: var(--space-2); }
+.panel.tight { padding: var(--space-1); }
+
+/* Content section */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}}

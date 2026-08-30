@@ -117,6 +117,39 @@ export function debounce(fn, delay = 250) {
   };
 }
 
+// ─── Security: HTML Sanitization ───
+// Minimal escape for text content — use textContent instead where possible
+export function escapeHtml(text) {
+  if (text === null || text === undefined) return '';
+  return String(text)
+    .replace(/&/g, '&')
+    .replace(/</g, '<')
+    .replace(/>/g, '>')
+    .replace(/"/g, '"')
+    .replace(/'/g, '&#039;');
+}
+
+// Safe innerHTML replacement — escapes all interpolated values
+export function safeHtml(strings, ...values) {
+  return strings.reduce((acc, str, i) => acc + escapeHtml(str) + (escapeHtml(values[i]) || ''), '');
+}
+
+// Create element with text content (safe from XSS)
+export function createTextElement(tag, text, className = '') {
+  const el = document.createElement(tag);
+  el.textContent = text;
+  if (className) el.className = className;
+  return el;
+}
+
+// Create element with safe HTML (for trusted template strings only)
+export function createHtmlElement(tag, html, className = '') {
+  const el = document.createElement(tag);
+  el.innerHTML = html; // Caller must ensure html is sanitized/trusted
+  if (className) el.className = className;
+  return el;
+}
+
 // ─── Safe DOM ───
 export function el(selector, parent = document) {
   return parent.querySelector(selector);

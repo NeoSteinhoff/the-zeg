@@ -1,0 +1,53 @@
+{
+  "stats": {
+    "net_worth": 1250000,
+    "monthly_income": 28500,
+    "monthly_expenses": 14200,
+    "monthly_savings": 14300,
+    "savings_rate": 0.502,
+    "investment_value": 450000
+  },
+  "accounts": [
+    { "name": "Emirates NBD Checking", "type": "checking", "balance": 85000, "currency": "AED", "updated_at": "2026-08-29T10:00:00Z" },
+    { "name": "Emirates NBD Savings", "type": "savings", "balance": 250000, "currency": "AED", "updated_at": "2026-08-29T10:00:00Z" },
+    { "name": "ADCB Credit Card", "type": "credit", "balance": -12500, "currency": "AED", "updated_at": "2026-08-29T10:00:00Z" },
+    { "name": "Interactive Brokers", "type": "investment", "balance": 450000, "currency": "USD", "updated_at": "2026-08-29T10:00:00Z" },
+    { "name": "Binance", "type": "crypto", "balance": 35000, "currency": "USDT", "updated_at": "2026-08-29T10:00:00Z" },
+    { "name": "Cash", "type": "cash", "balance": 5000, "currency": "AED", "updated_at": "2026-08-29T10:00:00Z" }
+  ],
+  "transactions": [
+    { "date": "2026-08-28", "description": "Salary Deposit", "category": "salary", "amount": 28500, "account": "Emirates NBD Checking" },
+    { "date": "2026-08-28", "description": "Rent Payment", "category": "housing", "amount": -8500, "account": "Emirates NBD Checking" },
+    { "date": "2026-08-27", "description": "Groceries - Carrefour", "category": "food", "amount": -450, "account": "ADCB Credit Card" },
+    { "date": "2026-08-27", "description": "Gym Membership", "category": "healthcare", "amount": -300, "account": "ADCB Credit Card" },
+    { "date": "2026-08-26", "description": "Dinner - Pierchic", "category": "entertainment", "amount": -680, "account": "ADCB Credit Card" },
+    { "date": "2026-08-25", "description": "Fuel - ADNOC", "category": "transport", "amount": -200, "account": "ADCB Credit Card" },
+    { "date": "2026-08-24", "description": "Dividend - AAPL", "category": "income", "amount": 1250, "account": "Interactive Brokers" },
+    { "date": "2026-08-23", "description": "Coffee - % Arabica", "category": "food", "amount": -45, "account": "Cash" }
+  ],
+  "investments": [
+    { "symbol": "AAPL", "name": "Apple Inc.", "type": "stock", "quantity": 150, "current_price": 225.50, "avg_cost": 180.00 },
+    { "symbol": "MSFT", "name": "Microsoft Corp.", "type": "stock", "quantity": 80, "current_price": 415.20, "avg_cost": 350.00 },
+    { "symbol": "GOOGL", "name": "Alphabet Inc.", "type": "stock", "quantity": 50, "current_price": 165.80, "avg_cost": 140.00 },
+    { "symbol": "VTI", "name": "Vanguard Total Stock Market", "type": "etf", "quantity": 200, "current_price": 265.00, "avg_cost": 230.00 },
+    { "symbol": "BTC", "name": "Bitcoin", "type": "crypto", "quantity": 0.85, "current_price": 62000, "avg_cost": 45000 },
+    { "symbol": "ETH", "name": "Ethereum", "type": "crypto", "quantity": 12.5, "current_price": 3200, "avg_cost": 2800 }
+  ],
+  "budgets": [
+    { "category": "Housing", "limit": 8500, "spent": 8500 },
+    { "category": "Food & Dining", "limit": 3000, "spent": 1850 },
+    { "category": "Transport", "limit": 1500, "spent": 650 },
+    { "category": "Entertainment", "limit": 2000, "spent": 1200 },
+    { "category": "Healthcare", "limit": 1000, "spent": 300 },
+    { "category": "Shopping", "limit": 2000, "spent": 450 },
+    { "category": "Utilities", "limit": 800, "spent": 720 }
+  ],
+  "monthly_data": [
+    { "month": "Mar", "income": 28500, "expenses": 13800 },
+    { "month": "Apr", "income": 28500, "expenses": 14500 },
+    { "month": "May", "income": 28500, "expenses": 13200 },
+    { "month": "Jun", "income": 31000, "expenses": 15100 },
+    { "month": "Jul", "income": 28500, "expenses": 14200 },
+    { "month": "Aug", "income": 28500, "expenses": 14200 }
+  ]
+}
