@@ -12,7 +12,7 @@ const REFRESH_INTERVAL = 30000;
 
 // ─── State ───
 const state = {
-  theme: localStorage.getItem('zeg-theme') || 'dark',
+  theme: localStorage.getItem('zeg-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'dark'),
   currentView: 'command-center',
   apiConnected: false,
   data: {},
@@ -73,6 +73,8 @@ const VIEWS = [
   'tasks', 'cron-monitor', 'ventures', 'treasury', 'war-room',
   'cost-models',
   'finance', 'health', 'dating', 'learning', 'habits',
+  'dashboard-v2', 'email-client', 'document-vault',
+  'file-browser', 'obsidian-vault', 'prompt-sender', 'calendar',
 ];
 
 function navigateTo(viewName) {
@@ -82,6 +84,10 @@ function navigateTo(viewName) {
   state.currentView = viewName;
   renderView(viewName);
   updateNav();
+  // Update URL without reload
+  const url = new URL(window.location);
+  url.searchParams.set('view', viewName);
+  window.history.replaceState({}, '', url);
 }
 
 function updateNav() {
@@ -602,11 +608,22 @@ function init() {
   checkApiHealth();
   setInterval(checkApiHealth, 15000);
 
+  // Parse view from URL (e.g., ?view=circle-pipeline)
+  const urlParams = new URLSearchParams(window.location.search);
+  const initialView = urlParams.get('view');
+  const targetView = VIEWS.includes(initialView) ? initialView : 'command-center';
+
+  // Update state.currentView before updating nav
+  state.currentView = targetView;
+
   // Show welcome message
   elements.statusText.textContent = 'Ready';
 
-  // Navigate to command center by default
-  renderView('command-center');
+  // Update nav to mark active view
+  updateNav();
+
+  // Navigate to initial view
+  renderView(targetView);
 
   // Quick key hints
   console.log(`

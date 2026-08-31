@@ -136,6 +136,89 @@ export const ZEG = {
       el.appendChild(line);
     }
     return el;
+  },
+
+  /**
+   * 3D tilt card with dynamic glare effect (vanilla JS port of Framer Motion CometCard)
+   * @param {Object} opts - { rotateDepth, translateDepth, className, children }
+   * @returns {HTMLElement}
+   */
+  CometCard(opts = {}) {
+    const rotateDepth = opts.rotateDepth || 17.5;
+    const translateDepth = opts.translateDepth || 20;
+    const card = document.createElement('div');
+    card.className = `comet-card-wrapper ${opts.className || ''}`;
+    card.style.perspective = '1200px';
+
+    const inner = document.createElement('div');
+    inner.className = 'comet-card-inner';
+    inner.style.transformStyle = 'preserve-3d';
+
+    // Add children if provided
+    if (opts.children) {
+      if (typeof opts.children === 'string') {
+        inner.innerHTML = opts.children;
+      } else if (opts.children instanceof HTMLElement) {
+        inner.appendChild(opts.children);
+      } else {
+        opts.children.forEach(c => inner.appendChild(
+          typeof c === 'string' ? document.createTextNode(c) : c
+        ));
+      }
+    }
+
+    // Glare overlay
+    const glare = document.createElement('div');
+    glare.className = 'comet-glare';
+    glare.style.background = 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.8) 10%, rgba(255,255,255,0.5) 20%, transparent 70%)';
+    glare.style.opacity = '0';
+    inner.appendChild(glare);
+
+    // Tilt handler — uses requestAnimationFrame for 60fps smoothness
+    let animationId = null;
+    const onMouseMove = (e) => {
+      if (!animationId) {
+        animationId = requestAnimationFrame(() => {
+          const rect = inner.getBoundingClientRect();
+          const width = rect.width;
+          const height = rect.height;
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+          const xPct = (mouseX / width - 0.5);
+          const yPct = (mouseY / height - 0.5);
+
+          inner.style.transform =
+            `perspective(1200px)` +
+            ` rotateX(${-yPct * rotateDepth}deg)` +
+            ` rotateY(${xPct * rotateDepth}deg)` +
+            ` translate3d(${-xPct * translateDepth}px, ${-yPct * translateDepth}px, 80px)` +
+            ` scale(1.05)`;
+
+          const glareX = (mouseX / width) * 100;
+          const glareY = (mouseY / height) * 100;
+          glare.style.background =
+            `radial-gradient(circle at ${glareX}% ${glareY}%, ` +
+            `rgba(255,255,255,0.9) 10%, rgba(255,255,255,0.6) 20%, transparent 70%)`;
+          glare.style.opacity = '0.6';
+          animationId = null;
+        });
+      }
+    };
+
+    const onMouseLeave = () => {
+      inner.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s';
+      inner.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0,0,0) scale(1)';
+      glare.style.opacity = '0';
+      setTimeout(() => {
+        inner.style.transition = '';
+      }, 300);
+    };
+
+    inner.addEventListener('mousemove', onMouseMove);
+    inner.addEventListener('mouseleave', onMouseLeave);
+
+    card.appendChild(inner);
+    return card;
   }
 };
 

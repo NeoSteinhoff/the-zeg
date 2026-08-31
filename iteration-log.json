@@ -1,0 +1,2207 @@
+{
+  "iterations": [
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 1,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 1,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 1,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 1,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 1,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 1,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 1,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 1,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 1,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 2,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 2,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 2,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 2,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 2,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 2,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 2,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 2,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 2,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 3,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 3,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 3,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 3,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 3,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 3,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 3,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 3,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 3,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 4,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 4,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 4,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 4,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 4,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 4,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 4,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 4,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 4,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 5,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 5,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 5,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 5,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 5,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 5,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 5,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 5,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 5,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 6,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 6,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 6,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 6,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 6,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 6,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 6,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 6,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 6,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 7,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 7,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 7,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 7,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 7,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 7,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 7,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 7,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 7,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 8,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 8,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 8,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 8,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 8,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 8,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 8,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 8,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 8,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 9,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 9,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 9,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 9,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 9,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 9,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 9,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 9,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 9,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 10,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 10,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 10,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 10,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 10,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 10,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 10,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 10,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 10,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 11,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 11,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 11,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 11,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 11,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 11,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 11,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 11,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 11,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 12,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 12,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 12,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 12,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 12,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 12,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 12,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 12,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 12,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 13,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 13,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 13,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 13,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 13,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 13,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 13,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 13,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 13,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 14,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 14,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 14,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 14,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 14,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 14,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 14,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 14,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 14,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 15,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 15,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 15,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 15,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 15,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 15,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 15,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 15,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 15,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 16,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 16,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 16,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 16,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 16,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 16,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 16,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 16,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 16,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 17,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 17,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 17,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 17,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 17,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 17,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 17,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 17,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 17,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 18,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 18,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 18,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 18,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 18,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 18,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 18,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 18,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 18,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 19,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 19,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 19,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 19,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 19,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 19,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 19,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 19,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 19,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ],
+    [
+      {
+        "view": "views/circle-pipeline.js",
+        "iteration": 20,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dating.js",
+        "iteration": 20,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing escapeHtml for XSS protection"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/dashboard-v2.js",
+        "iteration": 20,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing error handling (try/catch)"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/email-client.js",
+        "iteration": 20,
+        "score": 5,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/document-vault.js",
+        "iteration": 20,
+        "score": 3,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/file-browser.js",
+        "iteration": 20,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Not using CSS variables for theme awareness"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/obsidian-vault.js",
+        "iteration": 20,
+        "score": 4,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing hover/interaction states",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/prompt-sender.js",
+        "iteration": 20,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Not using ZEG.CometCard for unified card style",
+          "Missing responsive grid/media queries"
+        ],
+        "improved": true
+      },
+      {
+        "view": "views/calendar.js",
+        "iteration": 20,
+        "score": 6,
+        "max": 8,
+        "findings": [
+          "Missing ARIA attributes for accessibility",
+          "Missing responsive grid/media queries",
+          "Missing keyboard shortcuts"
+        ],
+        "improved": true
+      }
+    ]
+  ],
+  "started": "2026-08-30T21:04:07.161319",
+  "final_score": "39/72",
+  "completed": "2026-08-30T21:04:09.278365"
+}
